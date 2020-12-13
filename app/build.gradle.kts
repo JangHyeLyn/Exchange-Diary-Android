@@ -56,8 +56,14 @@ dependencies {
 
     implementation(Dependencies.GSON)
 
-    testImplementation(Dependencies.Test.JUNIT)
+    implementation(Dependencies.Koin.KOIN_SCOPE)
+    implementation(Dependencies.Koin.KOIN_VIEWMODEL)
+    implementation(Dependencies.Koin.KOIN_FRAGMENT)
+    implementation(Dependencies.Koin.KOIN_WORKMANAGER)
+    implementation(Dependencies.Koin.KOIN_COMPOSE)
+    implementation(Dependencies.Koin.KOIN_EXT)
 
+    testImplementation(Dependencies.Test.JUNIT)
     androidTestImplementation (Dependencies.AndroidXTest.JUNIT)
     androidTestImplementation (Dependencies.AndroidXTest.ESPRESSO_CORE)
 }

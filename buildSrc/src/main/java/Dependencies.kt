@@ -13,6 +13,28 @@ object Dependencies {
         const val CONVERTER_GSON = "com.squareup.retrofit2:converter-gson:$VERSION"
     }
 
+    object Dagger {
+        private const val VERSION = "2.30.1"
+
+        const val DAGGER = "com.google.dagger:dagger:$VERSION"
+        const val DAGGER_COMPILER = "com.google.dagger:dagger-compiler:$VERSION"
+
+        const val DAGGER_ANDROID = "com.google.dagger:dagger-android:$VERSION"
+        const val DAGGER_ANDROID_SUPPORT = "com.google.dagger:dagger-android-support:$VERSION"
+        const val DAGGER_ANDROID_PROCESSOR = "com.google.dagger:dagger-android-processor:$VERSION"
+    }
+
+    object Koin {
+        private const val VERSION = "2.2.1"
+
+        const val KOIN_SCOPE = "org.koin:koin-androidx-scope:$VERSION"
+        const val KOIN_VIEWMODEL = "org.koin:koin-androidx-viewmodel:$VERSION"
+        const val KOIN_FRAGMENT = "org.koin:koin-androidx-fragment:$VERSION"
+        const val KOIN_WORKMANAGER = "org.koin:koin-androidx-workmanager:$VERSION"
+        const val KOIN_COMPOSE = "org.koin:koin-androidx-compose:$VERSION"
+        const val KOIN_EXT = "org.koin:koin-androidx-ext:$VERSION"
+    }
+
     const val KOTLIN = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.50"
     const val APPCOMPAT = "androidx.appcompat:appcompat:1.2.0"
     const val TIMBER = "com.jakewharton.timber:timber:4.7.1"
