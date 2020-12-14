@@ -7,7 +7,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 
 abstract class BaseActivity<B: ViewDataBinding> : AppCompatActivity() {
-    abstract val viewModel: BaseViewModel
     protected lateinit var binding: B
     @LayoutRes abstract fun layoutRes() : Int
 
@@ -15,5 +14,6 @@ abstract class BaseActivity<B: ViewDataBinding> : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         binding = DataBindingUtil.setContentView(this, layoutRes())
+        binding.lifecycleOwner = this
     }
 }
