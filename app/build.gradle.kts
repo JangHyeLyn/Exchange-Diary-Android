@@ -55,6 +55,7 @@ dependencies {
     implementation(Dependencies.Retrofit.CONVERTER_GSON)
 
     implementation(Dependencies.GSON)
+    implementation(Dependencies.LOGGING_INTERCEPTOR)
 
     implementation(Dependencies.Koin.KOIN_SCOPE)
     implementation(Dependencies.Koin.KOIN_VIEWMODEL)

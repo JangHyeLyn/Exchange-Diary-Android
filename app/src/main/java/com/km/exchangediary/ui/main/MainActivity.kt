@@ -10,9 +10,15 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     private val viewModel: MainViewModel by viewModel()
     override fun layoutRes(): Int = R.layout.activity_main
 
+    private var count = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding.vm = viewModel
+
+        binding.button.setOnClickListener {
+            viewModel.getRepoName(count++)
+        }
     }
 }

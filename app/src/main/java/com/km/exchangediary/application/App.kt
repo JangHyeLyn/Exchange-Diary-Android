@@ -2,7 +2,7 @@ package com.km.exchangediary.application
 
 import android.app.Application
 import com.km.exchangediary.BuildConfig
-import com.km.exchangediary.di.viewModelModule
+import com.km.exchangediary.di.*
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import timber.log.Timber
@@ -22,7 +22,13 @@ class App : Application() {
 
         startKoin {
             androidContext(app)
-            modules(listOf(viewModelModule))
+            modules(listOf(
+                viewModelModule,
+                repositoryModule,
+                networkModule,
+                dataSourceModule,
+                useCaseModule
+            ))
         }
     }
 }
