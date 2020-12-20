@@ -35,6 +35,13 @@ object Dependencies {
         const val KOIN_EXT = "org.koin:koin-androidx-ext:$VERSION"
     }
 
+    object Firebase {
+        private const val VERSION = "26.1.1"
+
+        const val BOM = "com.google.firebase:firebase-bom:$VERSION"
+        const val KTX = "com.google.firebase:firebase-analytics-ktx"
+    }
+
     const val KOTLIN = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.50"
     const val APPCOMPAT = "androidx.appcompat:appcompat:1.2.0"
     const val TIMBER = "com.jakewharton.timber:timber:4.7.1"

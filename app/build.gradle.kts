@@ -1,5 +1,6 @@
 plugins {
     id("com.android.application")
+    id("com.google.gms.google-services")
     kotlin("android")
     kotlin("android.extensions")
     kotlin("kapt")
@@ -63,6 +64,10 @@ dependencies {
     implementation(Dependencies.Koin.KOIN_WORKMANAGER)
     implementation(Dependencies.Koin.KOIN_COMPOSE)
     implementation(Dependencies.Koin.KOIN_EXT)
+
+    implementation(platform(Dependencies.Firebase.BOM))
+    implementation(Dependencies.Firebase.KTX)
+
 
     testImplementation(Dependencies.Test.JUNIT)
     androidTestImplementation (Dependencies.AndroidXTest.JUNIT)
