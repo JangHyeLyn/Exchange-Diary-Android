@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "931737519806",
+    "project_id": "exchangediary-86a23",
+    "storage_bucket": "exchangediary-86a23.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:931737519806:android:1fd0bc5178493c486ec0ef",
+        "android_client_info": {
+          "package_name": "com.km.exchangediary"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "931737519806-19d3t8hhp9isnv4085fhjg5f53afel9c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.km.exchangediary",
+            "certificate_hash": "94add97aa0420dc2bae449cf6f43312b71c0f7a9"
+          }
+        },
+        {
+          "client_id": "931737519806-etj1oh9mb7qb1vq3tv0n9rmk278hsqtt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDF2sUHO-oRJveEzOT-JdWwdajDUVFm8UU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "931737519806-etj1oh9mb7qb1vq3tv0n9rmk278hsqtt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
