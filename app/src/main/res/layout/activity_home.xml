@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            android:id="@+id/home_title"
+            layout="@layout/item_home_toolbar" />
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nsv_home_contents"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/home_title">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <RelativeLayout
+                    android:id="@+id/layout_writing_diary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tv_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginBottom="16dp"
+                        android:text="@string/writing_diary"
+                        android:textSize="14sp"/>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_writing_diary"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@id/tv_title"
+                        android:layout_marginBottom="32dp"/>
+                </RelativeLayout>
+
+                <View
+                    android:id="@+id/layout_divide"
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp"
+                    android:background="#f8f7f7"
+                    android:layout_below="@id/layout_writing_diary"/>
+
+                <TextView
+                    android:id="@+id/tv_diary_list"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/diary_list"
+                    android:textSize="14sp"
+                    android:layout_below="@id/layout_divide"
+                    android:layout_marginTop="28dp"
+                    android:layout_marginStart="20dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/manage_group"
+                    android:textSize="11sp"
+                    android:layout_alignBottom="@id/tv_diary_list"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="20dp"/>
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tab_diary_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_diary_list"
+                    app:tabMode="scrollable"/>
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/vp_diary_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tab_diary_list"/>
+            </RelativeLayout>
+
+        </androidx.core.widget.NestedScrollView>
+    </RelativeLayout>
+</layout>
