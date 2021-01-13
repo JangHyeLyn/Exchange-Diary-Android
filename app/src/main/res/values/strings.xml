@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">ExchangeDiary</string>
+    <string name="manage_group">그룹 관리</string>
+    <string name="diary_list">일기장 목록</string>
+    <string name="writing_diary">작성중 일기</string>
     <string name="diary_next_button">다음 일기 작성하기</string>
 </resources>
