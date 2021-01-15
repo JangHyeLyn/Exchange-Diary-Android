@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="coverVm"
+            type="com.km.exchangediary.ui.diary.CoverViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cover_page"
+        android:background="#d8dfff"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/diary_cover_title"
+            android:layout_width="220dp"
+            android:layout_height="93dp"
+            android:layout_marginStart="78dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginEnd="78dp"
+            android:gravity="center_horizontal"
+            android:lineSpacingExtra="7sp"
+            android:text="최대열네글자를쓸수있게하고자"
+            android:textColor="@color/black"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/diary_start_day"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="141dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="141dp"
+            android:text="2020.12.07 ~"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/diary_cover_title" />
+
+        <TextView
+            android:id="@+id/diary_group_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="160dp"
+            android:layout_marginTop="180dp"
+            android:layout_marginEnd="160dp"
+            android:gravity="center_horizontal"
+            android:text="평균 28세들"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/diary_start_day" />
+
+        <TextView
+            android:id="@+id/cover_writing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="쭈피님 작성중…"
+            app:layout_constraintEnd_toEndOf="@+id/diary_group_title"
+            app:layout_constraintStart_toStartOf="@+id/diary_group_title"
+            app:layout_constraintTop_toBottomOf="@+id/diary_group_title" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

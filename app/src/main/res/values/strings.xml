@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ExchangeDiary</string>
+    <string name="diary_next_button">다음 일기 작성하기</string>
 </resources>
