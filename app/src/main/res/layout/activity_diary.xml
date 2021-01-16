@@ -13,7 +13,7 @@
         android:layout_height="match_parent">
 
         <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/appbar_layout"
+            android:id="@+id/al_diary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/toolbar_color"
@@ -22,12 +22,12 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/diary_toolbar"
+                android:id="@+id/tb_diary"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize">
 
                 <TextView
-                    android:id="@+id/diary_toolbar_title"
+                    android:id="@+id/tv_diary_title"
                     android:text="오늘 뭐했니"
                     android:textStyle="normal"
                     android:textSize="16sp"
@@ -39,40 +39,40 @@
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/diaryViewPager"
+            android:id="@+id/vp_diary"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/button_container"
+            app:layout_constraintBottom_toTopOf="@+id/bt_container"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/appbar_layout">
+            app:layout_constraintTop_toBottomOf="@+id/al_diary">
 
         </androidx.viewpager2.widget.ViewPager2>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/seekBar_container"
+            android:id="@+id/sb_container"
             android:layout_width="match_parent"
             android:layout_height="34dp"
             android:background="@color/seekBar_container_color"
-            app:layout_constraintBottom_toBottomOf="@+id/diaryViewPager"
+            app:layout_constraintBottom_toBottomOf="@+id/vp_diary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
             <androidx.appcompat.widget.AppCompatSeekBar
+                android:id="@+id/sb_page_number"
                 style="@style/DiarySeekBar"
-                android:id="@+id/appCompatSeekBar"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="8dp"
                 android:layout_marginEnd="12dp"
                 android:progressBackgroundTint="@color/white"
-                app:layout_constraintEnd_toStartOf="@+id/diaryPage"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/tv_total_diary_page"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/diaryPage"
+                android:id="@+id/tv_total_diary_page"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -89,7 +89,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/button_container"
+            android:id="@+id/bt_container"
             android:layout_width="match_parent"
             android:layout_height="88dp"
             android:background="@color/toolbar_color"
@@ -99,7 +99,7 @@
 
             <com.google.android.material.button.MaterialButton
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                android:id="@+id/next_page_button"
+                android:id="@+id/bt_next_page"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginStart="20dp"
@@ -109,7 +109,6 @@
                 android:textStyle="normal"
                 android:textSize="14sp"
                 android:textColor="@color/white"
-                tools:text="다음 일기 작성하기"
                 android:text="@string/diary_next_button"
                 app:strokeColor="@color/button_edge_color"
                 app:strokeWidth="1dp"

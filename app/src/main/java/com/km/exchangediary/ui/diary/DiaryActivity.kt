@@ -18,19 +18,13 @@ class DiaryActivity : BaseActivity<ActivityDiaryBinding>(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        UiHelper.toolBarInit(this, binding.diaryToolbar)
+        UiHelper.toolBarInit(this, binding.tbDiary)
 
         binding.diaryVm = viewModel
-        binding.diaryViewPager.adapter = DiaryViewPagerAdapter(supportFragmentManager,lifecycle)
+        binding.vpDiary.adapter = DiaryViewPagerAdapter(supportFragmentManager, lifecycle)
 
-        makeDiary()
-    }
-
-    private fun makeDiary() {
-        with (binding.diaryViewPager.adapter as DiaryViewPagerAdapter) {
+        with (binding.vpDiary.adapter as DiaryViewPagerAdapter) {
             addFragment(arrayListOf(CoverFragment()))
         }
     }
-
-
 }
