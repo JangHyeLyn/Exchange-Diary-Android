@@ -2,7 +2,6 @@ package com.km.exchangediary.ui.diary
 
 import android.os.Bundle
 import android.view.View
-import androidx.constraintlayout.widget.ConstraintLayout
 import com.km.exchangediary.R
 import com.km.exchangediary.base.BaseFragment
 import com.km.exchangediary.databinding.FragmentCoverBinding
