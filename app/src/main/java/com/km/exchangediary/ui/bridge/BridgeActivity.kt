@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.km.exchangediary.R
 import com.km.exchangediary.base.BaseActivity
 import com.km.exchangediary.databinding.ActivityBridgeBinding
+import com.km.exchangediary.ui.group_management.GroupManagementActivity
 import com.km.exchangediary.ui.home.HomeActivity
 import com.km.exchangediary.ui.main.MainActivity
 
@@ -17,8 +18,9 @@ class BridgeActivity : BaseActivity<ActivityBridgeBinding>() {
         binding.rvBridge.apply {
             val bridgeAdapter = BridgeAdapter(this@BridgeActivity)
             bridgeAdapter.activityList = arrayListOf(
-                    MainActivity::class.java,
-                    HomeActivity::class.java
+                MainActivity::class.java,
+                HomeActivity::class.java,
+                GroupManagementActivity::class.java
             )
             adapter = bridgeAdapter
             layoutManager = LinearLayoutManager(this@BridgeActivity)
