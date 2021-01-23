@@ -8,4 +8,6 @@ object Version {
 
     const val APP_VERSION_CODE = 1
     const val APP_VERSION_NAME = "1.0.0"
+
+    const val GOOGLE_SERVICE_VERSION = "4.3.4"
 }
