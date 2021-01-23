@@ -8,6 +8,7 @@ import com.km.exchangediary.databinding.ActivityBridgeBinding
 import com.km.exchangediary.ui.home.HomeActivity
 import com.km.exchangediary.ui.diary.DiaryActivity
 import com.km.exchangediary.ui.main.MainActivity
+import com.km.exchangediary.ui.profile.ProfileActivity
 
 class BridgeActivity : BaseActivity<ActivityBridgeBinding>() {
     override fun layoutRes(): Int = R.layout.activity_bridge
@@ -20,7 +21,8 @@ class BridgeActivity : BaseActivity<ActivityBridgeBinding>() {
             bridgeAdapter.activityList = arrayListOf(
                     MainActivity::class.java,
                     HomeActivity::class.java,
-                    DiaryActivity::class.java
+                    DiaryActivity::class.java,
+                    ProfileActivity::class.java
             )
             adapter = bridgeAdapter
             layoutManager = LinearLayoutManager(this@BridgeActivity)

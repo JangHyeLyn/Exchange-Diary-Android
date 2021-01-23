@@ -4,6 +4,7 @@ plugins {
     kotlin("android")
     kotlin("android.extensions")
     kotlin("kapt")
+    id("kotlin-android")
 }
 
 android {
@@ -64,6 +65,12 @@ dependencies {
     implementation(Dependencies.Koin.KOIN_WORKMANAGER)
     implementation(Dependencies.Koin.KOIN_COMPOSE)
     implementation(Dependencies.Koin.KOIN_EXT)
+    implementation("androidx.appcompat:appcompat:1.2.0")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:${rootProject.extra["kotlin_version"]}")
+    implementation("androidx.constraintlayout:constraintlayout:2.0.4")
+    implementation("com.github.bumptech.glide:glide:4.11.0")
+    annotationProcessor("com.github.bumptech.glide:compiler:4.11.0")
+
 
     implementation(platform(Dependencies.Firebase.BOM))
     implementation(Dependencies.Firebase.KTX)

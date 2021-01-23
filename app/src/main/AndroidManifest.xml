@@ -3,6 +3,7 @@
     package="com.km.exchangediary">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
         android:name=".application.App"
@@ -22,6 +23,7 @@
         <activity android:name=".ui.main.MainActivity" />
         <activity android:name=".ui.home.HomeActivity" />
         <activity android:name=".ui.diary.DiaryActivity"/>
+        <activity android:name=".ui.profile.ProfileActivity"></activity>
     </application>
 
 </manifest>

@@ -11,4 +11,7 @@
     <color name="seekBar_container_color">#E6292929</color>
     <color name="button_edge_color">#a6a6a6</color>
     <color name="temp">#fedbdb</color>
+    <color name="grey">#26152036</color>
+    <color name="transparent">#00000000</color>
+
 </resources>
