@@ -22,22 +22,6 @@ class GroupManagementAdapter : RecyclerView.Adapter<GroupManagementAdapter.Group
         Group("그룹명최대열글자까지", 1),
         Group("돼지파티", 4),
         Group("SABAL", 2),
-        Group("전설의 레전드", 5),
-        Group("전설의 레전드", 5),
-        Group("전설의 레전드", 5),
-        Group("전설의 레전드", 5),
-        Group("전설의 레전드", 5),
-        Group("전설의 레전드", 5),
-        Group("전설의 레전드", 5),
-        Group("전설의 레전드", 5),
-        Group("전설의 레전드", 5),
-        Group("전설의 레전드", 5),
-        Group("전설의 레전드", 5),
-        Group("전설의 레전드", 5),
-        Group("전설의 레전드", 5),
-        Group("전설의 레전드", 5),
-        Group("전설의 레전드", 5),
-        Group("전설의 레전드", 5),
         Group("전설의 레전드", 5)
     )
 
@@ -59,6 +43,11 @@ class GroupManagementAdapter : RecyclerView.Adapter<GroupManagementAdapter.Group
 
     fun setDragListener(listener: GroupItemDragListener) {
         this.listener = listener
+    }
+
+    fun addGroup(item: Group) {
+        groupList.add(item)
+        notifyDataSetChanged()
     }
 
     inner class GroupManagementViewHolder(private val binding: ItemGroupManagementBinding) : RecyclerView.ViewHolder(binding.root) {
