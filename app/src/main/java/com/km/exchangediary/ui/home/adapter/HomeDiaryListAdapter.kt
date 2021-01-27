@@ -10,10 +10,6 @@ import com.km.exchangediary.ui.home.HomeDiaryGroupFragment
 class HomeDiaryListAdapter(fragmentManager: FragmentManager, lifeCycle: Lifecycle) : FragmentStateAdapter(fragmentManager, lifeCycle) {
     /* TODO: 그룹 관리가 만들어지면 그룹 관리와 엮자 */
     private val fragmentList = arrayListOf<Fragment>(
-            HomeDiaryGroupFragment(),
-            HomeDiaryGroupFragment(),
-            HomeDiaryGroupFragment(),
-            HomeDiaryGroupFragment(),
             HomeDiaryGroupFragment()
     )
 
