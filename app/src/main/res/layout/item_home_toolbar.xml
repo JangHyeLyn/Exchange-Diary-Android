@@ -14,30 +14,30 @@
             android:layout_marginStart="20dp"/>
 
         <ImageView
-            android:id="@+id/iv_button1"
+            android:id="@+id/iv_profile_button"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_centerVertical="true"
-            android:background="#d8d8d8"
+            android:src="@drawable/icon_nav_profile"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="20dp"/>
 
         <ImageView
-            android:id="@+id/iv_button2"
+            android:id="@+id/iv_alarm_button"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_centerVertical="true"
-            android:background="#d8d8d8"
-            android:layout_toStartOf="@id/iv_button1"
+            android:src="@drawable/icon_nav_alarm"
+            android:layout_toStartOf="@id/iv_profile_button"
             android:layout_marginEnd="10dp"/>
 
         <ImageView
-            android:id="@+id/iv_button3"
+            android:id="@+id/iv_add_diary_button"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_centerVertical="true"
-            android:background="#d8d8d8"
-            android:layout_toStartOf="@id/iv_button2"
+            android:src="@drawable/icon_nav_add"
+            android:layout_toStartOf="@id/iv_alarm_button"
             android:layout_marginEnd="10dp"/>
 
 </RelativeLayout>
