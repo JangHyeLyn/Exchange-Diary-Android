@@ -1,6 +1,7 @@
 package com.km.exchangediary.ui.diary
 
 import android.os.Bundle
+import android.view.MotionEvent
 import android.view.View
 import com.km.exchangediary.R
 import com.km.exchangediary.base.BaseFragment

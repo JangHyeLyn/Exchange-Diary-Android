@@ -4,10 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="diaryVm"
             type="com.km.exchangediary.ui.diary.DiaryViewModel" />
     </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/container_diary"
         android:layout_width="match_parent"
@@ -26,9 +28,9 @@
                 android:id="@+id/tb_diary"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
+                app:navigationIcon="@drawable/back_button"
                 app:title="최대열네글자를쓸수있게하고자"
-                app:titleTextColor="@color/white"
-                app:navigationIcon="@drawable/back_button">
+                app:titleTextColor="@color/white">
 
             </com.google.android.material.appbar.MaterialToolbar>
         </com.google.android.material.appbar.AppBarLayout>
@@ -37,19 +39,17 @@
             android:id="@+id/vp_diary"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/bt_container"
+            app:layout_constraintBottom_toBottomOf="@+id/sb_container"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/al_diary">
-
-        </androidx.viewpager2.widget.ViewPager2>
+            app:layout_constraintTop_toBottomOf="@+id/al_diary" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/sb_container"
             android:layout_width="match_parent"
             android:layout_height="34dp"
             android:background="@color/seekBar_container_color"
-            app:layout_constraintBottom_toBottomOf="@+id/vp_diary"
+            app:layout_constraintBottom_toTopOf="@+id/bt_container"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
@@ -72,11 +72,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="20dp"
-                android:text="14 / 20"
-                android:textStyle="normal"
-                android:textSize="14sp"
-                android:textColor="@color/white"
                 android:gravity="end"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="normal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -93,25 +92,25 @@
             app:layout_constraintStart_toStartOf="parent">
 
             <com.google.android.material.button.MaterialButton
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:id="@+id/bt_next_page"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="12dp"
-                android:textStyle="normal"
-                android:textSize="14sp"
-                android:textColor="@color/white"
                 android:text="@string/diary_next_button"
-                app:strokeColor="@color/button_edge_color"
-                app:strokeWidth="1dp"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="normal"
                 app:cornerRadius="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:strokeColor="@color/button_edge_color"
+                app:strokeWidth="1dp" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
