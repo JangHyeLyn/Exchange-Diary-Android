@@ -6,9 +6,19 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
-    <color name="toolbar_color">#292929</color>
-    <color name="seekBar_container_color">#E6292929</color>
-    <color name="button_edge_color">#a6a6a6</color>
-    <color name="temp">#fedbdb</color>
+    <color name="main_yellow">#ffce66</color>
+    <color name="basic_black">#000000</color>
+    <color name="gray_gaa">#aaaaaa</color>
+    <color name="gray_g_29">#292929</color>
+    <color name="main_dark_blue">#152036</color>
+    <color name="main_bg">#f8f8fa</color>
+    <color name="basic_white">#ffffff</color>
+    <color name="sub_blue">#306be0</color>
+    <color name="gray_g_66">#666666</color>
+    <color name="gray_gcf">#cfcfcf</color>
+    <color name="notice">#d42424</color>
+    <color name="color_gray_g_29_0_9">#e5292929</color>
+    <color name="white">#f4f4f4</color>
+    <color name="color_main_yellow_15">#18ffce66</color>
+    <color name="gray_gf_4">#e6e6e6</color>
 </resources>
