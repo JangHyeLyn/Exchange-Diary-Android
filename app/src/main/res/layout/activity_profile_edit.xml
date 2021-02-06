@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.km.exchangediary.ui.profile.ProfileEditViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.profile.ProfileEditActivity">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/tb_profile_edit"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginBottom="681dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="46dp">
+
+                <ImageView
+                    android:id="@+id/iv_profile_edit_back"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_arrow_back" />
+
+                <TextView
+                    android:id="@+id/tv_profile_edit_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="8dp"
+                    android:layout_toRightOf="@id/iv_profile_edit_back"
+                    android:text="프로필편집"
+                    android:textSize="15dp"
+                    android:textColor="@color/black"/>
+
+                <Button
+                    android:id="@+id/btn_profile_edit_end"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="10dp"
+                    android:background="@android:color/transparent"
+                    android:minWidth="0dp"
+                    android:minHeight="0dp"
+                    android:text="완료"
+                    android:textStyle="bold"
+                    android:enabled="false"
+                    android:textColor="@color/btn_disable_color" />
+
+            </RelativeLayout>
+        </androidx.appcompat.widget.Toolbar>
+
+        <View
+            android:id="@+id/view_profile_bar"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/profile_line_color"
+            app:layout_constraintBottom_toTopOf="@+id/iv_profile_edit_photo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tb_profile_edit"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <ImageView
+            android:id="@+id/iv_profile_edit_photo"
+            android:layout_width="97dp"
+            android:layout_height="97dp"
+            android:layout_marginTop="28dp"
+            android:padding="1dp"
+            android:src="@drawable/sample"
+            android:background="@drawable/custom_border_profile_photo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tb_profile_edit"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <View
+            android:id="@+id/v_profile_photo_add_background"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:background="@drawable/custom_background_profile_add_photo"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_profile_edit_photo"
+            app:layout_constraintEnd_toEndOf="@+id/iv_profile_edit_photo"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/iv_profile_edit_photo"
+            app:layout_constraintTop_toTopOf="@+id/iv_profile_edit_photo"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <ImageView
+            android:id="@+id/iv_profile_photo_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_icon_content_photo"
+            app:layout_constraintBottom_toBottomOf="@+id/v_profile_photo_add_background"
+            app:layout_constraintEnd_toEndOf="@+id/v_profile_photo_add_background"
+            app:layout_constraintStart_toStartOf="@+id/v_profile_photo_add_background"
+            app:layout_constraintTop_toTopOf="@+id/v_profile_photo_add_background" />
+
+
+        <EditText
+            android:id="@+id/edit_profile_name"
+            android:layout_width="119dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:maxLength="10"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            android:textSize="21dp"
+            android:hint="이름 입력"
+            android:backgroundTint="@color/grey"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_profile_edit_photo"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/tv_name_warning"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="이름은 최소 2자 이상 입력해야해요!"
+            android:textColor="#FF0000"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/tv_profile_info_length"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_profile_name"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <EditText
+            android:id="@+id/edit_profile_info"
+            android:layout_width="213dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/custom_border_profile_info_edit"
+            android:gravity="center_horizontal"
+            android:inputType="textMultiLine|textNoSuggestions"
+            android:lineSpacingExtra="10dp"
+            android:maxLength="70"
+            android:minLines="4"
+            android:textColor="@color/black"
+            android:textSize="12dp"
+            android:paddingTop="5dp"
+            android:hint="자기소개를 입력해주세요 (최대 70자)"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_profile_name"
+            app:layout_constraintVertical_bias="0.0"/>
+
+        <TextView
+            android:id="@+id/tv_profile_info_length"
+            android:layout_width="213dp"
+            android:layout_height="14dp"
+            android:gravity="right"
+            android:textSize="11dp"
+            app:layout_constraintBottom_toTopOf="@+id/edit_profile_info"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_profile_name"
+            app:layout_constraintVertical_bias="1.0" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

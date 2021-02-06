@@ -36,7 +36,7 @@ class LinedEditText(context: Context?, attrs: AttributeSet?) :
     init {
         mPaint.apply {
             style = Paint.Style.STROKE
-            color = ContextCompat.getColor(context!!, R.color.grey)
+            color = ContextCompat.getColor(context!!, R.color.profile_line_color)
         }
     }
 }
