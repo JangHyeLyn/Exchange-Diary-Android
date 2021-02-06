@@ -13,5 +13,8 @@
     <color name="temp">#fedbdb</color>
     <color name="grey">#26152036</color>
     <color name="transparent">#00000000</color>
+    <color name="btn_enable_color">#306be0</color>
+    <color name="btn_disable_color">#cfcfcf</color>
+    <color name="profile_line_color">#f4f4f4</color>
 
 </resources>
