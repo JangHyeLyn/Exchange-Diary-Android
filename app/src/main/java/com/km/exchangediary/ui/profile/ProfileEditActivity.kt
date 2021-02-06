@@ -27,7 +27,7 @@ import java.util.*
 
 class ProfileEditActivity : BaseActivity<ActivityProfileEditBinding>() {
     override fun layoutRes(): Int = R.layout.activity_profile_edit
-    var photoUri : Uri? = null
+    var photoUri: Uri? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -95,7 +95,7 @@ class ProfileEditActivity : BaseActivity<ActivityProfileEditBinding>() {
     }
 
     //버튼 비활성화
-    fun disableBtn(){
+    fun disableBtn() {
         binding.btnProfileEditEnd.apply {
             isEnabled = false
             setTextColor(
@@ -105,7 +105,7 @@ class ProfileEditActivity : BaseActivity<ActivityProfileEditBinding>() {
     }
 
     //버튼 활성화
-    fun enableBtn(){
+    fun enableBtn() {
         binding.btnProfileEditEnd.apply {
             isEnabled = true
             setTextColor(
@@ -157,7 +157,7 @@ class ProfileEditActivity : BaseActivity<ActivityProfileEditBinding>() {
 
         intent.setDataAndType(photoUri, "image/*")
 
-        val list: MutableList<ResolveInfo>  = packageManager.queryIntentActivities(intent, 0)
+        val list: MutableList<ResolveInfo> = packageManager.queryIntentActivities(intent, 0)
         grantUriPermission(
             list.get(0).activityInfo.packageName,
             photoUri,

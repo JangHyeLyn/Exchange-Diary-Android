@@ -35,7 +35,7 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_centerVertical="true"
-                    android:src="@drawable/ic_arrow_back" />
+                    android:src="@drawable/ic_icon_nav_back_light" />
 
                 <TextView
                     android:id="@+id/tv_profile_title"

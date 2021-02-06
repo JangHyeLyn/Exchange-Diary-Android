@@ -1,16 +1,7 @@
 package com.km.exchangediary.ui.profile
 
-import android.Manifest
-import android.annotation.SuppressLint
-import android.app.Activity
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
-import android.view.View
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.km.exchangediary.R
 import com.km.exchangediary.base.BaseActivity
@@ -28,8 +19,8 @@ class ProfileActivity : BaseActivity<ActivityProfileBinding>() {
 
         binding.ivProfileEdit.setOnClickListener {
             val intent = Intent(this, ProfileEditActivity::class.java)
-            intent.putExtra("name",binding.tvProfileName.text.toString())
-            intent.putExtra("info",binding.tvProfileInfo.text.toString())
+            intent.putExtra("name", binding.tvProfileName.text.toString())
+            intent.putExtra("info", binding.tvProfileInfo.text.toString())
             startActivity(intent)
         }
 
