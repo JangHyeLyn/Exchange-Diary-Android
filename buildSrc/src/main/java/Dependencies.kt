@@ -59,4 +59,11 @@ object Dependencies {
         const val JUNIT = "androidx.test.ext:junit:1.1.2"
         const val ESPRESSO_CORE = "androidx.test.espresso:espresso-core:3.3.0"
     }
+
+    object Glide {
+        private const val VERSION = "4.11.0"
+
+        const val GLIDE_GLIDE = "com.github.bumptech.glide:glide:$VERSION"
+        const val GLIDE_COMPILER = "com.github.bumptech.glide:compiler:$VERSION"
+    }
 }

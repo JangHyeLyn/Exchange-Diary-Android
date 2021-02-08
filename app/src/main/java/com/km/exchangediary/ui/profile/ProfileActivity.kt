@@ -14,6 +14,7 @@ class ProfileActivity : BaseActivity<ActivityProfileBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        /* TODO 오류시 띄울 이미지(기본이미지) 수정 */
         Glide.with(this).load("https://cdn.idreambank.com/news/photo/202004/81215_78965_4506.jpg")
             .circleCrop().error(R.drawable.sample).into(binding.ivProfilePhoto)
 
@@ -28,11 +29,11 @@ class ProfileActivity : BaseActivity<ActivityProfileBinding>() {
             finish()
         }
 
-        binding.btnSignout.setOnClickListener {
+        binding.tvSignout.setOnClickListener {
             /* TODO 로그아웃 버튼 */
         }
 
-        binding.btnVersionInfo.setOnClickListener {
+        binding.tvVersion.setOnClickListener {
             /* TODO 버전 정보 버튼 */
         }
     }

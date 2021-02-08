@@ -9,8 +9,8 @@ import androidx.core.content.ContextCompat
 import com.km.exchangediary.R
 
 
-class LinedEditText(context: Context?, attrs: AttributeSet?) :
-    androidx.appcompat.widget.AppCompatEditText(context!!, attrs) {
+class LinedEditText(context: Context, attrs: AttributeSet?) :
+    androidx.appcompat.widget.AppCompatEditText(context, attrs) {
     private val mRect: Rect = Rect()
     private val mPaint: Paint = Paint()
 
@@ -36,7 +36,7 @@ class LinedEditText(context: Context?, attrs: AttributeSet?) :
     init {
         mPaint.apply {
             style = Paint.Style.STROKE
-            color = ContextCompat.getColor(context!!, R.color.profile_line_color)
+            color = ContextCompat.getColor(context, R.color.profile_line_color)
         }
     }
 }

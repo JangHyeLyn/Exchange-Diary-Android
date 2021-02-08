@@ -20,7 +20,6 @@ import com.bumptech.glide.Glide
 import com.km.exchangediary.R
 import com.km.exchangediary.base.BaseActivity
 import com.km.exchangediary.databinding.ActivityProfileEditBinding
-import kotlinx.android.synthetic.main.activity_profile_edit.*
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
@@ -32,6 +31,7 @@ class ProfileEditActivity : BaseActivity<ActivityProfileEditBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        /* TODO 오류시 띄울 이미지(기본이미지) 수정 */
         Glide.with(this).load("https://cdn.idreambank.com/news/photo/202004/81215_78965_4506.jpg")
             .circleCrop().error(R.drawable.sample).into(binding.ivProfileEditPhoto)
 
@@ -67,12 +67,12 @@ class ProfileEditActivity : BaseActivity<ActivityProfileEditBinding>() {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 if (s.toString() != intent.getStringExtra("name")) {
                     if (s.toString().length < 2) {
-                        disableBtn()
+                        changeBtn(false)
                     } else {
-                        enableBtn()
+                        changeBtn(true)
                     }
                 } else if (s.toString() == intentName && binding.editProfileInfo.text.toString() == intentInfo) {
-                    disableBtn()
+                    changeBtn(false)
                 }
             }
 
@@ -84,9 +84,9 @@ class ProfileEditActivity : BaseActivity<ActivityProfileEditBinding>() {
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 if (s.toString() != intentInfo) {
-                    enableBtn()
+                    changeBtn(true)
                 } else if (s.toString() == intentInfo && binding.editProfileName.text.toString() == intentName) {
-                    disableBtn()
+                    changeBtn(false)
                 }
             }
 
@@ -94,39 +94,43 @@ class ProfileEditActivity : BaseActivity<ActivityProfileEditBinding>() {
         })
     }
 
-    //버튼 비활성화
-    fun disableBtn() {
-        binding.btnProfileEditEnd.apply {
-            isEnabled = false
-            setTextColor(
-                ContextCompat.getColorStateList(applicationContext, R.color.btn_disable_color)
-            )
-        }
-    }
+    // true:버튼 활성화 / false:버튼 비활성화
+    fun changeBtn(result: Boolean) {
+        when (result) {
+            false -> {
+                binding.btnProfileEditEnd.apply {
+                    setTextColor(
+                        ContextCompat.getColorStateList(
+                            applicationContext,
+                            R.color.btn_disable_color
+                        )
+                    )
+                }
+            }
 
-    //버튼 활성화
-    fun enableBtn() {
-        binding.btnProfileEditEnd.apply {
-            isEnabled = true
-            setTextColor(
-                ContextCompat.getColorStateList(
-                    applicationContext,
-                    R.color.btn_enable_color
-                )
-            )
+            true -> {
+                binding.btnProfileEditEnd.apply {
+                    setTextColor(
+                        ContextCompat.getColorStateList(
+                            applicationContext,
+                            R.color.btn_enable_color
+                        )
+                    )
+                }
+            }
         }
+
     }
 
     //tv_profile_info 글자수
     fun infoLengthCount() {
-        binding.tvProfileInfoLength.text = edit_profile_info.length().toString() + "/70"
+        binding.tvProfileInfoLength.text = "${binding.editProfileInfo.length()} / 70"
 
         binding.editProfileInfo.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                val input = binding.editProfileInfo.text.toString()
-                binding.tvProfileInfoLength.text = input.length.toString() + "/70"
+                binding.tvProfileInfoLength.text = "${binding.editProfileInfo.text.length} / 70"
             }
 
             override fun afterTextChanged(s: Editable) {}
@@ -134,9 +138,11 @@ class ProfileEditActivity : BaseActivity<ActivityProfileEditBinding>() {
     }
 
     private val startForSelectPhotoResult: ActivityResultLauncher<Intent> =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult? ->
-            photoUri = result?.data?.data
-            cropImage()
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+            if (result.resultCode == RESULT_OK) {
+                photoUri = result?.data?.data
+                cropImage()
+            }
         }
 
     fun selectPhoto() {
@@ -151,9 +157,10 @@ class ProfileEditActivity : BaseActivity<ActivityProfileEditBinding>() {
                 .circleCrop().error(R.drawable.sample).into(binding.ivProfileEditPhoto)
         }
 
+    /*TODO 사진미선택 후 뒤로가기시 어플종료*/
     private fun cropImage() {
 
-        val intent: Intent = Intent("com.android.camera.action.CROP")
+        val intent = Intent("com.android.camera.action.CROP")
 
         intent.setDataAndType(photoUri, "image/*")
 
@@ -163,9 +170,8 @@ class ProfileEditActivity : BaseActivity<ActivityProfileEditBinding>() {
             photoUri,
             Intent.FLAG_GRANT_WRITE_URI_PERMISSION or Intent.FLAG_GRANT_READ_URI_PERMISSION
         )
-        val size = list.size
 
-        if (size == 0) {
+        if (list.size == 0) {
             Toast.makeText(this, "Canceled", Toast.LENGTH_SHORT).show()
             return
         } else {
@@ -174,11 +180,14 @@ class ProfileEditActivity : BaseActivity<ActivityProfileEditBinding>() {
             intent.putExtra("aspectY", 1)
             intent.putExtra("scale", true)
 
-            val croppedFileName: File? = createImageFile()
+            val imageFileName = "exchangeDiary_${SimpleDateFormat("HHmmss").format(Date())}_"
+            val storageDir: Array<File> = ContextCompat.getExternalFilesDirs(applicationContext, null)
+
+            val croppedFileName: File = File.createTempFile(imageFileName, ".jpg", storageDir[0])
 
             val folder: Array<File> =
                 ContextCompat.getExternalFilesDirs(getApplicationContext(), null)
-            val tempFile: File = File(folder[0].toString(), croppedFileName!!.name)
+            val tempFile: File = File(folder[0].toString(), croppedFileName.name)
             photoUri = FileProvider.getUriForFile(
                 this,
                 "com.km.exchangediary.ui.profile.provider",
@@ -188,7 +197,7 @@ class ProfileEditActivity : BaseActivity<ActivityProfileEditBinding>() {
             intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri)
             intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString())
 
-            val i: Intent = Intent(intent)
+            val i = Intent(intent)
             val res: ResolveInfo = list.get(0)
             grantUriPermission(
                 res.activityInfo.packageName, photoUri,
@@ -198,13 +207,6 @@ class ProfileEditActivity : BaseActivity<ActivityProfileEditBinding>() {
 
             startForCropImageResult.launch(i)
         }
-    }
-
-    private fun createImageFile(): File? {
-        val imageFileName = "exchangeDiary_" + SimpleDateFormat("HHmmss").format(Date()) + "_"
-        val storageDir: Array<File> = ContextCompat.getExternalFilesDirs(applicationContext, null)
-
-        return File.createTempFile(imageFileName, ".jpg", storageDir[0])
     }
 }
 

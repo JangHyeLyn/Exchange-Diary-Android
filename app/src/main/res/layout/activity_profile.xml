@@ -3,13 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-
-        <variable
-            name="vm"
-            type="com.km.exchangediary.ui.profile.ProfileViewModel" />
-    </data>
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -19,12 +12,9 @@
             android:id="@+id/tb_profile"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginBottom="681dp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0">
+            app:layout_constraintTop_toTopOf="parent">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -45,8 +35,8 @@
                     android:layout_marginLeft="8dp"
                     android:layout_toRightOf="@id/iv_profile_back"
                     android:text="프로필"
-                    android:textSize="15dp"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black"
+                    android:textSize="15dp" />
 
 
                 <ImageView
@@ -66,15 +56,11 @@
             android:layout_width="98dp"
             android:layout_height="98dp"
             android:layout_marginTop="28dp"
-            android:padding="1dp"
-            android:src="@drawable/sample"
             android:background="@drawable/custom_border_profile_photo"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:padding="1dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.501"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tb_profile"
-            app:layout_constraintVertical_bias="0.0"  />
+            app:layout_constraintTop_toBottomOf="@+id/tb_profile" />
 
         <TextView
             android:id="@+id/tv_profile_name"
@@ -87,70 +73,27 @@
             android:text="김개똥"
             android:textColor="@color/black"
             android:textSize="21dp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_profile_photo"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toBottomOf="@+id/iv_profile_photo" />
 
         <com.km.exchangediary.ui.profile.LinedEditText
             android:id="@+id/tv_profile_info"
-            android:layout_width="213dp"
+            android:layout_width="224dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="22dp"
             android:backgroundTint="@android:color/transparent"
             android:enabled="false"
             android:gravity="center_horizontal"
-            android:inputType="textMultiLine|textNoSuggestions"
             android:lineSpacingExtra="10dp"
             android:maxLength="70"
             android:minLines="4"
-            android:paddingTop="10dp"
             android:text="김개똥똥똥뿡뿡"
             android:textColor="@color/black"
             android:textSize="12dp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_profile_name"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <Button
-            android:id="@+id/btn_version_info"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:background="@android:color/transparent"
-            android:minWidth="0dp"
-            android:minHeight="0dp"
-            android:text="버전정보"
-            android:textColor="#aaaaaa"
-            android:textSize="11dp"
-            app:layout_constraintBottom_toBottomOf="@+id/view"
-            app:layout_constraintEnd_toEndOf="@+id/view"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/view"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <Button
-            android:id="@+id/btn_signout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="5dp"
-            android:background="@android:color/transparent"
-            android:minWidth="0dp"
-            android:minHeight="0dp"
-            android:text="로그아웃"
-            android:textColor="#aaaaaa"
-            android:textSize="12dp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@+id/view"
-            app:layout_constraintEnd_toEndOf="@+id/view"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/view"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_profile_name" />
 
         <View
             android:id="@+id/view"
@@ -159,9 +102,30 @@
             android:background="#f8f7f7"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_version"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:text="버전정보"
+            android:textColor="#aaaaaa"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintTop_toTopOf="@+id/view" />
+
+        <TextView
+            android:id="@+id/tv_signout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:text="로그아웃"
+            android:textColor="#aaaaaa"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/view"
+            app:layout_constraintTop_toTopOf="@+id/view" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
