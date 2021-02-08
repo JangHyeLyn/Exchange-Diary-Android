@@ -2,6 +2,7 @@ package com.km.exchangediary.ui.profile
 
 import android.content.ComponentName
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.content.pm.ResolveInfo
 import android.graphics.Bitmap
 import android.net.Uri
@@ -14,6 +15,7 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import com.bumptech.glide.Glide
@@ -23,10 +25,12 @@ import com.km.exchangediary.databinding.ActivityProfileEditBinding
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
+import java.util.jar.Manifest
 
 class ProfileEditActivity : BaseActivity<ActivityProfileEditBinding>() {
     override fun layoutRes(): Int = R.layout.activity_profile_edit
     var photoUri: Uri? = null
+    val CONTENTS_PERMISSION_CODE = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,11 +45,11 @@ class ProfileEditActivity : BaseActivity<ActivityProfileEditBinding>() {
         infoLengthCount()
         enableEndBtn()
 
-        binding.ivProfilePhotoAdd.setOnClickListener {
-            selectPhoto()
+        binding.ivProfileEditPhoto.setOnClickListener {
+            checkPermission()
         }
 
-        binding.btnProfileEditEnd.setOnClickListener {
+        binding.tvProfileEditEnd.setOnClickListener {
             /* TODO 완료 버튼 : 변경사항 서버로 전달 */
         }
 
@@ -98,7 +102,7 @@ class ProfileEditActivity : BaseActivity<ActivityProfileEditBinding>() {
     fun changeBtn(result: Boolean) {
         when (result) {
             false -> {
-                binding.btnProfileEditEnd.apply {
+                binding.tvProfileEditEnd.apply {
                     setTextColor(
                         ContextCompat.getColorStateList(
                             applicationContext,
@@ -109,7 +113,7 @@ class ProfileEditActivity : BaseActivity<ActivityProfileEditBinding>() {
             }
 
             true -> {
-                binding.btnProfileEditEnd.apply {
+                binding.tvProfileEditEnd.apply {
                     setTextColor(
                         ContextCompat.getColorStateList(
                             applicationContext,
@@ -137,6 +141,41 @@ class ProfileEditActivity : BaseActivity<ActivityProfileEditBinding>() {
         })
     }
 
+    fun checkPermission() {
+        val WRITE_PERMISSION = android.Manifest.permission.WRITE_EXTERNAL_STORAGE
+        val READ_PERMISSION = android.Manifest.permission.READ_EXTERNAL_STORAGE
+
+        var writePermission = ContextCompat.checkSelfPermission(this, WRITE_PERMISSION)
+        var readPermission = ContextCompat.checkSelfPermission(this, READ_PERMISSION)
+
+        if (writePermission == PackageManager.PERMISSION_DENIED || readPermission == PackageManager.PERMISSION_DENIED) {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(WRITE_PERMISSION, READ_PERMISSION),
+                CONTENTS_PERMISSION_CODE
+            )
+        } else {
+            selectPhoto()
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when (requestCode) {
+            CONTENTS_PERMISSION_CODE -> {
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    selectPhoto()
+                } else {
+                    Toast.makeText(applicationContext, "접근 권한이 필요합니다", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
     private val startForSelectPhotoResult: ActivityResultLauncher<Intent> =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
             if (result.resultCode == RESULT_OK) {
@@ -152,12 +191,21 @@ class ProfileEditActivity : BaseActivity<ActivityProfileEditBinding>() {
     }
 
     private val startForCropImageResult: ActivityResultLauncher<Intent> =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult? ->
-            Glide.with(this).load(photoUri)
-                .circleCrop().error(R.drawable.sample).into(binding.ivProfileEditPhoto)
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+            when (result.resultCode) {
+                RESULT_OK -> {
+                    Glide.with(this).load(photoUri)
+                        .circleCrop().error(R.drawable.sample).into(binding.ivProfileEditPhoto)
+                }
+
+                RESULT_CANCELED -> {
+                    Glide.with(this)
+                        .load("https://cdn.idreambank.com/news/photo/202004/81215_78965_4506.jpg")
+                        .circleCrop().error(R.drawable.sample).into(binding.ivProfileEditPhoto)
+                }
+            }
         }
 
-    /*TODO 사진미선택 후 뒤로가기시 어플종료*/
     private fun cropImage() {
 
         val intent = Intent("com.android.camera.action.CROP")
@@ -181,7 +229,8 @@ class ProfileEditActivity : BaseActivity<ActivityProfileEditBinding>() {
             intent.putExtra("scale", true)
 
             val imageFileName = "exchangeDiary_${SimpleDateFormat("HHmmss").format(Date())}_"
-            val storageDir: Array<File> = ContextCompat.getExternalFilesDirs(applicationContext, null)
+            val storageDir: Array<File> =
+                ContextCompat.getExternalFilesDirs(applicationContext, null)
 
             val croppedFileName: File = File.createTempFile(imageFileName, ".jpg", storageDir[0])
 
@@ -209,4 +258,3 @@ class ProfileEditActivity : BaseActivity<ActivityProfileEditBinding>() {
         }
     }
 }
-
