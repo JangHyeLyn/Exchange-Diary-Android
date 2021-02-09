@@ -3,6 +3,7 @@ package com.km.exchangediary.ui.diary
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.GestureDetector
+import android.view.GestureDetector.OnGestureListener
 import android.view.MotionEvent
 import android.view.View
 import android.widget.SeekBar
@@ -13,11 +14,11 @@ import com.km.exchangediary.databinding.ActivityDiaryBinding
 import com.km.exchangediary.ui.diary.adapter.DiaryViewPagerAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class DiaryActivity: BaseActivity<ActivityDiaryBinding>(), GestureDetector.OnGestureListener {
+class DiaryActivity: BaseActivity<ActivityDiaryBinding>(){
     private val viewModel: DiaryViewModel by viewModel()
     override fun layoutRes(): Int = R.layout.activity_diary
 
-    var max: Int = 40
+    var maxPage: Int = 40
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,10 +34,55 @@ class DiaryActivity: BaseActivity<ActivityDiaryBinding>(), GestureDetector.OnGes
 
         seekBarInit()
 
-        var detector = GestureDetector(applicationContext,this)
+        val detector = GestureDetector(applicationContext, object: OnGestureListener{
+            override fun onDown(e: MotionEvent?): Boolean {
+                return false
+            }
+
+            override fun onShowPress(e: MotionEvent?) {
+            }
+
+            override fun onSingleTapUp(e: MotionEvent?): Boolean {
+                if (binding.sbContainer.visibility == View.VISIBLE) {
+                    with(binding){
+                        sbContainer.visibility = View.INVISIBLE
+                        ivDiaryBack.visibility = View.INVISIBLE
+                        tvDiaryName.visibility = View.INVISIBLE
+                        ivDiaryText.visibility = View.INVISIBLE
+                        switchDiary.visibility = View.INVISIBLE
+                        ivDiaryImage.visibility = View.INVISIBLE
+                        btNextPage.visibility = View.INVISIBLE
+                    }
+
+                } else {
+                    with(binding){
+                        sbContainer.visibility = View.VISIBLE
+                        ivDiaryBack.visibility = View.VISIBLE
+                        tvDiaryName.visibility = View.VISIBLE
+                        ivDiaryText.visibility = View.VISIBLE
+                        switchDiary.visibility = View.VISIBLE
+                        ivDiaryImage.visibility = View.VISIBLE
+                        btNextPage.visibility = View.VISIBLE
+                    }
+                }
+                return false
+
+            }
+
+            override fun onScroll(e1: MotionEvent?, e2: MotionEvent?, distanceX: Float, distanceY: Float): Boolean {
+                return false
+            }
+
+            override fun onLongPress(e: MotionEvent?) {
+            }
+
+            override fun onFling(e1: MotionEvent?, e2: MotionEvent?, velocityX: Float, velocityY: Float): Boolean {
+                return false
+            }
+        })
 
         // 뷰페이저의 0번째 자식은 리사이클러뷰
-        binding.vpDiary.getChildAt(0).setOnTouchListener{v, event->
+        binding.vpDiary.getChildAt(0).setOnTouchListener{ _, event->
             detector.onTouchEvent(event)
             false
         }
@@ -64,52 +110,11 @@ class DiaryActivity: BaseActivity<ActivityDiaryBinding>(), GestureDetector.OnGes
     }
 
     private fun seekBarInit() {
-        binding.sbPageNumber.max = max
-        binding.tvTotalDiaryPage.text = "0 / $max"
+        binding.sbPageNumber.max = maxPage
+        binding.tvTotalDiaryPage.text = "0 / $maxPage"
     }
 
     private fun updatePage(position: Int){
-        var page: String = "" + position
-        binding.tvTotalDiaryPage.text = "$page/ $max"
-    }
-
-    override fun onDown(e: MotionEvent?): Boolean {
-        return false
-    }
-
-    override fun onShowPress(e: MotionEvent?) {
-    }
-
-    override fun onSingleTapUp(e: MotionEvent?): Boolean {
-        if (binding.sbContainer.visibility == View.VISIBLE) {
-            binding.sbContainer.visibility = View.INVISIBLE
-            binding.ivDiaryBack.visibility = View.INVISIBLE
-            binding.tvDiaryName.visibility = View.INVISIBLE
-            binding.ivDiaryText.visibility = View.INVISIBLE
-            binding.switchDiary.visibility = View.INVISIBLE
-            binding.ivDiaryImage.visibility = View.INVISIBLE
-            binding.btNextPage.visibility = View.INVISIBLE
-        } else {
-            binding.sbContainer.visibility = View.VISIBLE
-            binding.ivDiaryBack.visibility = View.VISIBLE
-            binding.tvDiaryName.visibility = View.VISIBLE
-            binding.ivDiaryText.visibility = View.VISIBLE
-            binding.switchDiary.visibility = View.VISIBLE
-            binding.ivDiaryImage.visibility = View.VISIBLE
-            binding.btNextPage.visibility = View.VISIBLE
-        }
-        return false
-
-    }
-
-    override fun onScroll(e1: MotionEvent?, e2: MotionEvent?, distanceX: Float, distanceY: Float): Boolean {
-        return false
-    }
-
-    override fun onLongPress(e: MotionEvent?) {
-    }
-
-    override fun onFling(e1: MotionEvent?, e2: MotionEvent?, velocityX: Float, velocityY: Float): Boolean {
-        return false
+        binding.tvTotalDiaryPage.text = "$position/ $maxPage"
     }
 }

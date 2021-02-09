@@ -21,4 +21,6 @@
     <color name="white">#f4f4f4</color>
     <color name="color_main_yellow_15">#18ffce66</color>
     <color name="gray_gf_4">#e6e6e6</color>
+    <color name="gray_gcf04">#66cfcfcf</color>
+    <color name="main_yellow04">#66ffce66</color>
 </resources>

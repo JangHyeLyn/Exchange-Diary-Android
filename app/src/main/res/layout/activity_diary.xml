@@ -121,7 +121,7 @@
                 android:layout_marginTop="12dp"
                 android:gravity="end"
                 android:textColor="@color/white"
-                android:textSize="14sp"
+                android:textSize="14dp"
                 android:textStyle="normal"
                 app:layout_constraintStart_toEndOf="@+id/sb_page_number"
                 app:layout_constraintTop_toTopOf="parent" />
