@@ -5,7 +5,12 @@ import android.os.Bundle
 import com.bumptech.glide.Glide
 import com.km.exchangediary.R
 import com.km.exchangediary.base.BaseActivity
+import com.km.exchangediary.data.entity.Profile
+import com.km.exchangediary.data.remote.service.ProfileService
 import com.km.exchangediary.databinding.ActivityProfileBinding
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.create
 
 
 class ProfileActivity : BaseActivity<ActivityProfileBinding>() {
@@ -36,5 +41,10 @@ class ProfileActivity : BaseActivity<ActivityProfileBinding>() {
         binding.tvVersion.setOnClickListener {
             /* TODO 버전 정보 버튼 */
         }
+
+//        val retrofit =
+//            Retrofit.Builder().baseUrl("").addConverterFactory(GsonConverterFactory.create())
+//                .build() //baseUrl주소 맨 마지막에 꼭 / 쓸것
+//        val service: ProfileService = retrofit.create(ProfileService::class.java)
     }
 }

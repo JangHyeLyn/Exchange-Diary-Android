@@ -45,10 +45,10 @@
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
                     android:layout_marginRight="20dp"
-                    android:textStyle="bold"
-                    android:textSize="14dp"
+                    android:text="완료"
                     android:textColor="@color/btn_disable_color"
-                    android:text="완료" />
+                    android:textSize="14dp"
+                    android:textStyle="bold" />
 
             </RelativeLayout>
         </androidx.appcompat.widget.Toolbar>
@@ -70,8 +70,8 @@
             android:layout_width="97dp"
             android:layout_height="97dp"
             android:layout_marginTop="28dp"
-            android:padding="1dp"
             android:background="@drawable/custom_border_profile_photo"
+            android:padding="1dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tb_profile_edit" />
@@ -100,13 +100,14 @@
             android:layout_width="119dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:background = "@drawable/selector_profile_name"
             android:gravity="center"
+            android:hint="이름 입력"
+            android:inputType="text"
             android:maxLength="10"
-            android:singleLine="true"
             android:textColor="@color/black"
             android:textSize="21dp"
-            android:hint="이름 입력"
-            android:backgroundTint="@color/grey"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/iv_profile_edit_photo" />
@@ -136,17 +137,16 @@
         <EditText
             android:id="@+id/edit_profile_info"
             android:layout_width="224dp"
-            android:layout_height="wrap_content"
+            android:layout_height="80dp"
             android:layout_marginTop="29dp"
-            android:background="@drawable/custom_border_profile_info_edit"
+            android:background="@drawable/selector_profile_info"
             android:gravity="center_horizontal"
-            android:lineSpacingExtra="10dp"
-            android:maxLength="70"
-            android:minLines="4"
-            android:textColor="@color/black"
-            android:textSize="12dp"
-            android:paddingTop="5dp"
             android:hint="자기소개를 입력해주세요 (최대 70자)"
+            android:maxLength="70"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:textColor="@color/toolbar_color"
+            android:textSize="12dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/edit_profile_name" />
