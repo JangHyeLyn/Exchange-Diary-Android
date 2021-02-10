@@ -18,7 +18,7 @@ class DiaryActivity: BaseActivity<ActivityDiaryBinding>(){
     private val viewModel: DiaryViewModel by viewModel()
     override fun layoutRes(): Int = R.layout.activity_diary
 
-    var maxPage: Int = 40
+    private val maxPage: Int = 40
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
