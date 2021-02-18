@@ -24,7 +24,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/iv_diaryBack"
+                android:id="@+id/iv_diary_back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -46,12 +46,12 @@
                 android:maxLines="1"
                 android:ellipsize="end"
                 android:textColor="@color/white"
-                app:layout_constraintBottom_toBottomOf="@+id/iv_diaryBack"
-                app:layout_constraintStart_toEndOf="@+id/iv_diaryBack"
-                app:layout_constraintTop_toTopOf="@+id/iv_diaryBack"/>
+                app:layout_constraintBottom_toBottomOf="@+id/iv_diary_back"
+                app:layout_constraintStart_toEndOf="@+id/iv_diary_back"
+                app:layout_constraintTop_toTopOf="@+id/iv_diary_back"/>
 
             <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/iv_diaryText"
+                android:id="@+id/iv_diary_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/ic_icon_controls_text"
@@ -66,13 +66,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="true"
-                app:layout_constraintBottom_toBottomOf="@+id/iv_diaryImage"
-                app:layout_constraintEnd_toStartOf="@+id/iv_diaryImage"
-                app:layout_constraintTop_toTopOf="@+id/iv_diaryImage" />
+                app:layout_constraintBottom_toBottomOf="@+id/iv_diary_image"
+                app:layout_constraintEnd_toStartOf="@+id/iv_diary_image"
+                app:layout_constraintTop_toTopOf="@+id/iv_diary_image" />
 
 
             <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/iv_diaryImage"
+                android:id="@+id/iv_diary_image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="11dp"
@@ -106,11 +106,12 @@
             <androidx.appcompat.widget.AppCompatSeekBar
                 android:id="@+id/sb_page_number"
                 style="@style/DiarySeekBar"
-                android:layout_width="285dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="35dp"
                 android:progressBackgroundTint="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/tv_total_diary_page"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -119,11 +120,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
+                android:layout_marginEnd="53dp"
                 android:gravity="end"
                 android:textColor="@color/white"
                 android:textSize="14dp"
                 android:textStyle="normal"
-                app:layout_constraintStart_toEndOf="@+id/sb_page_number"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
