@@ -8,48 +8,98 @@
             name="diaryVm"
             type="com.km.exchangediary.ui.diary.DiaryViewModel" />
     </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/container_diary"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.google.android.material.appbar.AppBarLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/al_diary"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/toolbar_color"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/gray_g_29"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/tb_diary"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:title="최대열네글자를쓸수있게하고자"
-                app:titleTextColor="@color/white"
-                app:navigationIcon="@drawable/back_button">
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/iv_diary_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="11dp"
+                android:layout_marginBottom="11dp"
+                android:src="@drawable/back_button"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-            </com.google.android.material.appbar.MaterialToolbar>
-        </com.google.android.material.appbar.AppBarLayout>
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_diary_name"
+                android:layout_width="174dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="최대열네글자를쓸수있게해봅시다14글자"
+                android:textSize="15dp"
+                android:maxLength="14"
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_diary_back"
+                app:layout_constraintStart_toEndOf="@+id/iv_diary_back"
+                app:layout_constraintTop_toTopOf="@+id/iv_diary_back"/>
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/iv_diary_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_icon_controls_text"
+                app:layout_constraintBottom_toBottomOf="@+id/switch_diary"
+                app:layout_constraintEnd_toStartOf="@+id/switch_diary"
+                app:layout_constraintTop_toTopOf="@+id/switch_diary" />
+
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/switch_diary"
+                style="@style/DiarySwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_diary_image"
+                app:layout_constraintEnd_toStartOf="@+id/iv_diary_image"
+                app:layout_constraintTop_toTopOf="@+id/iv_diary_image" />
+
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/iv_diary_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="11dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="11dp"
+                android:background="@drawable/ic_icon_controls_photo_stickers"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/vp_diary"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/bt_container"
+            app:layout_constraintBottom_toBottomOf="@+id/sb_container"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/al_diary">
-
-        </androidx.viewpager2.widget.ViewPager2>
+            app:layout_constraintTop_toBottomOf="@+id/al_diary" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/sb_container"
             android:layout_width="match_parent"
-            android:layout_height="34dp"
-            android:background="@color/seekBar_container_color"
-            app:layout_constraintBottom_toBottomOf="@+id/vp_diary"
+            android:layout_height="49dp"
+            android:background="@color/color_gray_g_29_0_9"
+            app:layout_constraintBottom_toTopOf="@+id/bt_container"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
@@ -58,8 +108,7 @@
                 style="@style/DiarySeekBar"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="12dp"
+                android:layout_marginStart="35dp"
                 android:progressBackgroundTint="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/tv_total_diary_page"
@@ -70,48 +119,35 @@
                 android:id="@+id/tv_total_diary_page"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="20dp"
-                android:text="14 / 20"
-                android:textStyle="normal"
-                android:textSize="14sp"
-                android:textColor="@color/white"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="53dp"
                 android:gravity="end"
+                android:textColor="@color/white"
+                android:textSize="14dp"
+                android:textStyle="normal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/bt_container"
             android:layout_width="match_parent"
-            android:layout_height="88dp"
-            android:background="@color/toolbar_color"
+            android:layout_height="53dp"
+            android:background="@color/gray_g_29"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
-
-            <com.google.android.material.button.MaterialButton
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                android:id="@+id/bt_next_page"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="12dp"
-                android:textStyle="normal"
-                android:textSize="14sp"
-                android:textColor="@color/white"
-                android:text="@string/diary_next_button"
-                app:strokeColor="@color/button_edge_color"
-                app:strokeWidth="1dp"
-                app:cornerRadius="0dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/bt_next_page"
+            style="@style/DiaryButton"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="16dp"
+            android:text="@string/diary_next_button"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
