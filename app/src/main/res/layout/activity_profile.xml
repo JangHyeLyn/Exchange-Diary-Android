@@ -90,7 +90,7 @@
             android:maxLength="70"
             android:maxLines="4"
             android:minLines="4"
-            android:text="안녕하세요!\n저는 개똥이에요"
+            android:text="띄어쓰기 하면 자동으로 줄바꿈 되는거 왜이럴까요"
             android:textColor="@color/toolbar_color"
             android:textSize="12dp"
             app:layout_constraintEnd_toEndOf="parent"

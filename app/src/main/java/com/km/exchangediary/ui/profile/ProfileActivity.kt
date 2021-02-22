@@ -2,15 +2,16 @@ package com.km.exchangediary.ui.profile
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import com.bumptech.glide.Glide
 import com.km.exchangediary.R
 import com.km.exchangediary.base.BaseActivity
-import com.km.exchangediary.data.entity.Profile
+import com.km.exchangediary.data.entity.ProfileResult
+import com.km.exchangediary.data.remote.service.BASE_URL
 import com.km.exchangediary.data.remote.service.ProfileService
 import com.km.exchangediary.databinding.ActivityProfileBinding
-import retrofit2.Retrofit
+import retrofit2.*
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
 
 
 class ProfileActivity : BaseActivity<ActivityProfileBinding>() {
@@ -30,6 +31,8 @@ class ProfileActivity : BaseActivity<ActivityProfileBinding>() {
             startActivity(intent)
         }
 
+        getProfileFromServer()
+
         binding.ivProfileBack.setOnClickListener {
             finish()
         }
@@ -42,9 +45,25 @@ class ProfileActivity : BaseActivity<ActivityProfileBinding>() {
             /* TODO 버전 정보 버튼 */
         }
 
-//        val retrofit =
-//            Retrofit.Builder().baseUrl("").addConverterFactory(GsonConverterFactory.create())
-//                .build() //baseUrl주소 맨 마지막에 꼭 / 쓸것
-//        val service: ProfileService = retrofit.create(ProfileService::class.java)
+
+    }
+    fun getProfileFromServer() {
+        val retrofit =
+            Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build()
+        val service = retrofit.create(ProfileService::class.java)
+        val callGetResult = service.getProfile()
+
+        callGetResult.enqueue(object : Callback<ProfileResult> {
+            override fun onResponse(call: Call<ProfileResult>, response: Response<ProfileResult>) {
+                Log.d("testtest", "성공 : ${response.raw()}")
+            }
+
+            override fun onFailure(call: Call<ProfileResult>, t: Throwable) {
+                Log.d("testtest", "실패 : $t")
+            }
+        })
     }
 }

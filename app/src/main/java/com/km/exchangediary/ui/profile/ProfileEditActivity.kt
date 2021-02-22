@@ -48,6 +48,7 @@ class ProfileEditActivity : BaseActivity<ActivityProfileEditBinding>() {
         enableEndBtn()
 
         binding.ivProfileEditPhoto.setOnClickListener {
+            /* TODO : 기본이미지선택 or 앨범에서 선택 다이얼로그 */
             checkPermission()
         }
 
@@ -56,7 +57,7 @@ class ProfileEditActivity : BaseActivity<ActivityProfileEditBinding>() {
         }
 
         binding.ivProfileEditBack.setOnClickListener {
-            /* TODO 변경사항 저장 알림? */
+            /* TODO 변경사항 저장여부 알림 */
             finish()
         }
     }
@@ -95,6 +96,7 @@ class ProfileEditActivity : BaseActivity<ActivityProfileEditBinding>() {
                     changeBtn(false)
                 }
             }
+
             override fun afterTextChanged(s: Editable) {}
         })
     }
@@ -104,6 +106,7 @@ class ProfileEditActivity : BaseActivity<ActivityProfileEditBinding>() {
         when (result) {
             false -> {
                 binding.tvProfileEditEnd.apply {
+                    isEnabled = false
                     setTextColor(
                         ContextCompat.getColorStateList(
                             applicationContext,
@@ -115,6 +118,7 @@ class ProfileEditActivity : BaseActivity<ActivityProfileEditBinding>() {
 
             true -> {
                 binding.tvProfileEditEnd.apply {
+                    isEnabled = true
                     setTextColor(
                         ContextCompat.getColorStateList(
                             applicationContext,
@@ -180,14 +184,15 @@ class ProfileEditActivity : BaseActivity<ActivityProfileEditBinding>() {
     private val startForSelectPhotoResult: ActivityResultLauncher<Intent> =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
             if (result.resultCode == RESULT_OK) {
-                photoUri = result?.data?.data
+                photoUri = result.data?.data
                 cropImage()
             }
         }
 
     fun selectPhoto() {
-        val photoPickerIntent = Intent(Intent.ACTION_PICK)
+        val photoPickerIntent = Intent(Intent.ACTION_PICK) /* TODO ACTION_GET_CONTENT 로 변경 */
         photoPickerIntent.type = MediaStore.Images.Media.CONTENT_TYPE
+
         startForSelectPhotoResult.launch(photoPickerIntent)
     }
 
@@ -236,7 +241,7 @@ class ProfileEditActivity : BaseActivity<ActivityProfileEditBinding>() {
             val croppedFileName: File = File.createTempFile(imageFileName, ".jpg", storageDir[0])
 
             val folder: Array<File> =
-                ContextCompat.getExternalFilesDirs(getApplicationContext(), null)
+                ContextCompat.getExternalFilesDirs(applicationContext, null)
             val tempFile: File = File(folder[0].toString(), croppedFileName.name)
             photoUri = FileProvider.getUriForFile(
                 this,
