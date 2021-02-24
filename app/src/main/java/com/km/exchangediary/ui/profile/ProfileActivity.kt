@@ -25,9 +25,10 @@ class ProfileActivity : BaseActivity<ActivityProfileBinding>() {
             .circleCrop().error(R.drawable.sample).into(binding.ivProfilePhoto)
 
         binding.ivProfileEdit.setOnClickListener {
-            val intent = Intent(this, ProfileEditActivity::class.java)
-            intent.putExtra("name", binding.tvProfileName.text.toString())
-            intent.putExtra("info", binding.tvProfileInfo.text.toString())
+            val intent = Intent(this, ProfileEditActivity::class.java).apply {
+                putExtra("name", binding.tvProfileName.text.toString())
+                putExtra("info", binding.tvProfileInfo.text.toString())
+            }
             startActivity(intent)
         }
 
@@ -38,21 +39,21 @@ class ProfileActivity : BaseActivity<ActivityProfileBinding>() {
         }
 
         binding.tvSignout.setOnClickListener {
-            /* TODO 로그아웃 버튼 */
+            /* TODO 로그아웃 */
         }
 
         binding.tvVersion.setOnClickListener {
-            /* TODO 버전 정보 버튼 */
+            /* TODO 버전 정보 */
         }
-
-
     }
+
     fun getProfileFromServer() {
+
         val retrofit =
             Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
-                .build()
+                .build() /* TODO 위치수정 */
         val service = retrofit.create(ProfileService::class.java)
         val callGetResult = service.getProfile()
 

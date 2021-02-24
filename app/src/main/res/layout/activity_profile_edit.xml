@@ -60,11 +60,8 @@
             android:layout_height="1dp"
             android:layout_alignParentBottom="true"
             android:background="@color/profile_line_color"
-            app:layout_constraintBottom_toTopOf="@+id/iv_profile_edit_photo"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tb_profile_edit"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toBottomOf="@+id/tb_profile_edit" />
 
         <ImageView
             android:id="@+id/iv_profile_edit_photo"
@@ -114,23 +111,9 @@
             app:layout_constraintTop_toBottomOf="@+id/iv_profile_edit_photo" />
 
         <TextView
-            android:id="@+id/tv_name_warning"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="이름은 최소 2자 이상 입력해야해요!"
-            android:textColor="#FF0000"
-            android:visibility="gone"
-            app:layout_constraintBottom_toTopOf="@+id/tv_profile_info_length"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edit_profile_name"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <TextView
             android:id="@+id/tv_profile_info_length"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="right"
             android:textSize="11dp"
             app:layout_constraintBottom_toTopOf="@+id/edit_profile_info"
             app:layout_constraintEnd_toEndOf="@+id/edit_profile_info" />
@@ -143,7 +126,6 @@
             android:background="@drawable/selector_profile_info"
             android:gravity="center_horizontal"
             android:hint="자기소개를 입력해주세요 (최대 70자)"
-            android:text=""
             android:lineSpacingExtra="3dp"
             android:maxLength="70"
             android:paddingStart="8dp"

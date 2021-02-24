@@ -11,7 +11,6 @@ import android.provider.MediaStore
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
-import android.view.View
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
@@ -19,7 +18,6 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
-import androidx.core.graphics.toColor
 import com.bumptech.glide.Glide
 import com.km.exchangediary.R
 import com.km.exchangediary.base.BaseActivity
@@ -27,12 +25,12 @@ import com.km.exchangediary.databinding.ActivityProfileEditBinding
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
-import java.util.jar.Manifest
 
 class ProfileEditActivity : BaseActivity<ActivityProfileEditBinding>() {
     override fun layoutRes(): Int = R.layout.activity_profile_edit
-    var photoUri: Uri? = null
-    val CONTENTS_PERMISSION_CODE = 1
+    private val CONTENTS_PERMISSION_CODE = 1
+    private lateinit var INTENT_NAME: String
+    private var INTENT_INFO: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,12 +39,18 @@ class ProfileEditActivity : BaseActivity<ActivityProfileEditBinding>() {
         Glide.with(this).load("https://cdn.idreambank.com/news/photo/202004/81215_78965_4506.jpg")
             .circleCrop().error(R.drawable.sample).into(binding.ivProfileEditPhoto)
 
-        binding.editProfileName.setText(intent.getStringExtra("name"))
-        binding.editProfileInfo.setText(intent.getStringExtra("info"))
+        INTENT_NAME = intent.getStringExtra("name")
+        INTENT_INFO = intent.getStringExtra("info")
 
+        binding.editProfileName.setText(INTENT_NAME)
+        binding.editProfileInfo.setText(INTENT_INFO)
+
+        clickListeners()
         infoLengthCount()
-        enableEndBtn()
+        activateEndButton()
+    }
 
+    private fun clickListeners() {
         binding.ivProfileEditPhoto.setOnClickListener {
             /* TODO : 기본이미지선택 or 앨범에서 선택 다이얼로그 */
             checkPermission()
@@ -64,22 +68,19 @@ class ProfileEditActivity : BaseActivity<ActivityProfileEditBinding>() {
 
     /* TODO : 사진 변경되었을 경우 버튼 활성화 */
     //변경버튼 활성화여부 판별
-    fun enableEndBtn() {
-        val intentName = intent.getStringExtra("name")
-        val intentInfo = intent.getStringExtra("info")
-
+    private fun activateEndButton() {
         binding.editProfileName.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (s.toString() != intent.getStringExtra("name")) {
+                if (s.toString() != INTENT_NAME) {
                     if (s.toString().length < 2) {
-                        changeBtn(false)
+                        changeButtonColor(false)
                     } else {
-                        changeBtn(true)
+                        changeButtonColor(true)
                     }
-                } else if (s.toString() == intentName && binding.editProfileInfo.text.toString() == intentInfo) {
-                    changeBtn(false)
+                } else if (s.toString() == INTENT_NAME && binding.editProfileInfo.text.toString() == INTENT_INFO) {
+                    changeButtonColor(false)
                 }
             }
 
@@ -90,10 +91,10 @@ class ProfileEditActivity : BaseActivity<ActivityProfileEditBinding>() {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (s.toString() != intentInfo) {
-                    changeBtn(true)
-                } else if (s.toString() == intentInfo && binding.editProfileName.text.toString() == intentName) {
-                    changeBtn(false)
+                if (s.toString() != INTENT_INFO) {
+                    changeButtonColor(true)
+                } else if (s.toString() == INTENT_INFO && binding.editProfileName.text.toString() == INTENT_NAME) {
+                    changeButtonColor(false)
                 }
             }
 
@@ -102,8 +103,8 @@ class ProfileEditActivity : BaseActivity<ActivityProfileEditBinding>() {
     }
 
     // true:버튼 활성화 / false:버튼 비활성화
-    fun changeBtn(result: Boolean) {
-        when (result) {
+    private fun changeButtonColor(isActivate: Boolean) {
+        when (isActivate) {
             false -> {
                 binding.tvProfileEditEnd.apply {
                     isEnabled = false
@@ -132,7 +133,7 @@ class ProfileEditActivity : BaseActivity<ActivityProfileEditBinding>() {
     }
 
     //tv_profile_info 글자수
-    fun infoLengthCount() {
+    private fun infoLengthCount() {
         binding.tvProfileInfoLength.text = "${binding.editProfileInfo.length()}/70"
 
         binding.editProfileInfo.addTextChangedListener(object : TextWatcher {
@@ -146,12 +147,12 @@ class ProfileEditActivity : BaseActivity<ActivityProfileEditBinding>() {
         })
     }
 
-    fun checkPermission() {
+    private fun checkPermission() {
         val WRITE_PERMISSION = android.Manifest.permission.WRITE_EXTERNAL_STORAGE
         val READ_PERMISSION = android.Manifest.permission.READ_EXTERNAL_STORAGE
 
-        var writePermission = ContextCompat.checkSelfPermission(this, WRITE_PERMISSION)
-        var readPermission = ContextCompat.checkSelfPermission(this, READ_PERMISSION)
+        val writePermission = ContextCompat.checkSelfPermission(this, WRITE_PERMISSION)
+        val readPermission = ContextCompat.checkSelfPermission(this, READ_PERMISSION)
 
         if (writePermission == PackageManager.PERMISSION_DENIED || readPermission == PackageManager.PERMISSION_DENIED) {
             ActivityCompat.requestPermissions(
@@ -181,46 +182,31 @@ class ProfileEditActivity : BaseActivity<ActivityProfileEditBinding>() {
         }
     }
 
-    private val startForSelectPhotoResult: ActivityResultLauncher<Intent> =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
-            if (result.resultCode == RESULT_OK) {
-                photoUri = result.data?.data
-                cropImage()
-            }
-        }
-
-    fun selectPhoto() {
+    private fun selectPhoto() {
         val photoPickerIntent = Intent(Intent.ACTION_PICK) /* TODO ACTION_GET_CONTENT 로 변경 */
         photoPickerIntent.type = MediaStore.Images.Media.CONTENT_TYPE
 
         startForSelectPhotoResult.launch(photoPickerIntent)
     }
 
-    private val startForCropImageResult: ActivityResultLauncher<Intent> =
+    private val startForSelectPhotoResult: ActivityResultLauncher<Intent> =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
-            when (result.resultCode) {
-                RESULT_OK -> {
-                    Glide.with(this).load(photoUri)
-                        .circleCrop().error(R.drawable.sample).into(binding.ivProfileEditPhoto)
-                }
-
-                RESULT_CANCELED -> {
-                    Glide.with(this)
-                        .load("https://cdn.idreambank.com/news/photo/202004/81215_78965_4506.jpg")
-                        .circleCrop().error(R.drawable.sample).into(binding.ivProfileEditPhoto)
-                }
+            if (result.resultCode == RESULT_OK) {
+                cropImage(result.data?.data)
             }
         }
 
-    private fun cropImage() {
+    private fun cropImage(photoDirectory: Uri?) {
+        var photoUri: Uri? = photoDirectory
 
         val intent = Intent("com.android.camera.action.CROP")
-
         intent.setDataAndType(photoUri, "image/*")
 
         val list: MutableList<ResolveInfo> = packageManager.queryIntentActivities(intent, 0)
+        val getCropImageActivity: ResolveInfo = list.get(0)
+
         grantUriPermission(
-            list.get(0).activityInfo.packageName,
+            getCropImageActivity.activityInfo.packageName,
             photoUri,
             Intent.FLAG_GRANT_WRITE_URI_PERMISSION or Intent.FLAG_GRANT_READ_URI_PERMISSION
         )
@@ -234,11 +220,14 @@ class ProfileEditActivity : BaseActivity<ActivityProfileEditBinding>() {
             intent.putExtra("aspectY", 1)
             intent.putExtra("scale", true)
 
-            val imageFileName = "exchangeDiary_${SimpleDateFormat("HHmmss").format(Date())}_"
-            val storageDir: Array<File> =
+            val storageDirectory: Array<File> =
                 ContextCompat.getExternalFilesDirs(applicationContext, null)
 
-            val croppedFileName: File = File.createTempFile(imageFileName, ".jpg", storageDir[0])
+            val croppedFileName: File = File.createTempFile(
+                "exchangeDiary_${SimpleDateFormat("HHmmss").format(Date())}_",
+                ".jpg",
+                storageDirectory[0]
+            )
 
             val folder: Array<File> =
                 ContextCompat.getExternalFilesDirs(applicationContext, null)
@@ -252,15 +241,34 @@ class ProfileEditActivity : BaseActivity<ActivityProfileEditBinding>() {
             intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri)
             intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString())
 
-            val i = Intent(intent)
-            val res: ResolveInfo = list.get(0)
+            val cropIamgeIntent = Intent(intent)
+            cropIamgeIntent.component = ComponentName(
+                getCropImageActivity.activityInfo.packageName,
+                getCropImageActivity.activityInfo.name
+            )
+
             grantUriPermission(
-                res.activityInfo.packageName, photoUri,
+                getCropImageActivity.activityInfo.packageName, photoUri,
                 Intent.FLAG_GRANT_WRITE_URI_PERMISSION or Intent.FLAG_GRANT_READ_URI_PERMISSION
             )
-            i.component = ComponentName(res.activityInfo.packageName, res.activityInfo.name)
 
-            startForCropImageResult.launch(i)
+            startForCropImageResult.launch(cropIamgeIntent)
         }
     }
+    private val startForCropImageResult: ActivityResultLauncher<Intent> =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+            when (result.resultCode) {
+                RESULT_OK -> {
+                    /* TODO 기본 이미지 변경 */
+                    Glide.with(this).load(result.data?.data)
+                        .circleCrop().error(R.drawable.sample).into(binding.ivProfileEditPhoto)
+                }
+
+                RESULT_CANCELED -> {
+                    Glide.with(this)
+                        .load("https://cdn.idreambank.com/news/photo/202004/81215_78965_4506.jpg")
+                        .circleCrop().error(R.drawable.sample).into(binding.ivProfileEditPhoto)
+                }
+            }
+        }
 }

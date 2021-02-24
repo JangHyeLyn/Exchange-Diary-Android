@@ -8,11 +8,14 @@ import android.util.AttributeSet
 import androidx.core.content.ContextCompat
 import com.km.exchangediary.R
 
-
 class LinedEditText(context: Context, attrs: AttributeSet?) :
     androidx.appcompat.widget.AppCompatEditText(context, attrs) {
     private val mRect: Rect = Rect()
-    private val mPaint: Paint = Paint()
+    private val mPaint: Paint = Paint().apply{
+        style = Paint.Style.STROKE
+        strokeWidth = 3F
+        color = ContextCompat.getColor(context, R.color.profile_line_color)
+    }
 
     override fun onDraw(canvas: Canvas) {
         var curHeight = 0
@@ -31,13 +34,5 @@ class LinedEditText(context: Context, attrs: AttributeSet?) :
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
         invalidate()
-    }
-
-    init {
-        mPaint.apply {
-            style = Paint.Style.STROKE
-            strokeWidth = 3F
-            color = ContextCompat.getColor(context, R.color.profile_line_color)
-        }
     }
 }
