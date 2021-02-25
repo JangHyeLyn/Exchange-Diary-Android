@@ -12,7 +12,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ExchangeDiary">
-        <activity android:name=".ui.alarm_page.AlarmActivity"></activity>
         <activity android:name=".ui.bridge.BridgeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,6 +22,8 @@
         <activity android:name=".ui.main.MainActivity" />
         <activity android:name=".ui.home.HomeActivity" />
         <activity android:name=".ui.diary.DiaryActivity" />
+        <activity android:name=".ui.notification_page.NotificationPageActivity" />
+
     </application>
 
 </manifest>
