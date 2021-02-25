@@ -12,4 +12,6 @@
     <color name="button_edge_color">#a6a6a6</color>
     <color name="temp">#fedbdb</color>
     <color name="notification_image_background">#e1e1e1</color>
+    <color name="notification_diary_name_color">#152036</color>
+    <color name="notification_background_color">#1AFFCE66</color>
 </resources>
