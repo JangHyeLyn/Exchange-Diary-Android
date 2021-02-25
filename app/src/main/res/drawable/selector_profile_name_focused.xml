@@ -3,13 +3,13 @@
 
     <item>
         <shape android:shape="rectangle">
-            <solid android:color="#152036" />
+            <solid android:color="@color/profile_textview_focused_color" />
         </shape>
     </item>
 
     <item android:bottom="1dp">
         <shape android:shape="rectangle">
-            <solid android:color="#ffffff" />
+            <solid android:color="@color/white" />
         </shape>
     </item>
 </layer-list>

@@ -16,5 +16,9 @@
     <color name="btn_enable_color">#306be0</color>
     <color name="btn_disable_color">#cfcfcf</color>
     <color name="profile_line_color">#f4f4f4</color>
+    <color name="profile_bottom_text_color">#aaaaaa</color>
+    <color name="profile_bottom_color">#f8f7f7</color>
+    <color name="profile_add_photo_button_background">#c0000000</color>
+    <color name="profile_textview_focused_color">#152036</color>
 
 </resources>
