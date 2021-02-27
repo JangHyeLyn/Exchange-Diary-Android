@@ -3,6 +3,9 @@ package com.km.exchangediary.ui
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableStringBuilder
+import android.text.style.ForegroundColorSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,6 +22,7 @@ class CommonDialog(private val titleVisible: Boolean = true,
                    private val contentType: DialogContentType = DialogContentType.TEXT_VIEW,
                    private val titleText: String = "", private val contentText: String = "",
                    private val confirmText: String = "확인", private val cancelText: String = "취소",
+                   private val highlightText: List<Pair<Int, Int>> = listOf(),
                    private val onSuccess : () -> Unit = {}) : DialogFragment() {
     lateinit var binding: DialogCommonBinding
 
@@ -43,7 +47,17 @@ class CommonDialog(private val titleVisible: Boolean = true,
             DialogContentType.TEXT_VIEW -> {
                 binding.tvContents.visibility = View.VISIBLE
                 binding.etContents.visibility = View.GONE
-                binding.tvContents.text = contentText
+
+                val highlightContentText = SpannableStringBuilder(contentText)
+                for (pair in highlightText) {
+                    highlightContentText.setSpan(
+                        ForegroundColorSpan(Color.parseColor("#d42424")),
+                        pair.first,
+                        pair.second,
+                        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+                    )
+                }
+                binding.tvContents.text = highlightContentText
             }
             DialogContentType.EDIT_TEXT -> {
                 binding.tvContents.visibility = View.GONE
