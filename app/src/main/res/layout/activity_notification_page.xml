@@ -22,8 +22,8 @@
 
                 <ImageView
                     android:id="@+id/iv_profile_back"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:src="@drawable/ic_icon_nav_back_light" />
 

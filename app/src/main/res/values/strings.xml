@@ -4,6 +4,4 @@
     <string name="diary_list">일기장 목록</string>
     <string name="writing_diary">작성중 일기</string>
     <string name="diary_next_button">다음 일기 작성하기</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
