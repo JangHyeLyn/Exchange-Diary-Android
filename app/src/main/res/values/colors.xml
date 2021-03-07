@@ -1,26 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- default color -->
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
-    <color name="main_yellow">#ffce66</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- custom color -->
     <color name="basic_black">#000000</color>
-    <color name="gray_gaa">#aaaaaa</color>
-    <color name="gray_g_29">#292929</color>
-    <color name="main_dark_blue">#152036</color>
-    <color name="main_bg">#f8f8fa</color>
+    <color name="basic_black_90">#e6000000</color>
+    <color name="basic_black_50">#80000000</color>
     <color name="basic_white">#ffffff</color>
+    <color name="basic_white_45">#73ffffff</color>
+    <color name="main_yellow">#ffce66</color>
+    <color name="main_yellow_50">#80ffce66</color>
+    <color name="main_yellow_30">#4cffce66</color>
+    <color name="main_yellow_10">#19ffce66</color>
+    <color name="main_darkblue">#152036</color>
+    <color name="main_darkblue_90">#e6152036</color>
+    <color name="main_darkblue_50">#80152036</color>
+    <color name="main_darkblue_25">#40152036</color>
+    <color name="main_bg">#f8f7f7</color>
     <color name="sub_blue">#306be0</color>
-    <color name="gray_g_66">#666666</color>
-    <color name="gray_gcf">#cfcfcf</color>
     <color name="notice">#d42424</color>
-    <color name="color_gray_g_29_0_9">#e5292929</color>
-    <color name="white">#f4f4f4</color>
-    <color name="color_main_yellow_15">#18ffce66</color>
-    <color name="gray_gf_4">#e6e6e6</color>
-    <color name="gray_gcf04">#66cfcfcf</color>
-    <color name="main_yellow04">#66ffce66</color>
+    <color name="gray_01">#292929</color>
+    <color name="gray_01_90">#e6292929</color>
+    <color name="gray_01_75">#c0292929</color>
+    <color name="gray_02">#666666</color>
+    <color name="gray_02_75">#c0666666</color>
+    <color name="gray_03">#aaaaaa</color>
+    <color name="gray_03_75">#c0aaaaaa</color>
+    <color name="gray_04">#cfcfcf</color>
+    <color name="gray_04_75">#c0cfcfcf</color>
+    <color name="gray_04_50">#80cfcfcf</color>
+    <color name="gray_05">#e6e6e6</color>
+    <color name="gray_05_75">#bee6e6e6</color>
 </resources>
