@@ -24,6 +24,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding>() {
         CommonDialog(
             titleText = "그룹명 수정",
             contentText = "모든 멤버를 통틀어서 하루에 3번 재촉 가능합니다.",
+            highlightText = listOf(Pair(0, 6)),
             onSuccess = { Toast.makeText(baseContext, "확인", Toast.LENGTH_SHORT).show() }
         ).show(supportFragmentManager, "good")
     }

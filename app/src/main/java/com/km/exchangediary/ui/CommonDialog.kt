@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
+import com.km.exchangediary.R
 import com.km.exchangediary.databinding.DialogCommonBinding
 import com.km.exchangediary.utils.toPx
 
@@ -51,7 +52,7 @@ class CommonDialog(private val titleVisible: Boolean = true,
                 val highlightContentText = SpannableStringBuilder(contentText)
                 for (pair in highlightText) {
                     highlightContentText.setSpan(
-                        ForegroundColorSpan(Color.parseColor("#d42424")),
+                        ForegroundColorSpan(resources.getColor(R.color.notice, null)),
                         pair.first,
                         pair.second,
                         Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
