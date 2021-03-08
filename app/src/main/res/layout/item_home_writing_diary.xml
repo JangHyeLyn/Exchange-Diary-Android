@@ -5,7 +5,7 @@
     <RelativeLayout
         android:layout_width="250dp"
         android:layout_height="370dp"
-        android:background="#d8d8d8">
+        android:background="@color/gray_06">
 
         <TextView
             android:id="@+id/tv_name"

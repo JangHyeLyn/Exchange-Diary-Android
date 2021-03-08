@@ -18,7 +18,7 @@
             android:id="@+id/al_diary"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/gray_g_29"
+            android:background="@color/gray_01_90"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -98,7 +98,7 @@
             android:id="@+id/sb_container"
             android:layout_width="match_parent"
             android:layout_height="49dp"
-            android:background="@color/color_gray_g_29_0_9"
+            android:background="@color/gray_01_90"
             app:layout_constraintBottom_toTopOf="@+id/bt_container"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
@@ -133,7 +133,7 @@
             android:id="@+id/bt_container"
             android:layout_width="match_parent"
             android:layout_height="53dp"
-            android:background="@color/gray_g_29"
+            android:background="@color/gray_01"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">

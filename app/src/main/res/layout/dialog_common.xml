@@ -37,14 +37,14 @@
                 android:layout_height="wrap_content"
                 tools:text="모든 멤버를 통틀어서 하루에 3번 재촉 가능합니다."
                 android:textSize="12dp"
-                android:textColor="#666666"/>
+                android:textColor="@color/gray_02"/>
 
             <EditText
                 android:id="@+id/et_contents"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="14dp"
-                android:textColor="#292929"
+                android:textColor="@color/gray_01"
                 android:visibility="gone"/>
 
         </RelativeLayout>
@@ -61,7 +61,7 @@
                 android:layout_height="1dp"
                 android:layout_marginStart="1dp"
                 android:layout_marginEnd="1dp"
-                android:background="#e6e6e6" />
+                android:background="@color/gray_05" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -80,7 +80,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:textSize="14dp"
-                        android:textColor="#292929"
+                        android:textColor="@color/gray_01"
                         tools:text="취소" />
                 </RelativeLayout>
 
@@ -88,7 +88,7 @@
                     android:layout_width="1dp"
                     android:layout_height="match_parent"
                     android:layout_marginBottom="1dp"
-                    android:background="#e6e6e6" />
+                    android:background="@color/gray_05" />
 
                 <RelativeLayout
                     android:id="@+id/btn_confirm"
@@ -102,7 +102,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:textSize="14dp"
-                        android:textColor="#306be0"
+                        android:textColor="@color/sub_blue"
                         tools:text="수정" />
                 </RelativeLayout>
             </LinearLayout>
