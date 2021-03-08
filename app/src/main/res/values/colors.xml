@@ -12,6 +12,7 @@
     <!-- custom color -->
     <color name="basic_black">#000000</color>
     <color name="basic_black_90">#e6000000</color>
+    <color name="basic_black_70">#b3000000</color>
     <color name="basic_black_50">#80000000</color>
     <color name="basic_white">#ffffff</color>
     <color name="basic_white_45">#73ffffff</color>
@@ -38,5 +39,5 @@
     <color name="gray_04_50">#80cfcfcf</color>
     <color name="gray_05">#e6e6e6</color>
     <color name="gray_05_75">#bee6e6e6</color>
-    <color name="gray_06">#d8d8d8</color>
+    <color name="gray_06">#ededed</color>
 </resources>
