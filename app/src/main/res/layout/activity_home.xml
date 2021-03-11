@@ -72,7 +72,7 @@
                     android:id="@+id/layout_divide"
                     android:layout_width="match_parent"
                     android:layout_height="8dp"
-                    android:background="#f8f7f7"
+                    android:background="@color/main_bg"
                     android:layout_below="@id/layout_writing_diary"/>
 
                 <TextView
