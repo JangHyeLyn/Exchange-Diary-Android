@@ -47,7 +47,7 @@
                     android:layout_marginRight="20dp"
                     android:enabled="false"
                     android:text="완료"
-                    android:textColor="@color/btn_disable_color"
+                    android:textColor="@color/gray_04"
                     android:textSize="14dp"
                     android:textStyle="bold" />
 
@@ -59,7 +59,7 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_alignParentBottom="true"
-            android:background="@color/profile_line_color"
+            android:background="@color/gray_05"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tb_profile_edit" />
 
@@ -132,7 +132,7 @@
             android:paddingTop="8dp"
             android:paddingEnd="8dp"
             android:paddingBottom="8dp"
-            android:textColor="@color/toolbar_color"
+            android:textColor="@color/gray_01"
             android:textSize="12dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

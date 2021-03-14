@@ -111,7 +111,7 @@ class ProfileEditActivity : BaseActivity<ActivityProfileEditBinding>() {
                     setTextColor(
                         ContextCompat.getColorStateList(
                             applicationContext,
-                            R.color.btn_disable_color
+                            R.color.gray_04
                         )
                     )
                 }
@@ -123,13 +123,12 @@ class ProfileEditActivity : BaseActivity<ActivityProfileEditBinding>() {
                     setTextColor(
                         ContextCompat.getColorStateList(
                             applicationContext,
-                            R.color.btn_enable_color
+                            R.color.sub_blue
                         )
                     )
                 }
             }
         }
-
     }
 
     //tv_profile_info 글자수
