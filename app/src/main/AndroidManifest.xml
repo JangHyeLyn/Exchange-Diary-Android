@@ -26,6 +26,7 @@
         <activity android:name=".ui.main.MainActivity" />
         <activity android:name=".ui.home.HomeActivity" />
         <activity android:name=".ui.diary.DiaryActivity" />
+        <activity android:name=".ui.notification_page.NotificationPageActivity" />
         <activity android:name=".ui.profile.ProfileActivity" />
         <activity android:name=".ui.profile.ProfileEditActivity" />
 

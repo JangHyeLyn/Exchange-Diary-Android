@@ -72,7 +72,6 @@ dependencies {
     implementation(platform(Dependencies.Firebase.BOM))
     implementation(Dependencies.Firebase.KTX)
 
-
     testImplementation(Dependencies.Test.JUNIT)
     androidTestImplementation (Dependencies.AndroidXTest.JUNIT)
     androidTestImplementation (Dependencies.AndroidXTest.ESPRESSO_CORE)
