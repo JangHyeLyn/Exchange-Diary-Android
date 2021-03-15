@@ -7,7 +7,7 @@
         android:id="@+id/cl_notification_page"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/notification_background_color">
+        android:background="@color/main_yellow_10">
 
         <ImageView
             android:id="@+id/iv_notification_diary_cover"
@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="20dp"
-            android:textColor="@color/notification_diary_name_color"
+            android:textColor="@color/gray_01_75"
             android:textSize="10dp"
             app:layout_constraintStart_toEndOf="@+id/iv_notification_diary_cover"
             app:layout_constraintTop_toTopOf="parent" />
@@ -37,7 +37,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="4dp"
             android:layout_marginEnd="20dp"
-            android:textColor="@color/toolbar_color"
+            android:textColor="@color/gray_01"
             android:textSize="12dp"
             app:layout_constrainedWidth="true"
             app:layout_constraintEnd_toEndOf="parent"
@@ -52,6 +52,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="12dp"
             android:layout_marginBottom="20dp"
+            android:textColor="@color/gray_01_75"
             android:textSize="11dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/iv_notification_diary_cover"

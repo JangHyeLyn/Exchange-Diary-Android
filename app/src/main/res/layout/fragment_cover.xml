@@ -9,6 +9,7 @@
             type="com.km.exchangediary.ui.diary.CoverViewModel" />
     </data>
 
+    <!-- TODO: background에 그라데이션 적용-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/container_diary_cover"
         android:background="#d8dfff"
