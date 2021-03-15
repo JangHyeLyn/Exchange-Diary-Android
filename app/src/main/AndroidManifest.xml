@@ -21,7 +21,9 @@
         </activity>
         <activity android:name=".ui.main.MainActivity" />
         <activity android:name=".ui.home.HomeActivity" />
-        <activity android:name=".ui.diary.DiaryActivity"/>
+        <activity android:name=".ui.diary.DiaryActivity" />
+        <activity android:name=".ui.notification_page.NotificationPageActivity" />
+
     </application>
 
 </manifest>
