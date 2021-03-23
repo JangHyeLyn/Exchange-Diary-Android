@@ -6,6 +6,7 @@ import com.km.exchangediary.R
 import com.km.exchangediary.base.BaseActivity
 import com.km.exchangediary.databinding.ActivityBridgeBinding
 import com.km.exchangediary.ui.add_diary.AddDiaryActivity
+import com.km.exchangediary.ui.notification_page.NotificationPageActivity
 import com.km.exchangediary.ui.home.HomeActivity
 import com.km.exchangediary.ui.diary.DiaryActivity
 import com.km.exchangediary.ui.main.MainActivity
@@ -22,6 +23,7 @@ class BridgeActivity : BaseActivity<ActivityBridgeBinding>() {
                     MainActivity::class.java,
                     HomeActivity::class.java,
                     DiaryActivity::class.java,
+                    NotificationPageActivity::class.java,
                     AddDiaryActivity::class.java
             )
             adapter = bridgeAdapter
