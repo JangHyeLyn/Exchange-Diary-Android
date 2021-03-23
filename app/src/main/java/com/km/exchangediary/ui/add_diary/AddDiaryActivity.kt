@@ -6,6 +6,7 @@ import com.km.exchangediary.R
 import com.km.exchangediary.base.BaseActivity
 import com.km.exchangediary.databinding.ActivityAddDiaryBinding
 
+/* TODO: sealed class 로 바꿀 수 있을까? */
 enum class AddDiaryCurrentFragment {
     CHOOSE_COVER,
     DECORATE_COVER
