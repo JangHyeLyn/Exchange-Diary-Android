@@ -11,18 +11,7 @@ import com.km.exchangediary.ui.home.model.HomeDiary
 
 // RecyclerView
 class HomeWritingDiaryAdapter : RecyclerView.Adapter<HomeWritingDiaryAdapter.HomeWritingDiaryListViewHolder>() {
-    private val diaryList = arrayListOf(
-            HomeDiary("안녕"),
-            HomeDiary("교환일기"),
-            HomeDiary("친구들아"),
-            HomeDiary("가나다라"),
-            HomeDiary("마바사아"),
-            HomeDiary("자차카타"),
-            HomeDiary("파하"),
-            HomeDiary("제드의 궁극기"),
-            HomeDiary("피카츄 배구"),
-            HomeDiary("title")
-    )
+    private val diaryList: ArrayList<HomeDiary> = arrayListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeWritingDiaryListViewHolder =
             HomeWritingDiaryListViewHolder(DataBindingUtil.inflate(
