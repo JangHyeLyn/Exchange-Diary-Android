@@ -13,7 +13,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ExchangeDiary">
 
-
         <activity android:name=".ui.bridge.BridgeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
