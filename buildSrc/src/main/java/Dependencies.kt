@@ -51,6 +51,8 @@ object Dependencies {
     const val GSON = "com.google.code.gson:gson:2.8.5"
     const val LOGGING_INTERCEPTOR = "com.squareup.okhttp3:logging-interceptor:4.9.0"
 
+    const val KAKAO_LOGIN = "com.kakao.sdk:v2-user:2.4.1"
+
     object Test {
         const val JUNIT = "junit:junit:4.12"
     }

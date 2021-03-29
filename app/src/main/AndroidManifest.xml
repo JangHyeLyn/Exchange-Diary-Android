@@ -39,6 +39,17 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
         </provider>
+        <meta-data
+            android:name="com.kakao.sdk.AppKey"
+            android:value="@string/kakao_app_key" />
+        <activity android:name=".ui.login.LoginActivity">
+            <intent-filter>
+                <data
+                    android:host="oauth"
+                    android:scheme="@string/kakao_native_app_key" />
+            </intent-filter>
+        </activity>
+
     </application>
 
 </manifest>

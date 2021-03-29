@@ -84,3 +84,6 @@ lint/generated/
 lint/outputs/
 lint/tmp/
 # lint/reports/
+
+# App key
+app/src/main/res/values/kakao_app_key.xml

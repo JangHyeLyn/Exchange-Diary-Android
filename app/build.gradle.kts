@@ -72,6 +72,8 @@ dependencies {
     implementation(platform(Dependencies.Firebase.BOM))
     implementation(Dependencies.Firebase.KTX)
 
+    implementation(Dependencies.KAKAO_LOGIN)
+
     testImplementation(Dependencies.Test.JUNIT)
     androidTestImplementation (Dependencies.AndroidXTest.JUNIT)
     androidTestImplementation (Dependencies.AndroidXTest.ESPRESSO_CORE)
