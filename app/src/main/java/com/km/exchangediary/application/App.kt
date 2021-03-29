@@ -1,7 +1,9 @@
 package com.km.exchangediary.application
 
 import android.app.Application
+import com.kakao.sdk.common.KakaoSdk
 import com.km.exchangediary.BuildConfig
+import com.km.exchangediary.R
 import com.km.exchangediary.di.*
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
@@ -30,5 +32,7 @@ class App : Application() {
                 useCaseModule
             ))
         }
+
+        KakaoSdk.init(this, getString(R.string.kakao_app_key))
     }
 }

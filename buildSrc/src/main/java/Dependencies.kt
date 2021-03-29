@@ -59,4 +59,6 @@ object Dependencies {
         const val JUNIT = "androidx.test.ext:junit:1.1.2"
         const val ESPRESSO_CORE = "androidx.test.espresso:espresso-core:3.3.0"
     }
+
+    const val KAKAO_LOGIN = "com.kakao.sdk:v2-user:2.4.1"
 }
