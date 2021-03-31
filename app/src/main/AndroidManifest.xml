@@ -24,6 +24,7 @@
         <activity android:name=".ui.diary.DiaryActivity" />
         <activity android:name=".ui.notification_page.NotificationPageActivity" />
         <activity android:name=".ui.add_diary.AddDiaryActivity" />
+        <activity android:name=".ui.add_diary.CompleteDiaryCreationActivity" />
     </application>
 
 </manifest>

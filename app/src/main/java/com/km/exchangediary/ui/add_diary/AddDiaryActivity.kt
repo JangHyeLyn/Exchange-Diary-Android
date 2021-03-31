@@ -1,5 +1,6 @@
 package com.km.exchangediary.ui.add_diary
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.KeyEvent
 import com.km.exchangediary.R
@@ -29,7 +30,8 @@ class AddDiaryActivity : BaseActivity<ActivityAddDiaryBinding>() {
                     currentFragment = AddDiaryCurrentFragment.DECORATE_COVER
                 }
                 AddDiaryCurrentFragment.DECORATE_COVER -> {
-                    // TODO: 다이어리 설정 완료
+                    /* TODO: 다이어리 정보를 담아 서버로 보내기 */
+                    startActivity(Intent(this, CompleteDiaryCreationActivity::class.java))
                     finish()
                 }
             }

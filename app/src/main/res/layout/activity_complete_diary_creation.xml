@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="48dp"
+            android:text="일기장 생성 완료!"
+            android:textColor="@color/basic_black"
+            android:textSize="18dp"/>
+
+        <RelativeLayout
+            android:id="@+id/iv_diary"
+            android:layout_width="100dp"
+            android:layout_height="148dp"
+            android:layout_below="@id/tv_title"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp"
+            android:background="@color/gray_06"/>
+
+        <TextView
+            android:id="@+id/tv_invite_friends"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="같이 쓸 친구를 초대해주세요"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/iv_diary"
+            android:layout_marginTop="32dp"
+            android:textSize="16dp"
+            android:textColor="@color/basic_black"/>
+
+        <RelativeLayout
+            android:id="@+id/btn_sharing_link"
+            android:layout_width="280dp"
+            android:layout_height="48dp"
+            android:background="@drawable/sharing_link_button_background"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/tv_invite_friends"
+            android:layout_marginTop="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="링크 공유하기"
+                android:textSize="14dp"
+                android:textColor="@color/basic_black"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="280dp"
+            android:layout_height="77dp"
+            android:layout_below="@id/btn_sharing_link"
+            android:background="@color/main_bg"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="- 8명이 한 일기장의 최대 구성원이에요.\n- 초대 링크의 유효 기간은 1시간입니다!\n- 일기장 내의 [멤버정보]에서도 초대가 가능해요."
+                android:textSize="11dp"
+                android:textColor="@color/gray_01_75"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="12dp"/>
+        </RelativeLayout>
+        
+        <RelativeLayout
+            android:id="@+id/btn_go_to_home"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_alignParentBottom="true">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray_04"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="홈으로 가기"
+                android:layout_centerInParent="true"/>
+        </RelativeLayout>
+    </RelativeLayout>
+</layout>
