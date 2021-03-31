@@ -7,15 +7,16 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 val networkModule = module {
-    single {
-        OkHttpClient.Builder().addInterceptor(HttpLoggingInterceptor()).build()
-    }
-
-    single {
-        Retrofit.Builder()
-                .baseUrl("https://api.github.com/")
-                .client(get())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
-    }
+    single { provideOkHttpClient() }
+    single { provideRetrofit(get()) }
 }
+
+fun provideOkHttpClient() =
+    OkHttpClient.Builder().addInterceptor(HttpLoggingInterceptor()).build()
+
+fun provideRetrofit(okHttpClient: OkHttpClient) =
+    Retrofit.Builder()
+        .baseUrl("http://test.api.exchangediary.link:8000/")
+        .client(okHttpClient)
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()

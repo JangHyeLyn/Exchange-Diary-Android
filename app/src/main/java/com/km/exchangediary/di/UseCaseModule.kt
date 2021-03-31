@@ -1,8 +1,8 @@
 package com.km.exchangediary.di
 
-import com.km.exchangediary.domain.usecase.TestUseCase
+import com.km.exchangediary.domain.usecase.LoginUseCase
 import org.koin.dsl.module
 
 val useCaseModule = module {
-    single { TestUseCase(get()) }
+    single { LoginUseCase(get()) }
 }

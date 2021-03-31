@@ -9,7 +9,6 @@ import com.km.exchangediary.ui.notification_page.NotificationPageActivity
 import com.km.exchangediary.ui.home.HomeActivity
 import com.km.exchangediary.ui.diary.DiaryActivity
 import com.km.exchangediary.ui.login.LoginActivity
-import com.km.exchangediary.ui.main.MainActivity
 
 class BridgeActivity : BaseActivity<ActivityBridgeBinding>() {
     override fun layoutRes(): Int = R.layout.activity_bridge
@@ -20,7 +19,6 @@ class BridgeActivity : BaseActivity<ActivityBridgeBinding>() {
         binding.rvBridge.apply {
             val bridgeAdapter = BridgeAdapter(this@BridgeActivity)
             bridgeAdapter.activityList = arrayListOf(
-                    MainActivity::class.java,
                     HomeActivity::class.java,
                     DiaryActivity::class.java,
                     NotificationPageActivity::class.java,
