@@ -11,9 +11,18 @@ class LoginUseCase(private val repository: LoginRepository): CoroutineScope {
     private val job = SupervisorJob()
     override val coroutineContext: CoroutineContext = Dispatchers.IO + job
 
-    suspend fun getJWTToken(accessToken: String): String {
+    suspend fun getUserToken(accessToken: String): String {
         return withContext(coroutineContext) {
-            repository.getJWTToken(accessToken).data?.token ?: "INVALID"
+            val localData = repository.getUserTokenAtLocal()
+            if (localData.isNullOrBlank()) {
+                val userTokenFromRemote = repository.getUserTokenAtRemote(accessToken)
+                userTokenFromRemote?.let {
+                    repository.writeUserToken(it)
+                }
+                userTokenFromRemote?: "INVALID"
+            } else {
+                localData
+            }
         }
     }
 }

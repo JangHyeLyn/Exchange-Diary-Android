@@ -15,7 +15,7 @@ class LoginViewModel(private val loginUseCase: LoginUseCase) : BaseViewModel() {
     fun getUserToken(accessToken: String) {
         launch {
             try {
-                _jwtToken.value = loginUseCase.getJWTToken(accessToken)
+                _jwtToken.value = loginUseCase.getUserToken(accessToken)
             } catch (e: HttpException) {
                 Timber.e(e.response().toString())
             }

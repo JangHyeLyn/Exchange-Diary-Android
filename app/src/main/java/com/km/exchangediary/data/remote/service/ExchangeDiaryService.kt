@@ -7,5 +7,5 @@ import retrofit2.http.POST
 
 interface ExchangeDiaryService {
     @POST("/rest-auth/kakao/")
-    suspend fun getJWTToken(@Body loginRequestBody: LoginRequestBody): LoginResponseBody
+    suspend fun getJWT(@Body loginRequestBody: LoginRequestBody): LoginResponseBody
 }

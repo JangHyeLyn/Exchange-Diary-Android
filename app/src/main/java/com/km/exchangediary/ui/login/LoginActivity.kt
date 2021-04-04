@@ -23,7 +23,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
             Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
         })
 
-        binding.tvKakaoLogin.setOnClickListener {
+        binding.btnKakaoLogin.setOnClickListener {
             loginCallback(this)
         }
     }
