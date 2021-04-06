@@ -14,7 +14,7 @@ class LinedEditText(context: Context, attrs: AttributeSet?) :
     private val mPaint: Paint = Paint().apply{
         style = Paint.Style.STROKE
         strokeWidth = 3F
-        color = ContextCompat.getColor(context, R.color.profile_line_color)
+        color = ContextCompat.getColor(context, R.color.gray_05)
     }
 
     override fun onDraw(canvas: Canvas) {

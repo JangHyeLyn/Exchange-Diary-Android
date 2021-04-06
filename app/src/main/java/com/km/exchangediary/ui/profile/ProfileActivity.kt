@@ -12,27 +12,28 @@ import com.km.exchangediary.data.remote.service.ProfileService
 import com.km.exchangediary.databinding.ActivityProfileBinding
 import retrofit2.*
 import retrofit2.converter.gson.GsonConverterFactory
-
+import java.lang.System.load
 
 class ProfileActivity : BaseActivity<ActivityProfileBinding>() {
     override fun layoutRes(): Int = R.layout.activity_profile
+    lateinit var profileIamgeUrl: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        /* TODO 오류시 띄울 이미지(기본이미지) 수정 */
-        Glide.with(this).load("https://cdn.idreambank.com/news/photo/202004/81215_78965_4506.jpg")
-            .circleCrop().error(R.drawable.sample).into(binding.ivProfilePhoto)
+        getProfileFromServer(this)
+        clickListeners()
+    }
 
+    private fun clickListeners() {
         binding.ivProfileEdit.setOnClickListener {
             val intent = Intent(this, ProfileEditActivity::class.java).apply {
                 putExtra("name", binding.tvProfileName.text.toString())
-                putExtra("info", binding.tvProfileInfo.text.toString())
+                putExtra("introduction", binding.tvProfileIntroduction.text.toString())
+                putExtra("profileIamgeUrl", profileIamgeUrl)
             }
             startActivity(intent)
         }
-
-        getProfileFromServer()
 
         binding.ivProfileBack.setOnClickListener {
             finish()
@@ -47,24 +48,30 @@ class ProfileActivity : BaseActivity<ActivityProfileBinding>() {
         }
     }
 
-    fun getProfileFromServer() {
-
+    fun getProfileFromServer(activity: ProfileActivity) {
         val retrofit =
             Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build() /* TODO 위치수정 */
         val service = retrofit.create(ProfileService::class.java)
-        val callGetResult = service.getProfile()
 
-        callGetResult.enqueue(object : Callback<ProfileResult> {
+        service.getProfile().enqueue(object : Callback<ProfileResult> {
             override fun onResponse(call: Call<ProfileResult>, response: Response<ProfileResult>) {
-                Log.d("testtest", "성공 : ${response.raw()}")
+                if (response.isSuccessful) {
+                    val profileItem: ProfileResult? = response.body()
+
+                    profileIamgeUrl = profileItem?.data?.profileImage.toString()
+
+                    /* TODO 오류시 띄울 이미지(기본이미지) 수정 */
+                    Glide.with(activity).load(profileItem?.data?.profileImage).circleCrop()
+                        .error(R.drawable.ic_profile_dafault_image_1).into(binding.ivProfilePhoto)
+                    binding.tvProfileName.text = profileItem?.data?.userName
+                    binding.tvProfileIntroduction.setText(profileItem?.data?.userIntroduction)
+                }
             }
 
-            override fun onFailure(call: Call<ProfileResult>, t: Throwable) {
-                Log.d("testtest", "실패 : $t")
-            }
+            override fun onFailure(call: Call<ProfileResult>, t: Throwable) {}
         })
     }
 }

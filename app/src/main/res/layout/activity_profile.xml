@@ -70,7 +70,6 @@
             android:gravity="center"
             android:maxLength="10"
             android:singleLine="true"
-            android:text="김개똥"
             android:textColor="@color/black"
             android:textSize="21dp"
             android:textStyle="bold"
@@ -79,7 +78,7 @@
             app:layout_constraintTop_toBottomOf="@+id/iv_profile_photo" />
 
         <com.km.exchangediary.ui.profile.LinedEditText
-            android:id="@+id/tv_profile_info"
+            android:id="@+id/tv_profile_introduction"
             android:layout_width="224dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="22dp"
@@ -90,7 +89,6 @@
             android:maxLength="70"
             android:maxLines="4"
             android:minLines="4"
-            android:text="띄어쓰기 하면 자동으로 줄바꿈 되는거 왜이럴까요"
             android:textColor="@color/gray_01"
             android:textSize="12dp"
             app:layout_constraintEnd_toEndOf="parent"
