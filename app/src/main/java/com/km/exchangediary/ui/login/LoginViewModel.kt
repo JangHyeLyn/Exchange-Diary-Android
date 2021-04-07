@@ -10,7 +10,7 @@ class LoginViewModel(private val loginUseCase: LoginUseCase) : BaseViewModel() {
     private val _isLoginSuccessful = MutableLiveData<Boolean>()
     val isLoginSuccessful: LiveData<Boolean> = _isLoginSuccessful
 
-    fun getUserToken(accessToken: String) {
+    fun loginExchangeDiary(accessToken: String) {
         launch {
             _isLoginSuccessful.value = loginUseCase.isLoginSuccessful(accessToken)
         }

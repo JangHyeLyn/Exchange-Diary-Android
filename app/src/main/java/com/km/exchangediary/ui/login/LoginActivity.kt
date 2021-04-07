@@ -38,14 +38,14 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
 
     private fun bindingView() {
         binding.btnKakaoLogin.setOnClickListener {
-            loginExchangeDiary(this)
+            onClickLoginButton(this)
         }
     }
 
     /* activityContext 를 필요로 하기 때문에 viewModel 로 로직을 이동하지 않고 activity 에서 실행 */
-    private fun loginExchangeDiary(context: Context) {
+    private fun onClickLoginButton(context: Context) {
         val callback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
-            viewModel.getUserToken(token?.accessToken ?: "INVALID")
+            viewModel.loginExchangeDiary(token?.accessToken ?: "INVALID")
             if (error != null) {
                 Timber.e("카카오 로그인 실패 $error")
             }
