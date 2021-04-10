@@ -48,7 +48,7 @@ dependencies {
     implementation(Dependencies.APPCOMPAT)
     implementation(Dependencies.CONSTRAINT_LAYOUT)
 
-    implementation (Dependencies.AndroidXCore.CORE_KTX)
+    implementation(Dependencies.AndroidXCore.CORE_KTX)
     implementation(Dependencies.MATERIAL)
 
     implementation(Dependencies.TIMBER)

@@ -17,6 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ExchangeDiary"
         android:usesCleartextTraffic="true">
+
         <activity android:name=".ui.bridge.BridgeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,7 +25,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.main.MainActivity" />
         <activity android:name=".ui.home.HomeActivity" />
         <activity android:name=".ui.diary.DiaryActivity" />
         <activity android:name=".ui.notification_page.NotificationPageActivity" />
