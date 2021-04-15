@@ -1,9 +1,8 @@
-package com.km.exchangediary.data.entity
+package com.km.exchangediary.data.remote.response
 
 import com.google.gson.annotations.SerializedName
-import java.io.File
 
-data class ProfileResult(
+data class ProfileResponseBody(
     val data: ProfileData
 )
 
@@ -11,11 +10,9 @@ data class ProfileData(
     @SerializedName(value = "id")
     val id: Int,
     @SerializedName(value = "username")
-    val userName: String,
+    var userName: String,
     @SerializedName(value = "description")
-    val userIntroduction: String?,
-    @SerializedName(value = "kakao_img")
-    val kakaoImage: String?,
+    var userIntroduction: String?,
     @SerializedName(value = "profile_img")
-    val profileImage: String?
+    var profileImage: String?
 )

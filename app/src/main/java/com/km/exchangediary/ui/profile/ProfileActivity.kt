@@ -2,36 +2,38 @@ package com.km.exchangediary.ui.profile
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
+import android.util.Base64
 import com.bumptech.glide.Glide
 import com.km.exchangediary.R
 import com.km.exchangediary.base.BaseActivity
-import com.km.exchangediary.data.entity.ProfileResult
-import com.km.exchangediary.data.remote.service.BASE_URL
-import com.km.exchangediary.data.remote.service.ProfileService
 import com.km.exchangediary.databinding.ActivityProfileBinding
-import retrofit2.*
-import retrofit2.converter.gson.GsonConverterFactory
-import java.lang.System.load
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ProfileActivity : BaseActivity<ActivityProfileBinding>() {
     override fun layoutRes(): Int = R.layout.activity_profile
-    lateinit var profileIamgeUrl: String
+    private val viewModel: ProfileViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        getProfileFromServer(this)
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        val profileDataClass = viewModel.getProfileFromPrefs(applicationContext)
+
+        Glide.with(this).load(Base64.decode(profileDataClass?.profileImage, Base64.DEFAULT)).circleCrop()
+            .error(R.drawable.ic_profile_default_image_1).into(binding.ivProfilePhoto)
+        binding.tvProfileName.text = profileDataClass?.name
+        binding.tvProfileIntroduction.setText(profileDataClass?.introduction)
+
         clickListeners()
     }
 
     private fun clickListeners() {
         binding.ivProfileEdit.setOnClickListener {
-            val intent = Intent(this, ProfileEditActivity::class.java).apply {
-                putExtra("name", binding.tvProfileName.text.toString())
-                putExtra("introduction", binding.tvProfileIntroduction.text.toString())
-                putExtra("profileIamgeUrl", profileIamgeUrl)
-            }
+            val intent = Intent(this, ProfileEditActivity::class.java)
             startActivity(intent)
         }
 
@@ -46,32 +48,5 @@ class ProfileActivity : BaseActivity<ActivityProfileBinding>() {
         binding.tvVersion.setOnClickListener {
             /* TODO 버전 정보 */
         }
-    }
-
-    fun getProfileFromServer(activity: ProfileActivity) {
-        val retrofit =
-            Retrofit.Builder()
-                .baseUrl(BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build() /* TODO 위치수정 */
-        val service = retrofit.create(ProfileService::class.java)
-
-        service.getProfile().enqueue(object : Callback<ProfileResult> {
-            override fun onResponse(call: Call<ProfileResult>, response: Response<ProfileResult>) {
-                if (response.isSuccessful) {
-                    val profileItem: ProfileResult? = response.body()
-
-                    profileIamgeUrl = profileItem?.data?.profileImage.toString()
-
-                    /* TODO 오류시 띄울 이미지(기본이미지) 수정 */
-                    Glide.with(activity).load(profileItem?.data?.profileImage).circleCrop()
-                        .error(R.drawable.ic_profile_dafault_image_1).into(binding.ivProfilePhoto)
-                    binding.tvProfileName.text = profileItem?.data?.userName
-                    binding.tvProfileIntroduction.setText(profileItem?.data?.userIntroduction)
-                }
-            }
-
-            override fun onFailure(call: Call<ProfileResult>, t: Throwable) {}
-        })
     }
 }
