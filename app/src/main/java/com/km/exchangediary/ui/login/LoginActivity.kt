@@ -11,6 +11,7 @@ import com.km.exchangediary.R
 import com.km.exchangediary.base.BaseActivity
 import com.km.exchangediary.databinding.ActivityLoginBinding
 import com.km.exchangediary.ui.home.HomeActivity
+import com.km.exchangediary.ui.login.adapter.OnBoardingViewPagerAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
@@ -37,6 +38,11 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
     }
 
     private fun bindingView() {
+        binding.vpOnBoarding.apply {
+            adapter = OnBoardingViewPagerAdapter(supportFragmentManager, lifecycle)
+//            isUserInputEnabled = false
+        }
+
         binding.btnKakaoLogin.setOnClickListener {
             onClickLoginButton(this)
         }
