@@ -28,7 +28,9 @@
             app:tabBackground="@drawable/view_pager_tab_dot"
             app:tabIndicatorHeight="0dp"
             app:tabIndicator="@null"
-            app:tabGravity="center"/>
+            app:tabGravity="center"
+            app:tabPaddingStart="10dp"
+            app:tabPaddingEnd="10dp"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
