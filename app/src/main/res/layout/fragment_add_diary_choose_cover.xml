@@ -1,19 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/main_bg">
 
         <TextView
+            android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="다이어리 선택"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="2dp"
+            android:text="어떤 일기장을 사용하실 건가요?"
+            android:textColor="@color/basic_black"
+            android:textSize="18dp" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <RelativeLayout
+            android:id="@+id/layout_diary_page_count"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_title"
+            android:layout_marginTop="24dp">
+
+            <TextView
+                android:id="@+id/tv_diary_page_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="12dp"
+                android:text="일기장 장수"
+                android:textColor="@color/basic_black" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_diary_page_count"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:orientation="horizontal"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp">
+
+                <RelativeLayout
+                    android:layout_width="104dp"
+                    android:layout_height="32dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_diary_page_count">
+
+                    <RadioButton
+                        android:id="@+id/rb_count_20"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="20장"
+                        android:textColor="@color/basic_black" />
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="4dp"
+                    android:layout_height="0dp" />
+
+                <RelativeLayout
+                    android:layout_width="104dp"
+                    android:layout_height="32dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_diary_page_count">
+
+                    <RadioButton
+                        android:id="@+id/rb_count_30"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="30장"
+                        android:textColor="@color/basic_black" />
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="4dp"
+                    android:layout_height="0dp" />
+
+                <RelativeLayout
+                    android:layout_width="104dp"
+                    android:layout_height="32dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/background_diary_page_count">
+
+                    <RadioButton
+                        android:id="@+id/rb_count_50"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="50장"
+                        android:textColor="@color/basic_black" />
+                </RelativeLayout>
+            </LinearLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/layout_cover"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/layout_diary_page_count"
+            android:layout_marginTop="4dp">
+
+            <TextView
+                android:id="@+id/tv_diary_cover"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="12dp"
+                android:text="일기장 표지"
+                android:textColor="@color/basic_black"
+                android:textSize="11dp" />
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tab_diary_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_diary_cover"
+                android:background="@color/main_bg"
+                app:tabMode="scrollable"/>
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/vp_diary_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tab_diary_list"/>
+        </RelativeLayout>
+    </RelativeLayout>
 </layout>

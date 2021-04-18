@@ -30,21 +30,14 @@
             android:layout_above="@id/btn_next"
             android:layout_below="@id/layout_top"/>
 
-        <RelativeLayout
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_next"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:layout_alignParentBottom="true"
-            android:background="@color/main_yellow">
-
-            <TextView
-                android:id="@+id/tv_next_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="다음"
-                android:textColor="@color/basic_black"
-                android:textSize="14dp" />
-        </RelativeLayout>
+            android:background="@color/main_yellow"
+            android:text="다음"
+            android:textColor="@color/basic_black"
+            android:textSize="14sp" />
     </RelativeLayout>
 </layout>

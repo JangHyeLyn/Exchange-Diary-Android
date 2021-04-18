@@ -26,7 +26,7 @@ class AddDiaryActivity : BaseActivity<ActivityAddDiaryBinding>() {
             when (currentFragment) {
                 AddDiaryCurrentFragment.CHOOSE_COVER -> {
                     supportFragmentManager.beginTransaction().replace(R.id.layout_container, DecorateCoverFragment.instance).commit()
-                    binding.tvNextButton.text = "완료"
+                    binding.btnNext.text = "완료"
                     currentFragment = AddDiaryCurrentFragment.DECORATE_COVER
                 }
                 AddDiaryCurrentFragment.DECORATE_COVER -> {
@@ -46,7 +46,7 @@ class AddDiaryActivity : BaseActivity<ActivityAddDiaryBinding>() {
         when (currentFragment) {
             AddDiaryCurrentFragment.CHOOSE_COVER -> finish()
             AddDiaryCurrentFragment.DECORATE_COVER -> {
-                binding.tvNextButton.text = "다음"
+                binding.btnNext.text = "다음"
                 supportFragmentManager.beginTransaction().replace(R.id.layout_container, ChooseCoverFragment.instance).commit()
                 currentFragment = AddDiaryCurrentFragment.CHOOSE_COVER
             }
