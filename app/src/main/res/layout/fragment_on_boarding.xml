@@ -4,8 +4,9 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/main_bg">
+        android:layout_height="wrap_content"
+        android:background="@color/main_bg"
+        android:paddingBottom="24dp">
 
         <ImageView
             android:id="@+id/iv_on_boarding"
@@ -41,7 +42,7 @@
             android:textSize="12dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_title" />
+            app:layout_constraintTop_toBottomOf="@id/tv_title"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

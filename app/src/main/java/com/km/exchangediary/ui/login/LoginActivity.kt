@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.lifecycle.Observer
+import com.google.android.material.tabs.TabLayoutMediator
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.user.UserApiClient
 import com.km.exchangediary.R
@@ -38,10 +39,11 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
     }
 
     private fun bindingView() {
-        binding.vpOnBoarding.apply {
-            adapter = OnBoardingViewPagerAdapter(supportFragmentManager, lifecycle)
-//            isUserInputEnabled = false
-        }
+        binding.vpOnBoarding.adapter = OnBoardingViewPagerAdapter(supportFragmentManager, lifecycle)
+
+        TabLayoutMediator(binding.tabOnBoarding, binding.vpOnBoarding) { _, _ ->
+
+        }.attach()
 
         binding.btnKakaoLogin.setOnClickListener {
             onClickLoginButton(this)
