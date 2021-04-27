@@ -23,7 +23,7 @@
                 <RelativeLayout
                     android:id="@+id/layout_writing_diary"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="458dp">
 
                     <TextView
                         android:id="@+id/tv_title"
@@ -34,6 +34,31 @@
                         android:layout_marginBottom="16dp"
                         android:text="@string/writing_diary"
                         android:textSize="14sp"/>
+
+                    <RelativeLayout
+                        android:id="@+id/layout_empty_writing_diary"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@id/tv_title"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <ImageView
+                            android:id="@+id/iv_empty_writing_diary"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="83dp"
+                            android:src="@drawable/illust_home_default_add_please" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/iv_empty_writing_diary"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="8dp"
+                            android:text="우측 상단의 + 버튼을 눌러\n일기장을 생성해보세요!" />
+                    </RelativeLayout>
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/rv_writing_diary"
@@ -47,7 +72,7 @@
                     android:id="@+id/layout_divide"
                     android:layout_width="match_parent"
                     android:layout_height="8dp"
-                    android:background="#f8f7f7"
+                    android:background="@color/main_bg"
                     android:layout_below="@id/layout_writing_diary"/>
 
                 <TextView
@@ -81,6 +106,20 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/tab_diary_list"/>
+
+                <RelativeLayout
+                    android:id="@+id/layout_empty_diary_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="201dp"
+                    android:layout_below="@id/tab_diary_list"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/illust_home_default_list_0"
+                        android:layout_centerInParent="true"/>
+                </RelativeLayout>
             </RelativeLayout>
 
         </androidx.core.widget.NestedScrollView>

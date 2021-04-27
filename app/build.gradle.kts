@@ -4,6 +4,7 @@ plugins {
     kotlin("android")
     kotlin("android.extensions")
     kotlin("kapt")
+    id("kotlin-android")
 }
 
 android {
@@ -47,7 +48,7 @@ dependencies {
     implementation(Dependencies.APPCOMPAT)
     implementation(Dependencies.CONSTRAINT_LAYOUT)
 
-    implementation (Dependencies.AndroidXCore.CORE_KTX)
+    implementation(Dependencies.AndroidXCore.CORE_KTX)
     implementation(Dependencies.MATERIAL)
 
     implementation(Dependencies.TIMBER)
@@ -68,6 +69,7 @@ dependencies {
     implementation(platform(Dependencies.Firebase.BOM))
     implementation(Dependencies.Firebase.KTX)
 
+    implementation(Dependencies.KAKAO_LOGIN)
 
     testImplementation(Dependencies.Test.JUNIT)
     androidTestImplementation (Dependencies.AndroidXTest.JUNIT)
