@@ -1,14 +1,16 @@
 package com.km.exchangediary.ui.group_management
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.km.exchangediary.R
 import com.km.exchangediary.base.BaseActivity
 import com.km.exchangediary.databinding.ActivityGroupManagementBinding
-import com.km.exchangediary.ui.group_management.adapter.GroupManagementAdapter
+import com.km.exchangediary.ui.CommonDialog
+import com.km.exchangediary.ui.DialogContentType
 import com.km.exchangediary.ui.group_management.adapter.GroupItemTouchHelperCallback
-import com.km.exchangediary.ui.group_management.model.Group
+import com.km.exchangediary.ui.group_management.adapter.GroupManagementAdapter
 
 interface GroupItemDragListener {
     fun onDrag(holder: GroupManagementAdapter.GroupManagementViewHolder)
@@ -16,6 +18,11 @@ interface GroupItemDragListener {
 
 class GroupManagementActivity : BaseActivity<ActivityGroupManagementBinding>() {
     override fun layoutRes(): Int = R.layout.activity_group_management
+    private val addGroupDialog = CommonDialog(
+        titleText = "그룹 추가",
+        contentType = DialogContentType.EDIT_TEXT,
+        onSuccess = { confirmGroupAddition() }
+    )
 
     private lateinit var touchHelper: ItemTouchHelper
 
@@ -30,7 +37,7 @@ class GroupManagementActivity : BaseActivity<ActivityGroupManagementBinding>() {
         binding.rvGroupList.layoutManager = LinearLayoutManager(this)
 
         touchHelper = ItemTouchHelper(GroupItemTouchHelperCallback(groupManagementAdapter))
-        (groupManagementAdapter).setDragListener(object: GroupItemDragListener{
+        (groupManagementAdapter).setDragListener(object : GroupItemDragListener {
             override fun onDrag(holder: GroupManagementAdapter.GroupManagementViewHolder) {
                 touchHelper.startDrag(holder)
             }
@@ -38,9 +45,13 @@ class GroupManagementActivity : BaseActivity<ActivityGroupManagementBinding>() {
         touchHelper.attachToRecyclerView(binding.rvGroupList)
 
         binding.ivAddGroup.setOnClickListener {
-            /* TODO: 팝업이 생기면 팝업을 이용하여 그룹 정보를 추가하자. */
-            groupManagementAdapter.addGroup(Group("안뇽", 5))
+            addGroupDialog.show(supportFragmentManager, "addGroupDialog")
             binding.rvGroupList.smoothScrollToPosition(groupManagementAdapter.itemCount)
         }
+    }
+
+    /* TODO: 그룹 추가 API 연결 */
+    private fun confirmGroupAddition() {
+        Toast.makeText(this, addGroupDialog.binding.etContents.text.toString(), Toast.LENGTH_LONG).show()
     }
 }
