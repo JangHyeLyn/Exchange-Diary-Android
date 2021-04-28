@@ -2,6 +2,7 @@ package com.km.exchangediary.ui.group_management
 
 import android.os.Bundle
 import android.widget.Toast
+import androidx.lifecycle.observe
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.km.exchangediary.R
@@ -11,6 +12,7 @@ import com.km.exchangediary.ui.CommonDialog
 import com.km.exchangediary.ui.DialogContentType
 import com.km.exchangediary.ui.group_management.adapter.GroupItemTouchHelperCallback
 import com.km.exchangediary.ui.group_management.adapter.GroupManagementAdapter
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 interface GroupItemDragListener {
     fun onDrag(holder: GroupManagementAdapter.GroupManagementViewHolder)
@@ -18,6 +20,7 @@ interface GroupItemDragListener {
 
 class GroupManagementActivity : BaseActivity<ActivityGroupManagementBinding>() {
     override fun layoutRes(): Int = R.layout.activity_group_management
+    private val viewModel: GroupManagementViewModel by viewModel()
     private val addGroupDialog = CommonDialog(
         titleText = "그룹 추가",
         contentType = DialogContentType.EDIT_TEXT,
@@ -32,6 +35,9 @@ class GroupManagementActivity : BaseActivity<ActivityGroupManagementBinding>() {
     }
 
     private fun bindingView() {
+        initViewModel()
+        binding.viewModel = viewModel
+
         val groupManagementAdapter = GroupManagementAdapter()
         binding.rvGroupList.adapter = groupManagementAdapter
         binding.rvGroupList.layoutManager = LinearLayoutManager(this)
@@ -47,6 +53,14 @@ class GroupManagementActivity : BaseActivity<ActivityGroupManagementBinding>() {
         binding.ivAddGroup.setOnClickListener {
             addGroupDialog.show(supportFragmentManager, "addGroupDialog")
             binding.rvGroupList.smoothScrollToPosition(groupManagementAdapter.itemCount)
+        }
+    }
+
+    private fun initViewModel() {
+        viewModel.refreshGroupList()
+
+        viewModel.groupList.observe(this) {
+            (binding.rvGroupList.adapter as GroupManagementAdapter).addGroupList(it)
         }
     }
 

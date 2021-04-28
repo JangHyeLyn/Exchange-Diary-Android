@@ -10,20 +10,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.km.exchangediary.R
 import com.km.exchangediary.databinding.ItemGroupManagementBinding
 import com.km.exchangediary.ui.group_management.GroupItemDragListener
-import com.km.exchangediary.ui.group_management.model.Group
+import com.km.exchangediary.ui.group_management.model.DiaryGroup
 import java.util.*
 
 class GroupManagementAdapter : RecyclerView.Adapter<GroupManagementAdapter.GroupManagementViewHolder>(), GroupItemMoveListener {
     private var listener: GroupItemDragListener? = null
 
-    private val groupList = arrayListOf(
-        Group("그룹 미지정", 1),
-        Group("평균 28세들", 2),
-        Group("그룹명최대열글자까지", 1),
-        Group("돼지파티", 4),
-        Group("SABAL", 2),
-        Group("전설의 레전드", 5)
-    )
+    var groupList = arrayListOf<DiaryGroup>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GroupManagementViewHolder =
         GroupManagementViewHolder(
@@ -45,15 +38,16 @@ class GroupManagementAdapter : RecyclerView.Adapter<GroupManagementAdapter.Group
         this.listener = listener
     }
 
-    fun addGroup(item: Group) {
-        groupList.add(item)
+    fun addGroupList(items: List<DiaryGroup>) {
+        groupList.clear()
+        groupList.addAll(items)
         notifyDataSetChanged()
     }
 
     inner class GroupManagementViewHolder(private val binding: ItemGroupManagementBinding) : RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("ClickableViewAccessibility")
-        fun onBind(item: Group) {
-            binding.tvGroupName.text = item.name
+        fun onBind(item: DiaryGroup) {
+            binding.tvGroupName.text = item.title
             binding.tvNumberOfPeople.text = "(${item.numberOfPeople})"
             binding.ivItemChanger.setOnTouchListener { _, event ->
                 if (event.action == MotionEvent.ACTION_DOWN) {
