@@ -13,5 +13,5 @@ val viewModelModule = module {
     viewModel { DiaryViewModel() }
     viewModel { CoverViewModel() }
     viewModel { LoginViewModel(get()) }
-    viewModel { GroupManagementViewModel(get()) }
+    viewModel { GroupManagementViewModel(get(), get()) }
 }

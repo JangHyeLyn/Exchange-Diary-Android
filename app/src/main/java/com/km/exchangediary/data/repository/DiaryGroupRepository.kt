@@ -2,6 +2,8 @@ package com.km.exchangediary.data.repository
 
 import com.km.exchangediary.data.local.pref.LoginPreferences
 import com.km.exchangediary.data.remote.datasource.ExchangeDiaryDataSource
+import com.km.exchangediary.data.remote.request.CreateDiaryGroupRequestBody
+import com.km.exchangediary.data.remote.response.CreateDiaryGroupResponse
 import com.km.exchangediary.data.remote.response.DiaryGroupListResponse
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -19,4 +21,9 @@ class  DiaryGroupRepository(private val dataSource: ExchangeDiaryDataSource, pri
         }
 
     fun getJWT(): String = loginPreferences.getUserToken() ?: "INVALID"
+
+    suspend fun addDiaryGroup(jwt: String, diaryName: String): CreateDiaryGroupResponse =
+        withContext(coroutineContext) {
+            dataSource.getExchangeDiaryService().addDiaryGroup(jwt, CreateDiaryGroupRequestBody(diaryName))
+        }
 }

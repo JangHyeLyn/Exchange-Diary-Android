@@ -64,8 +64,9 @@ class GroupManagementActivity : BaseActivity<ActivityGroupManagementBinding>() {
         }
     }
 
-    /* TODO: 그룹 추가 API 연결 */
     private fun confirmGroupAddition() {
-        Toast.makeText(this, addGroupDialog.binding.etContents.text.toString(), Toast.LENGTH_LONG).show()
+        viewModel.addDiaryGroup(addGroupDialog.binding.etContents.text.toString())
+        addGroupDialog.clearEditText()
+        Toast.makeText(this, "그룹이 추가되었습니다.", Toast.LENGTH_LONG).show()
     }
 }
