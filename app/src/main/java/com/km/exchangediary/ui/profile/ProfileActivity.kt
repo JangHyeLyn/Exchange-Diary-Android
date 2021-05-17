@@ -13,20 +13,15 @@ class ProfileActivity : BaseActivity<ActivityProfileBinding>() {
     override fun layoutRes(): Int = R.layout.activity_profile
     private val viewModel: ProfileViewModel by viewModel()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
     override fun onResume() {
         super.onResume()
 
-        val profileDataClass = viewModel.getProfileFromPrefs(applicationContext)
+        val profileDataClass = viewModel.getProfileFromPrefs()
 
-        Glide.with(this).load(Base64.decode(profileDataClass?.profileImage, Base64.DEFAULT)).circleCrop()
+        Glide.with(this).load(Base64.decode(profileDataClass.profileImage, Base64.DEFAULT)).circleCrop()
             .error(R.drawable.ic_profile_default_image_1).into(binding.ivProfilePhoto)
-        binding.tvProfileName.text = profileDataClass?.name
-        binding.tvProfileIntroduction.setText(profileDataClass?.introduction)
+        binding.tvProfileName.text = profileDataClass.name
+        binding.tvProfileIntroduction.setText(profileDataClass.introduction)
 
         clickListeners()
     }
@@ -43,10 +38,6 @@ class ProfileActivity : BaseActivity<ActivityProfileBinding>() {
 
         binding.tvSignout.setOnClickListener {
             /* TODO 로그아웃 */
-        }
-
-        binding.tvVersion.setOnClickListener {
-            /* TODO 버전 정보 */
         }
     }
 }

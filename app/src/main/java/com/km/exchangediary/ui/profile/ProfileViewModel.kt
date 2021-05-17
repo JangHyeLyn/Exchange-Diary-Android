@@ -13,6 +13,7 @@ import com.km.exchangediary.data.local.pref.ProfilePreferences
 import com.km.exchangediary.data.remote.datasource.ProfileDataSource
 import com.km.exchangediary.data.remote.request.ProfileRequestBody
 import com.km.exchangediary.data.remote.response.ProfileResponseBody
+import com.km.exchangediary.data.repository.ProfileRepository
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
@@ -24,22 +25,12 @@ import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
 
-class ProfileViewModel(private val dataSource: ProfileDataSource) : ViewModel() {
+class ProfileViewModel(private val repository: ProfileRepository, private val dataSource: ProfileDataSource) : ViewModel() {
     private val service = dataSource.getProfileService()
 
-    companion object {
-        lateinit var prefs: ProfilePreferences
-    }
-
     /* ------------------------ ProfileActivity ------------------------ */
-    fun getProfileFromPrefs(context: Context): ProfileDataClass {
-        prefs = ProfilePreferences(context)
-
-        return ProfileDataClass(
-            prefs.getProfile("name"),
-            prefs.getProfile("introduction"),
-            prefs.getProfile("profileImage")
-        )
+    fun getProfileFromPrefs(): ProfileDataClass {
+        return repository.getProfileData()
     }
 
     /* ------------------------ ProfileEditActivity ------------------------ */
@@ -53,17 +44,18 @@ class ProfileViewModel(private val dataSource: ProfileDataSource) : ViewModel() 
     ) {
         var callPatchResult: Call<ProfileResponseBody>? = null
 
-        prefs = ProfilePreferences(context)
+        val currentProfileData = getProfileFromPrefs()
 
         when (imageFlag) {
             // 0: 이미지변경 X
             0 -> {
                 callPatchResult =
                     service.patchProfile(ProfileRequestBody(name, introduction))
-                prefs.apply {
-                    setProfile("name", name)
-                    setProfile("introduction", introduction)
-                }
+
+                currentProfileData.name = name
+                currentProfileData.introduction = introduction
+
+                repository.setProfileData(currentProfileData)
             }
 
             // 1: 디폴트이미지로 변경
@@ -82,12 +74,11 @@ class ProfileViewModel(private val dataSource: ProfileDataSource) : ViewModel() 
                             profileImageRequestBody
                         )
                     )
+                currentProfileData.name = name
+                currentProfileData.introduction = introduction
+                currentProfileData.profileImage = convertImageFileToBase64(profileImageFile)
 
-                prefs.apply {
-                    setProfile("name", name)
-                    setProfile("introduction", introduction)
-                    setProfile("profileImage", convertImageFileToBase64(profileImageFile))
-                }
+                repository.setProfileData(currentProfileData)
             }
 
             // 2: 사용자 임의 이미지로 변경
@@ -99,6 +90,7 @@ class ProfileViewModel(private val dataSource: ProfileDataSource) : ViewModel() 
 
                 val profileImageRequestBody =
                     profileImageFile.asRequestBody("image/*".toMediaTypeOrNull())
+
                 callPatchResult =
                     service.patchProfile(
                         name.toRequestBody("multipart/form-data".toMediaTypeOrNull()),
@@ -109,11 +101,12 @@ class ProfileViewModel(private val dataSource: ProfileDataSource) : ViewModel() 
                             profileImageRequestBody
                         )
                     )
-                prefs.apply {
-                    setProfile("name", name)
-                    setProfile("introduction", introduction)
-                    setProfile("profileImage", convertImageFileToBase64(profileImageFile))
-                }
+
+                currentProfileData.name = name
+                currentProfileData.introduction = introduction
+                currentProfileData.profileImage = convertImageFileToBase64(profileImageFile)
+
+                repository.setProfileData(currentProfileData)
             }
         }
 

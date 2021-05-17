@@ -43,7 +43,7 @@ class ProfileEditActivity : BaseActivity<ActivityProfileEditBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val profileDataClass = viewModel.getProfileFromPrefs(applicationContext)
+        val profileDataClass = viewModel.getProfileFromPrefs()
 
         PREVIOUS_NAME = profileDataClass?.name.toString()
         PREVIOUS_INTRODUCTION = profileDataClass?.introduction
