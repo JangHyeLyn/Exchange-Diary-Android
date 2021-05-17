@@ -7,7 +7,9 @@ import com.km.exchangediary.domain.usecase.AddDiaryGroupUseCase
 import com.km.exchangediary.domain.usecase.DeleteDiaryGroupUseCase
 import com.km.exchangediary.domain.usecase.GetGroupListUseCase
 import com.km.exchangediary.ui.group_management.model.DiaryGroup
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class GroupManagementViewModel(
     private val getGroupListUseCase: GetGroupListUseCase,
@@ -33,7 +35,10 @@ class GroupManagementViewModel(
 
     fun deleteDiaryGroup(diaryId: Long) {
         launch {
-            deleteDiaryGroupUseCase.deleteDiaryGroup(diaryId)
+            withContext(coroutineContext) {
+                deleteDiaryGroupUseCase.deleteDiaryGroup(diaryId)
+            }
+            refreshGroupList()
         }
     }
 }

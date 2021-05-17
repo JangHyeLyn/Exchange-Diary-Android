@@ -1,13 +1,11 @@
 package com.km.exchangediary.data.remote.service
 
-import com.google.gson.JsonObject
 import com.km.exchangediary.data.remote.request.CreateDiaryGroupRequestBody
 import com.km.exchangediary.data.remote.request.LoginRequestBody
 import com.km.exchangediary.data.remote.response.CreateDiaryGroupResponse
 import com.km.exchangediary.data.remote.response.DeleteDiaryGroupResponse
 import com.km.exchangediary.data.remote.response.DiaryGroupListResponse
 import com.km.exchangediary.data.remote.response.LoginResponseBody
-import retrofit2.Response
 import retrofit2.http.*
 
 interface ExchangeDiaryService {
