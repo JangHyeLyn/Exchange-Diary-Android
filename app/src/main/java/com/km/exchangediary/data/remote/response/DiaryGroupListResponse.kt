@@ -12,7 +12,7 @@ data class DiaryGroupResponseInfo(
     val count: Int,
     @SerializedName("created_at")
     val createdAt: String,
-    val id: Int,
+    val id: Long,
     val rank: Int,
     val title: String,
     @SerializedName("updated_at")

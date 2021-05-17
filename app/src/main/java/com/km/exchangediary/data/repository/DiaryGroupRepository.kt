@@ -1,9 +1,11 @@
 package com.km.exchangediary.data.repository
 
+import com.google.gson.JsonObject
 import com.km.exchangediary.data.local.pref.LoginPreferences
 import com.km.exchangediary.data.remote.datasource.ExchangeDiaryDataSource
 import com.km.exchangediary.data.remote.request.CreateDiaryGroupRequestBody
 import com.km.exchangediary.data.remote.response.CreateDiaryGroupResponse
+import com.km.exchangediary.data.remote.response.DeleteDiaryGroupResponse
 import com.km.exchangediary.data.remote.response.DiaryGroupListResponse
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -26,4 +28,10 @@ class  DiaryGroupRepository(private val dataSource: ExchangeDiaryDataSource, pri
         withContext(coroutineContext) {
             dataSource.getExchangeDiaryService().addDiaryGroup(jwt, CreateDiaryGroupRequestBody(diaryName))
         }
+
+    suspend fun deleteDiaryGroup(jwt: String, diaryId: Long): DeleteDiaryGroupResponse {
+        return withContext(coroutineContext) {
+            dataSource.getExchangeDiaryService().deleteDiaryGroup(jwt, diaryId)
+        }
+    }
 }

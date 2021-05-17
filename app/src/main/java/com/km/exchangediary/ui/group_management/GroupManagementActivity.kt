@@ -18,6 +18,10 @@ interface GroupItemDragListener {
     fun onDrag(holder: GroupManagementAdapter.GroupManagementViewHolder)
 }
 
+interface DeleteDiaryGroupListener {
+    fun deleteGroup(diaryId: Long)
+}
+
 class GroupManagementActivity : BaseActivity<ActivityGroupManagementBinding>() {
     override fun layoutRes(): Int = R.layout.activity_group_management
     private val viewModel: GroupManagementViewModel by viewModel()
@@ -39,15 +43,11 @@ class GroupManagementActivity : BaseActivity<ActivityGroupManagementBinding>() {
         binding.viewModel = viewModel
 
         val groupManagementAdapter = GroupManagementAdapter()
+        setupAdapter(groupManagementAdapter)
+
         binding.rvGroupList.adapter = groupManagementAdapter
         binding.rvGroupList.layoutManager = LinearLayoutManager(this)
-
         touchHelper = ItemTouchHelper(GroupItemTouchHelperCallback(groupManagementAdapter))
-        (groupManagementAdapter).setDragListener(object : GroupItemDragListener {
-            override fun onDrag(holder: GroupManagementAdapter.GroupManagementViewHolder) {
-                touchHelper.startDrag(holder)
-            }
-        })
         touchHelper.attachToRecyclerView(binding.rvGroupList)
 
         binding.ivAddGroup.setOnClickListener {
@@ -56,12 +56,21 @@ class GroupManagementActivity : BaseActivity<ActivityGroupManagementBinding>() {
         }
     }
 
+    private fun setupAdapter(groupManagementAdapter: GroupManagementAdapter) {
+        groupManagementAdapter.setDragListener(object : GroupItemDragListener {
+            override fun onDrag(holder: GroupManagementAdapter.GroupManagementViewHolder) {
+                touchHelper.startDrag(holder)
+            }
+        })
+        groupManagementAdapter.setDeleteDiaryGroupListener(object : DeleteDiaryGroupListener {
+            override fun deleteGroup(diaryId: Long) {
+                viewModel.deleteDiaryGroup(diaryId)
+            }
+        })
+    }
+
     private fun initViewModel() {
         viewModel.refreshGroupList()
-
-        viewModel.groupList.observe(this) {
-            (binding.rvGroupList.adapter as GroupManagementAdapter).addGroupList(it)
-        }
     }
 
     private fun confirmGroupAddition() {

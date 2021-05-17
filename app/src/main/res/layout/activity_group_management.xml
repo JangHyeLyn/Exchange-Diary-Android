@@ -48,7 +48,8 @@
             android:id="@+id/rv_group_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/layout_toolbar"/>
+            android:layout_below="@id/layout_toolbar"
+            app:setList="@{viewModel.groupList}"/>
 
     </RelativeLayout>
 </layout>

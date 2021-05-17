@@ -6,17 +6,19 @@ import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.km.exchangediary.R
 import com.km.exchangediary.databinding.ItemGroupManagementBinding
+import com.km.exchangediary.ui.group_management.DeleteDiaryGroupListener
 import com.km.exchangediary.ui.group_management.GroupItemDragListener
 import com.km.exchangediary.ui.group_management.model.DiaryGroup
 import java.util.*
 
-class GroupManagementAdapter : RecyclerView.Adapter<GroupManagementAdapter.GroupManagementViewHolder>(), GroupItemMoveListener {
+class GroupManagementAdapter : ListAdapter<DiaryGroup, GroupManagementAdapter.GroupManagementViewHolder>(DIFF_UTIL), GroupItemMoveListener {
     private var listener: GroupItemDragListener? = null
-
-    var groupList = arrayListOf<DiaryGroup>()
+    private var deleteDiaryGroupListener: DeleteDiaryGroupListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GroupManagementViewHolder =
         GroupManagementViewHolder(
@@ -28,20 +30,16 @@ class GroupManagementAdapter : RecyclerView.Adapter<GroupManagementAdapter.Group
             )
         )
 
-    override fun getItemCount(): Int = groupList.size
-
     override fun onBindViewHolder(holder: GroupManagementViewHolder, position: Int) {
-        holder.onBind(groupList[position])
+        holder.onBind(getItem(position))
     }
 
     fun setDragListener(listener: GroupItemDragListener) {
         this.listener = listener
     }
 
-    fun addGroupList(items: List<DiaryGroup>) {
-        groupList.clear()
-        groupList.addAll(items)
-        notifyDataSetChanged()
+    fun setDeleteDiaryGroupListener(listener: DeleteDiaryGroupListener) {
+        this.deleteDiaryGroupListener = listener
     }
 
     inner class GroupManagementViewHolder(private val binding: ItemGroupManagementBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -56,11 +54,27 @@ class GroupManagementAdapter : RecyclerView.Adapter<GroupManagementAdapter.Group
 
                 return@setOnTouchListener true
             }
+            /* TODO: 더보기 만들기 */
+            binding.ivMore.setOnClickListener {
+                deleteDiaryGroupListener?.deleteGroup(item.id)
+            }
         }
     }
 
     override fun onItemMove(fromPosition: Int, toPosition: Int) {
-        Collections.swap(groupList, fromPosition, toPosition)
-        notifyItemMoved(fromPosition, toPosition)
+//        Collections.swap(currentList, fromPosition, toPosition)
+//        notifyItemMoved(fromPosition, toPosition)
+    }
+
+    companion object {
+        private val DIFF_UTIL = object : DiffUtil.ItemCallback<DiaryGroup>() {
+            override fun areItemsTheSame(oldItem: DiaryGroup, newItem: DiaryGroup): Boolean {
+                return oldItem == newItem
+            }
+
+            override fun areContentsTheSame(oldItem: DiaryGroup, newItem: DiaryGroup): Boolean {
+                return oldItem.id == newItem.id
+            }
+        }
     }
 }
