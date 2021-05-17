@@ -1,8 +1,10 @@
 package com.km.exchangediary.di
 
-import com.km.exchangediary.data.repository.TestRepository
+import com.km.exchangediary.data.repository.DiaryGroupRepository
+import com.km.exchangediary.data.repository.LoginRepository
 import org.koin.dsl.module
 
 val repositoryModule = module {
-    single { TestRepository(get()) }
+    single { LoginRepository(get(), get()) }
+    single { DiaryGroupRepository(get(), get()) }
 }
