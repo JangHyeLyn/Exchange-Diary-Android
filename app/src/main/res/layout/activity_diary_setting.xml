@@ -29,7 +29,7 @@
             app:layout_constraintTop_toBottomOf="@+id/btn_group_change" />
 
         <Button
-            android:id="@+id/btn_diary_leave"
+            android:id="@+id/btn_leave_diary"
             android:layout_width="355dp"
             android:layout_height="59dp"
             android:text="일기장 탈퇴"

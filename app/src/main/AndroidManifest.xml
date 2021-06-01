@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ExchangeDiary"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.diary_setting.diary_close.DiaryCloseActivity"></activity>
+        <activity android:name=".ui.diary_setting.leave_diary.LeaveDiaryActivity"></activity>
+        <activity android:name=".ui.diary_setting.diary_close.DiaryCloseActivity" />
         <activity android:name=".ui.diary_setting.group_change.GroupChangeActivity" />
         <activity android:name=".ui.bridge.BridgeActivity">
             <intent-filter>
