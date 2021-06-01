@@ -8,6 +8,7 @@ import com.km.exchangediary.databinding.ActivityBridgeBinding
 import com.km.exchangediary.ui.notification_page.NotificationPageActivity
 import com.km.exchangediary.ui.home.HomeActivity
 import com.km.exchangediary.ui.diary.DiaryActivity
+import com.km.exchangediary.ui.diary_setting.DiarySettingActivity
 import com.km.exchangediary.ui.login.LoginActivity
 
 class BridgeActivity : BaseActivity<ActivityBridgeBinding>() {
@@ -22,7 +23,8 @@ class BridgeActivity : BaseActivity<ActivityBridgeBinding>() {
                     HomeActivity::class.java,
                     DiaryActivity::class.java,
                     NotificationPageActivity::class.java,
-                    LoginActivity::class.java
+                    LoginActivity::class.java,
+                    DiarySettingActivity::class.java
             )
             adapter = bridgeAdapter
             layoutManager = LinearLayoutManager(this@BridgeActivity)

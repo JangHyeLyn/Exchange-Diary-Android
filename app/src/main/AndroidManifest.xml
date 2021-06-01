@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ExchangeDiary"
         android:usesCleartextTraffic="true">
-
+        <activity android:name=".ui.diary_setting.diary_close.DiaryCloseActivity"></activity>
+        <activity android:name=".ui.diary_setting.group_change.GroupChangeActivity" />
         <activity android:name=".ui.bridge.BridgeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,10 +25,12 @@
         <activity android:name=".ui.home.HomeActivity" />
         <activity android:name=".ui.diary.DiaryActivity" />
         <activity android:name=".ui.notification_page.NotificationPageActivity" />
+        <activity android:name=".ui.diary_setting.DiarySettingActivity" />
 
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="@string/kakao_app_key" />
+
         <activity android:name=".ui.login.LoginActivity">
             <intent-filter>
                 <data
@@ -35,7 +38,6 @@
                     android:scheme="@string/kakao_native_app_key" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

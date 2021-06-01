@@ -15,7 +15,7 @@
             android:layout_height="47dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
-            android:background="@drawable/custom_background_notification_image"
+            android:background="@drawable/background_notification_image"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.diary_setting.DiarySettingActivity">
+
+        <Button
+            android:id="@+id/btn_group_change"
+            android:layout_width="355dp"
+            android:layout_height="59dp"
+            android:layout_marginTop="36dp"
+            android:text="그룹변경"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btn_diary_close"
+            android:layout_width="355dp"
+            android:layout_height="59dp"
+            android:text="일기장 임의종료"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_group_change" />
+
+        <Button
+            android:id="@+id/btn_diary_leave"
+            android:layout_width="355dp"
+            android:layout_height="59dp"
+            android:text="일기장 탈퇴"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_diary_close" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
