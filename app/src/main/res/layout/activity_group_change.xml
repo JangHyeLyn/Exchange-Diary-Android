@@ -9,7 +9,7 @@
         tools:context=".ui.diary_setting.group_change.GroupChangeActivity">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/tb_profile_edit"
+            android:id="@+id/tb_group_change"
             android:layout_width="match_parent"
             android:layout_height="46dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -28,7 +28,7 @@
                     android:src="@drawable/ic_icon_nav_back_light" />
 
                 <TextView
-                    android:id="@+id/tv_profile_edit_title"
+                    android:id="@+id/tv_group_change_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -40,74 +40,21 @@
             </RelativeLayout>
         </androidx.appcompat.widget.Toolbar>
 
-        <RadioGroup
-            android:id="@+id/rg_diary_group_change"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="23dp"
             android:layout_marginTop="20dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tb_profile_edit">
+            app:layout_constraintTop_toBottomOf="@+id/tb_group_change">
 
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="36dp"
-                android:background="@android:color/transparent"
-                android:button="@null"
-                android:drawableStart="@drawable/radio_button_selector"
-                android:drawablePadding="7dp"
-                android:text="그룹미지정"
-                android:textSize="14dp" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_group_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:choiceMode="singleChoice"
+                android:divider="@android:color/transparent"
+                android:dividerHeight="4dp" />
 
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="36dp"
-                android:background="@android:color/transparent"
-                android:button="@null"
-                android:drawableStart="@drawable/radio_button_selector"
-                android:drawablePadding="7dp"
-                android:text="평균28세들"
-                android:textSize="14dp" />
-
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="36dp"
-                android:background="@android:color/transparent"
-                android:button="@null"
-                android:drawableStart="@drawable/radio_button_selector"
-                android:drawablePadding="7dp"
-                android:text="건물주"
-                android:textSize="14dp" />
-
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="36dp"
-                android:background="@android:color/transparent"
-                android:button="@null"
-                android:drawableStart="@drawable/radio_button_selector"
-                android:drawablePadding="7dp"
-                android:text="돼지파티"
-                android:textSize="14dp" />
-
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="36dp"
-                android:background="@android:color/transparent"
-                android:button="@null"
-                android:drawableStart="@drawable/radio_button_selector"
-                android:drawablePadding="7dp"
-                android:text="전설의 레전드"
-                android:textSize="14dp" />
-
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="36dp"
-                android:background="@android:color/transparent"
-                android:button="@null"
-                android:drawableStart="@drawable/radio_button_selector"
-                android:drawablePadding="7dp"
-                android:text="건강챙기자"
-                android:textSize="14dp" />
-        </RadioGroup>
+        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

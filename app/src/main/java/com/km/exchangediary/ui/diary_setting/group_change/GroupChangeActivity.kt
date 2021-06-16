@@ -1,7 +1,7 @@
 package com.km.exchangediary.ui.diary_setting.group_change
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.km.exchangediary.R
 import com.km.exchangediary.base.BaseActivity
 import com.km.exchangediary.databinding.ActivityGroupChangeBinding
@@ -12,5 +12,18 @@ class GroupChangeActivity : BaseActivity<ActivityGroupChangeBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        onBindView()
+
+    }
+
+    private fun onBindView() {
+        binding.rvGroupList.apply {
+            adapter = GroupChangeAdapter()
+            layoutManager = LinearLayoutManager(
+                this@GroupChangeActivity,
+                LinearLayoutManager.VERTICAL,
+                false
+            )
+        }
     }
 }

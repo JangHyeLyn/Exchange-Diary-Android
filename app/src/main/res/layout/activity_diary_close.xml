@@ -29,7 +29,7 @@
                     android:src="@drawable/ic_icon_nav_back_light" />
 
                 <TextView
-                    android:id="@+id/tv_diary_close"
+                    android:id="@+id/tv_diary_close_tv_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -69,6 +69,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
+            android:layout_marginBottom="32dp"
             android:lineHeight="15dp"
             android:text="설정한 장수를 모두 채우면 자동 종료되나,\n구성원간 동의로 임의종료가 가능합니다."
             android:textColor="@color/gray_01_75"
@@ -78,6 +79,35 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_diary_close_title" />
 
         <TextView
+            android:id="@+id/tv_count_agree_member"
+            android:layout_width="wrap_content"
+            android:layout_height="13dp"
+            android:layout_marginTop="24dp"
+            android:text="동의한 멤버 4/5"
+            android:textColor="@color/notice"
+            android:textSize="11dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_diary_close_description" />
+
+        <TextView
+            android:id="@+id/tv_diary_close_voting_progress"
+            android:layout_width="136dp"
+            android:layout_height="38dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/background_diary_close_button"
+            android:gravity="center"
+            android:text="임의종료 투표중···"
+            android:textColor="@color/black"
+            android:textSize="12dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_count_agree_member" />
+
+        <TextView
+            android:id="@+id/tv_diary_close_button"
             android:layout_width="136dp"
             android:layout_height="38dp"
             android:layout_marginTop="32dp"
