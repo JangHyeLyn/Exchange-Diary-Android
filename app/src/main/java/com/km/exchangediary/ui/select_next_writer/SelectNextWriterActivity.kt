@@ -33,7 +33,7 @@ class SelectNextWriterActivity : BaseActivity<ActivitySelectNextWriterBinding>()
         rv_next_writer_list.addItemDecoration(SpacingRecyclerView(dpToPixel(8.toFloat())))
     }
 
-    inner class SpacingRecyclerView(private val itemSpace: Float) : RecyclerView.ItemDecoration() {
+    class SpacingRecyclerView(private val itemSpace: Float) : RecyclerView.ItemDecoration() {
         override fun getItemOffsets(
             outRect: Rect,
             view: View,
