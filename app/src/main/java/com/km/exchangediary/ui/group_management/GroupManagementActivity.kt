@@ -2,7 +2,6 @@ package com.km.exchangediary.ui.group_management
 
 import android.os.Bundle
 import android.widget.Toast
-import androidx.lifecycle.observe
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.km.exchangediary.R

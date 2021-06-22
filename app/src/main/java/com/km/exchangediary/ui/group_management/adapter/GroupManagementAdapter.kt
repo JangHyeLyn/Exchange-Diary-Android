@@ -2,9 +2,8 @@ package com.km.exchangediary.ui.group_management.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.view.LayoutInflater
-import android.view.MotionEvent
-import android.view.ViewGroup
+import android.view.*
+import androidx.appcompat.widget.PopupMenu
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -54,10 +53,30 @@ class GroupManagementAdapter : ListAdapter<DiaryGroup, GroupManagementAdapter.Gr
 
                 return@setOnTouchListener true
             }
-            /* TODO: 더보기 만들기 */
             binding.ivMore.setOnClickListener {
-                deleteDiaryGroupListener?.deleteGroup(item.id)
+                initPopupMenu(it)
             }
+        }
+
+        private fun initPopupMenu(anchorView: View) {
+            val popupMenu = PopupMenu(anchorView.context, anchorView)
+            popupMenu.menuInflater.inflate(R.menu.layout_group_popup, popupMenu.menu)
+
+            popupMenu.setOnMenuItemClickListener {
+                when (it.itemId) {
+                    R.id.modify_group_name -> {
+                        /* TODO: 그룹명 변경 API 연결 */
+                    }
+                    R.id.delete_group -> {
+                        deleteDiaryGroupListener?.deleteGroup(getItem(adapterPosition).id)
+                    }
+                    else -> return@setOnMenuItemClickListener false
+                }
+
+                return@setOnMenuItemClickListener true
+            }
+
+            popupMenu.show()
         }
     }
 
