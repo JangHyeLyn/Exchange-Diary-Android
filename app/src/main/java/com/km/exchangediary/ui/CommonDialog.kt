@@ -25,7 +25,7 @@ class CommonDialog(private val titleVisible: Boolean = true,
                    private val titleText: String = "", private val contentText: String = "",
                    private val confirmText: String = "확인", private val cancelText: String = "취소",
                    private val highlightText: List<Pair<Int, Int>> = listOf(),
-                   private val onSuccess : () -> Unit = {}) : DialogFragment() {
+                   private var onSuccess : () -> Unit = {}) : DialogFragment() {
     lateinit var binding: DialogCommonBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -82,5 +82,9 @@ class CommonDialog(private val titleVisible: Boolean = true,
 
     fun clearEditText() {
         binding.etContents.text = Editable.Factory.getInstance().newEditable("")
+    }
+
+    fun setOnSuccess(onSuccess: () -> Unit) {
+        this.onSuccess = onSuccess
     }
 }

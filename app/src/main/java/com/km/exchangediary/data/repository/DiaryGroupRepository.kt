@@ -1,8 +1,8 @@
 package com.km.exchangediary.data.repository
 
-import com.google.gson.JsonObject
 import com.km.exchangediary.data.local.pref.LoginPreferences
 import com.km.exchangediary.data.remote.datasource.ExchangeDiaryDataSource
+import com.km.exchangediary.data.remote.request.ChangeDiaryGroupNameRequestBody
 import com.km.exchangediary.data.remote.request.CreateDiaryGroupRequestBody
 import com.km.exchangediary.data.remote.response.CreateDiaryGroupResponse
 import com.km.exchangediary.data.remote.response.DeleteDiaryGroupResponse
@@ -33,5 +33,9 @@ class  DiaryGroupRepository(private val dataSource: ExchangeDiaryDataSource, pri
         return withContext(coroutineContext) {
             dataSource.getExchangeDiaryService().deleteDiaryGroup(jwt, diaryId)
         }
+    }
+
+    suspend fun changeDiaryGroupName(jwt: String, diaryId: Long, diaryName: String): Unit {
+        dataSource.getExchangeDiaryService().changeDiaryGroupName(jwt, diaryId, ChangeDiaryGroupNameRequestBody(diaryName))
     }
 }

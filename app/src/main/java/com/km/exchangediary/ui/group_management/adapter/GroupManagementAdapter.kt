@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.km.exchangediary.R
 import com.km.exchangediary.databinding.ItemGroupManagementBinding
+import com.km.exchangediary.ui.group_management.ChangeDiaryGroupNameListener
 import com.km.exchangediary.ui.group_management.DeleteDiaryGroupListener
 import com.km.exchangediary.ui.group_management.GroupItemDragListener
 import com.km.exchangediary.ui.group_management.model.DiaryGroup
@@ -18,6 +19,7 @@ import java.util.*
 class GroupManagementAdapter : ListAdapter<DiaryGroup, GroupManagementAdapter.GroupManagementViewHolder>(DIFF_UTIL), GroupItemMoveListener {
     private var listener: GroupItemDragListener? = null
     private var deleteDiaryGroupListener: DeleteDiaryGroupListener? = null
+    private var changeDiaryGroupNameListener: ChangeDiaryGroupNameListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GroupManagementViewHolder =
         GroupManagementViewHolder(
@@ -39,6 +41,10 @@ class GroupManagementAdapter : ListAdapter<DiaryGroup, GroupManagementAdapter.Gr
 
     fun setDeleteDiaryGroupListener(listener: DeleteDiaryGroupListener) {
         this.deleteDiaryGroupListener = listener
+    }
+
+    fun setChangeDiaryGroupNameListener(listener: ChangeDiaryGroupNameListener) {
+        this.changeDiaryGroupNameListener = listener
     }
 
     inner class GroupManagementViewHolder(private val binding: ItemGroupManagementBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -65,7 +71,7 @@ class GroupManagementAdapter : ListAdapter<DiaryGroup, GroupManagementAdapter.Gr
             popupMenu.setOnMenuItemClickListener {
                 when (it.itemId) {
                     R.id.modify_group_name -> {
-                        /* TODO: 그룹명 변경 API 연결 */
+                        changeDiaryGroupNameListener?.changeDiaryGroupName(getItem(adapterPosition).id)
                     }
                     R.id.delete_group -> {
                         deleteDiaryGroupListener?.deleteGroup(getItem(adapterPosition).id)
