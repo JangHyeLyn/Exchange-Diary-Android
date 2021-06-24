@@ -3,6 +3,7 @@ package com.km.exchangediary.data.remote.service
 import com.km.exchangediary.data.remote.request.ChangeDiaryGroupNameRequestBody
 import com.km.exchangediary.data.remote.request.CreateDiaryGroupRequestBody
 import com.km.exchangediary.data.remote.request.LoginRequestBody
+import com.km.exchangediary.data.remote.request.ReorderDiaryGroupsRequestBody
 import com.km.exchangediary.data.remote.response.CreateDiaryGroupResponse
 import com.km.exchangediary.data.remote.response.DeleteDiaryGroupResponse
 import com.km.exchangediary.data.remote.response.DiaryGroupListResponse
@@ -34,4 +35,10 @@ interface ExchangeDiaryService {
         @Path("groupId") groupId: Long,
         @Body changeDiaryGroupNameRequestBody: ChangeDiaryGroupNameRequestBody
     ): Any
+
+    @PATCH("/api/v1/diarygroups/")
+    suspend fun reorderDiaryGroups(
+        @Header("Authorization") jwt: String,
+        @Body reorderDiaryGroupsRequestBody: List<ReorderDiaryGroupsRequestBody>
+    )
 }

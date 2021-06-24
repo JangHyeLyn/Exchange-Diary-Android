@@ -11,6 +11,7 @@ import com.km.exchangediary.ui.CommonDialog
 import com.km.exchangediary.ui.DialogContentType
 import com.km.exchangediary.ui.group_management.adapter.GroupItemTouchHelperCallback
 import com.km.exchangediary.ui.group_management.adapter.GroupManagementAdapter
+import com.km.exchangediary.ui.group_management.model.DiaryGroup
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 interface GroupItemDragListener {
@@ -23,6 +24,10 @@ interface DeleteDiaryGroupListener {
 
 interface ChangeDiaryGroupNameListener {
     fun changeDiaryGroupName(diaryId: Long)
+}
+
+interface ReorderDiaryGroupsListener {
+    fun reorderDiaryGroups(diaryGroupList: List<DiaryGroup>)
 }
 
 class GroupManagementActivity : BaseActivity<ActivityGroupManagementBinding>() {
@@ -82,6 +87,11 @@ class GroupManagementActivity : BaseActivity<ActivityGroupManagementBinding>() {
                         changeDiaryGroupNameDialog.clearEditText()
                     }
                     changeDiaryGroupNameDialog.show(supportFragmentManager, "changeDiaryGroupNameDialog")
+                }
+            })
+            setReorderDiaryGroupsListener(object : ReorderDiaryGroupsListener {
+                override fun reorderDiaryGroups(diaryGroupList: List<DiaryGroup>) {
+                     viewModel.reorderDiaryGroups(diaryGroupList)
                 }
             })
         }

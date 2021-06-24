@@ -3,10 +3,7 @@ package com.km.exchangediary.ui.group_management
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.km.exchangediary.base.BaseViewModel
-import com.km.exchangediary.domain.usecase.AddDiaryGroupUseCase
-import com.km.exchangediary.domain.usecase.ChangeDiaryGroupNameUseCase
-import com.km.exchangediary.domain.usecase.DeleteDiaryGroupUseCase
-import com.km.exchangediary.domain.usecase.GetGroupListUseCase
+import com.km.exchangediary.domain.usecase.*
 import com.km.exchangediary.ui.group_management.model.DiaryGroup
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -15,7 +12,8 @@ class GroupManagementViewModel(
     private val getGroupListUseCase: GetGroupListUseCase,
     private val addDiaryGroupUseCase: AddDiaryGroupUseCase,
     private val deleteDiaryGroupUseCase: DeleteDiaryGroupUseCase,
-    private val changeDiaryGroupNameUseCase: ChangeDiaryGroupNameUseCase
+    private val changeDiaryGroupNameUseCase: ChangeDiaryGroupNameUseCase,
+    private val reorderDiaryGroupsUseCase: ReorderDiaryGroupsUseCase
 ) : BaseViewModel() {
     private val _groupList = MutableLiveData<List<DiaryGroup>>()
     val groupList: LiveData<List<DiaryGroup>> = _groupList
@@ -49,6 +47,16 @@ class GroupManagementViewModel(
                 changeDiaryGroupNameUseCase.changeDiaryGroupName(diaryId, changedName)
             }
             refreshGroupList()
+        }
+    }
+
+    fun reorderDiaryGroups(diaryGroupList: List<DiaryGroup>) {
+        launch {
+            for (i in 1 until diaryGroupList.size) {
+                diaryGroupList[i].rank = i
+            }
+
+            reorderDiaryGroupsUseCase.reorderDiaryGroups(diaryGroupList)
         }
     }
 }

@@ -13,6 +13,7 @@ import com.km.exchangediary.databinding.ItemGroupManagementBinding
 import com.km.exchangediary.ui.group_management.ChangeDiaryGroupNameListener
 import com.km.exchangediary.ui.group_management.DeleteDiaryGroupListener
 import com.km.exchangediary.ui.group_management.GroupItemDragListener
+import com.km.exchangediary.ui.group_management.ReorderDiaryGroupsListener
 import com.km.exchangediary.ui.group_management.model.DiaryGroup
 import java.util.*
 
@@ -20,6 +21,7 @@ class GroupManagementAdapter : ListAdapter<DiaryGroup, GroupManagementAdapter.Gr
     private var listener: GroupItemDragListener? = null
     private var deleteDiaryGroupListener: DeleteDiaryGroupListener? = null
     private var changeDiaryGroupNameListener: ChangeDiaryGroupNameListener? = null
+    private var reorderDiaryGroupsListener: ReorderDiaryGroupsListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GroupManagementViewHolder =
         GroupManagementViewHolder(
@@ -45,6 +47,10 @@ class GroupManagementAdapter : ListAdapter<DiaryGroup, GroupManagementAdapter.Gr
 
     fun setChangeDiaryGroupNameListener(listener: ChangeDiaryGroupNameListener) {
         this.changeDiaryGroupNameListener = listener
+    }
+
+    fun setReorderDiaryGroupsListener(listener: ReorderDiaryGroupsListener) {
+        this.reorderDiaryGroupsListener = listener
     }
 
     inner class GroupManagementViewHolder(private val binding: ItemGroupManagementBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -87,8 +93,11 @@ class GroupManagementAdapter : ListAdapter<DiaryGroup, GroupManagementAdapter.Gr
     }
 
     override fun onItemMove(fromPosition: Int, toPosition: Int) {
-//        Collections.swap(currentList, fromPosition, toPosition)
-//        notifyItemMoved(fromPosition, toPosition)
+        val newList = arrayListOf<DiaryGroup>()
+        newList.addAll(currentList)
+        Collections.swap(newList, fromPosition, toPosition)
+        submitList(newList)
+        reorderDiaryGroupsListener?.reorderDiaryGroups(newList)
     }
 
     companion object {

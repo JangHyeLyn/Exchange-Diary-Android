@@ -4,6 +4,7 @@ import com.km.exchangediary.data.local.pref.LoginPreferences
 import com.km.exchangediary.data.remote.datasource.ExchangeDiaryDataSource
 import com.km.exchangediary.data.remote.request.ChangeDiaryGroupNameRequestBody
 import com.km.exchangediary.data.remote.request.CreateDiaryGroupRequestBody
+import com.km.exchangediary.data.remote.request.ReorderDiaryGroupsRequestBody
 import com.km.exchangediary.data.remote.response.CreateDiaryGroupResponse
 import com.km.exchangediary.data.remote.response.DeleteDiaryGroupResponse
 import com.km.exchangediary.data.remote.response.DiaryGroupListResponse
@@ -37,5 +38,9 @@ class  DiaryGroupRepository(private val dataSource: ExchangeDiaryDataSource, pri
 
     suspend fun changeDiaryGroupName(jwt: String, diaryId: Long, diaryName: String): Unit {
         dataSource.getExchangeDiaryService().changeDiaryGroupName(jwt, diaryId, ChangeDiaryGroupNameRequestBody(diaryName))
+    }
+
+    suspend fun reorderDiaryGroups(jwt: String, reorderDiaryGroupsRequestBody: List<ReorderDiaryGroupsRequestBody>) {
+        dataSource.getExchangeDiaryService().reorderDiaryGroups(jwt, reorderDiaryGroupsRequestBody)
     }
 }
