@@ -14,22 +14,6 @@ import com.km.exchangediary.ui.group_management.adapter.GroupManagementAdapter
 import com.km.exchangediary.ui.group_management.model.DiaryGroup
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-interface GroupItemDragListener {
-    fun onDrag(holder: GroupManagementAdapter.GroupManagementViewHolder)
-}
-
-interface DeleteDiaryGroupListener {
-    fun deleteGroup(diaryId: Long)
-}
-
-interface ChangeDiaryGroupNameListener {
-    fun changeDiaryGroupName(diaryId: Long)
-}
-
-interface ReorderDiaryGroupsListener {
-    fun reorderDiaryGroups(diaryGroupList: List<DiaryGroup>)
-}
-
 class GroupManagementActivity : BaseActivity<ActivityGroupManagementBinding>() {
     override fun layoutRes(): Int = R.layout.activity_group_management
     private val viewModel: GroupManagementViewModel by viewModel()
@@ -70,30 +54,22 @@ class GroupManagementActivity : BaseActivity<ActivityGroupManagementBinding>() {
 
     private fun setupAdapter(groupManagementAdapter: GroupManagementAdapter) {
         groupManagementAdapter.apply {
-            setDragListener(object: GroupItemDragListener {
-                override fun onDrag(holder: GroupManagementAdapter.GroupManagementViewHolder) {
-                    touchHelper.startDrag(holder)
+            setOnDrag { holder ->
+                touchHelper.startDrag(holder)
+            }
+            setDeleteDiaryGroup { diaryId ->
+                viewModel.deleteDiaryGroup(diaryId)
+            }
+            setChangeDiaryGroupName { diaryId ->
+                changeDiaryGroupNameDialog.setOnSuccess {
+                    viewModel.changeDiaryGroupName(diaryId, changeDiaryGroupNameDialog.binding.etContents.text.toString())
+                    changeDiaryGroupNameDialog.clearEditText()
                 }
-            })
-            setDeleteDiaryGroupListener(object: DeleteDiaryGroupListener {
-                override fun deleteGroup(diaryId: Long) {
-                    viewModel.deleteDiaryGroup(diaryId)
-                }
-            })
-            setChangeDiaryGroupNameListener(object: ChangeDiaryGroupNameListener {
-                override fun changeDiaryGroupName(diaryId: Long) {
-                    changeDiaryGroupNameDialog.setOnSuccess {
-                        viewModel.changeDiaryGroupName(diaryId, changeDiaryGroupNameDialog.binding.etContents.text.toString())
-                        changeDiaryGroupNameDialog.clearEditText()
-                    }
-                    changeDiaryGroupNameDialog.show(supportFragmentManager, "changeDiaryGroupNameDialog")
-                }
-            })
-            setReorderDiaryGroupsListener(object : ReorderDiaryGroupsListener {
-                override fun reorderDiaryGroups(diaryGroupList: List<DiaryGroup>) {
-                     viewModel.reorderDiaryGroups(diaryGroupList)
-                }
-            })
+                changeDiaryGroupNameDialog.show(supportFragmentManager, "changeDiaryGroupNameDialog")
+            }
+            setReorderDiaryGroups { diaryGroupList ->
+                viewModel.reorderDiaryGroups(diaryGroupList)
+            }
         }
     }
 

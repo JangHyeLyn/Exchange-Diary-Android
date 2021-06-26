@@ -10,18 +10,14 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.km.exchangediary.R
 import com.km.exchangediary.databinding.ItemGroupManagementBinding
-import com.km.exchangediary.ui.group_management.ChangeDiaryGroupNameListener
-import com.km.exchangediary.ui.group_management.DeleteDiaryGroupListener
-import com.km.exchangediary.ui.group_management.GroupItemDragListener
-import com.km.exchangediary.ui.group_management.ReorderDiaryGroupsListener
 import com.km.exchangediary.ui.group_management.model.DiaryGroup
 import java.util.*
 
 class GroupManagementAdapter : ListAdapter<DiaryGroup, GroupManagementAdapter.GroupManagementViewHolder>(DIFF_UTIL), GroupItemMoveListener {
-    private var listener: GroupItemDragListener? = null
-    private var deleteDiaryGroupListener: DeleteDiaryGroupListener? = null
-    private var changeDiaryGroupNameListener: ChangeDiaryGroupNameListener? = null
-    private var reorderDiaryGroupsListener: ReorderDiaryGroupsListener? = null
+    private var onDrag: ((holder: GroupManagementAdapter.GroupManagementViewHolder) -> Unit)? = null
+    private var reorderDiaryGroups: ((diaryGroupList: List<DiaryGroup>) -> Unit)? = null
+    private var deleteDiaryGroup: ((diaryId: Long) -> Unit)? = null
+    private var changeDiaryGroupName: ((diaryId: Long) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GroupManagementViewHolder =
         GroupManagementViewHolder(
@@ -37,20 +33,20 @@ class GroupManagementAdapter : ListAdapter<DiaryGroup, GroupManagementAdapter.Gr
         holder.onBind(getItem(position))
     }
 
-    fun setDragListener(listener: GroupItemDragListener) {
-        this.listener = listener
+    fun setOnDrag(onDrag: (holder: GroupManagementAdapter.GroupManagementViewHolder) -> Unit) {
+        this.onDrag = onDrag
     }
 
-    fun setDeleteDiaryGroupListener(listener: DeleteDiaryGroupListener) {
-        this.deleteDiaryGroupListener = listener
+    fun setDeleteDiaryGroup(deleteDiaryGroup: (diaryId: Long) -> Unit) {
+        this.deleteDiaryGroup = deleteDiaryGroup
     }
 
-    fun setChangeDiaryGroupNameListener(listener: ChangeDiaryGroupNameListener) {
-        this.changeDiaryGroupNameListener = listener
+    fun setChangeDiaryGroupName(changeDiaryGroupName: (diaryId: Long) -> Unit) {
+        this.changeDiaryGroupName = changeDiaryGroupName
     }
 
-    fun setReorderDiaryGroupsListener(listener: ReorderDiaryGroupsListener) {
-        this.reorderDiaryGroupsListener = listener
+    fun setReorderDiaryGroups(reorderDiaryGroups: (diaryGroupList: List<DiaryGroup>) -> Unit) {
+        this.reorderDiaryGroups = reorderDiaryGroups
     }
 
     inner class GroupManagementViewHolder(private val binding: ItemGroupManagementBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -60,7 +56,7 @@ class GroupManagementAdapter : ListAdapter<DiaryGroup, GroupManagementAdapter.Gr
             binding.tvNumberOfPeople.text = "(${item.numberOfPeople})"
             binding.ivItemChanger.setOnTouchListener { _, event ->
                 if (event.action == MotionEvent.ACTION_DOWN) {
-                    listener?.onDrag(this)
+                    onDrag?.let { (this) }
                 }
 
                 return@setOnTouchListener true
@@ -77,10 +73,10 @@ class GroupManagementAdapter : ListAdapter<DiaryGroup, GroupManagementAdapter.Gr
             popupMenu.setOnMenuItemClickListener {
                 when (it.itemId) {
                     R.id.modify_group_name -> {
-                        changeDiaryGroupNameListener?.changeDiaryGroupName(getItem(adapterPosition).id)
+                        changeDiaryGroupName?.let { func -> func(getItem(adapterPosition).id) }
                     }
                     R.id.delete_group -> {
-                        deleteDiaryGroupListener?.deleteGroup(getItem(adapterPosition).id)
+                        deleteDiaryGroup?.let { func -> func(getItem(adapterPosition).id) }
                     }
                     else -> return@setOnMenuItemClickListener false
                 }
@@ -97,7 +93,7 @@ class GroupManagementAdapter : ListAdapter<DiaryGroup, GroupManagementAdapter.Gr
         newList.addAll(currentList)
         Collections.swap(newList, fromPosition, toPosition)
         submitList(newList)
-        reorderDiaryGroupsListener?.reorderDiaryGroups(newList)
+        reorderDiaryGroups?.let { func -> func(newList) }
     }
 
     companion object {
