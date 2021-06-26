@@ -74,40 +74,37 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/gray_04"
-            app:layout_constraintBottom_toTopOf="@+id/linear_layout_select_next_writer"
+            app:layout_constraintBottom_toTopOf="@+id/tv_select_random"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
 
-        <LinearLayout
-            android:id="@+id/linear_layout_select_next_writer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:orientation="horizontal"
+        <TextView
+            android:id="@+id/tv_select_random"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:gravity="center"
+            android:text="랜덤으로 지정하기"
+            android:textColor="@color/black"
+            android:textSize="14dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintEnd_toStartOf="@+id/tv_select_next_writer"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toStartOf="parent" />
 
-            <TextView
-                android:id="@+id/tv_select_random"
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="랜덤으로 지정하기"
-                android:textColor="@color/black"
-                android:textSize="14dp" />
+        <TextView
+            android:id="@+id/tv_select_next_writer"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            android:background="@color/main_bg"
+            android:gravity="center"
+            android:text="선택하기"
+            android:textColor="@color/gray_04"
+            android:textSize="14dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@+id/tv_select_random" />
 
-            <TextView
-                android:id="@+id/tv_select_next_writer"
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:layout_weight="1"
-                android:background="@color/main_bg"
-                android:gravity="center"
-                android:text="선택하기"
-                android:textColor="@color/gray_04"
-                android:textSize="14dp" />
-
-        </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -8,8 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.km.exchangediary.R
 import com.km.exchangediary.databinding.ItemSelectNextWriterBinding
 
-class NextWriterListAdapter :
-    RecyclerView.Adapter<NextWriterListAdapter.SelectNextWriterViewHolder>() {
+class NextWriterRecyclerViewAdapter :
+    RecyclerView.Adapter<NextWriterRecyclerViewAdapter.SelectNextWriterViewHolder>() {
     private val nextWriterList = arrayListOf<NextWriterData>(
         NextWriterData("쭈피"),
         NextWriterData("개똥이"),
@@ -19,7 +19,7 @@ class NextWriterListAdapter :
     )
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SelectNextWriterViewHolder =
-        NextWriterListAdapter.SelectNextWriterViewHolder(
+        NextWriterRecyclerViewAdapter.SelectNextWriterViewHolder(
             DataBindingUtil.inflate(
                 parent.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater,
                 R.layout.item_select_next_writer,
