@@ -25,6 +25,6 @@ class SelectNextWriterActivity : BaseActivity<ActivitySelectNextWriterBinding>()
             )
         }
 
-        binding.rvNextWriterList.addItemDecoration(ItemDecoration(8.toPx().toFloat()))
+        binding.rvNextWriterList.addItemDecoration(SelectNextWriterItemDecoration(8.toPx().toFloat()))
     }
 }
