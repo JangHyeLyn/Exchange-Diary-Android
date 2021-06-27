@@ -46,9 +46,13 @@ class GroupManagementActivity : BaseActivity<ActivityGroupManagementBinding>() {
         touchHelper = ItemTouchHelper(GroupItemTouchHelperCallback(groupManagementAdapter))
         touchHelper.attachToRecyclerView(binding.rvGroupList)
 
-        binding.ivAddGroup.setOnClickListener {
+        binding.btnAddGroup.setOnClickListener {
             addGroupDialog.show(supportFragmentManager, "addGroupDialog")
             binding.rvGroupList.smoothScrollToPosition(groupManagementAdapter.itemCount)
+        }
+
+        binding.btnBack.setOnClickListener {
+            finish()
         }
     }
 

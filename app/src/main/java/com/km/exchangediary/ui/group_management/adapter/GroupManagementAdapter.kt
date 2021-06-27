@@ -54,14 +54,14 @@ class GroupManagementAdapter : ListAdapter<DiaryGroup, GroupManagementAdapter.Gr
         fun onBind(item: DiaryGroup) {
             binding.tvGroupName.text = item.title
             binding.tvNumberOfPeople.text = "(${item.numberOfPeople})"
-            binding.ivItemChanger.setOnTouchListener { _, event ->
+            binding.btnItemChanger.setOnTouchListener { _, event ->
                 if (event.action == MotionEvent.ACTION_DOWN) {
                     onDrag?.let { (this) }
                 }
 
                 return@setOnTouchListener true
             }
-            binding.ivMore.setOnClickListener {
+            binding.btnMore.setOnClickListener {
                 initPopupMenu(it)
             }
         }

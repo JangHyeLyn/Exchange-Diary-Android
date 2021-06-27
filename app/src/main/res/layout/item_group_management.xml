@@ -6,13 +6,14 @@
         android:layout_width="match_parent"
         android:layout_height="49dp">
 
-        <ImageView
-            android:id="@+id/iv_item_changer"
+        <ImageButton
+            android:id="@+id/btn_item_changer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/icon_content_order"
             android:layout_centerVertical="true"
-            android:layout_marginStart="20dp"/>
+            android:layout_marginStart="20dp"
+            android:background="?attr/selectableItemBackgroundBorderless"/>
 
         <TextView
             android:id="@+id/tv_group_name"
@@ -22,7 +23,7 @@
             android:textSize="14dp"
             android:layout_centerVertical="true"
             android:layout_marginStart="4dp"
-            android:layout_toEndOf="@id/iv_item_changer"/>
+            android:layout_toEndOf="@id/btn_item_changer"/>
 
         <TextView
             android:id="@+id/tv_number_of_people"
@@ -34,14 +35,15 @@
             android:layout_marginStart="2dp"
             android:layout_toEndOf="@id/tv_group_name"/>
 
-        <ImageView
-            android:id="@+id/iv_more"
+        <ImageButton
+            android:id="@+id/btn_more"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/icon_content_menu"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:layout_marginEnd="20dp"/>
+            android:layout_marginEnd="20dp"
+            android:background="?attr/selectableItemBackgroundBorderless"/>
 
         <View
             android:layout_width="match_parent"

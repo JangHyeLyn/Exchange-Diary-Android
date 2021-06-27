@@ -16,13 +16,14 @@
             android:layout_width="match_parent"
             android:layout_height="46dp">
 
-            <ImageView
-                android:id="@+id/iv_back_button"
+            <ImageButton
+                android:id="@+id/btn_back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/icon_nav_back_light"
                 android:layout_centerVertical="true"
-                android:layout_marginStart="20dp"/>
+                android:layout_marginStart="20dp"
+                android:background="?attr/selectableItemBackgroundBorderless"/>
 
             <TextView
                 android:id="@+id/tv_toolbar_title"
@@ -32,16 +33,17 @@
                 android:textSize="15dp"
                 android:layout_centerVertical="true"
                 android:layout_margin="8dp"
-                android:layout_toEndOf="@id/iv_back_button"/>
+                android:layout_toEndOf="@id/btn_back"/>
 
-            <ImageView
-                android:id="@+id/iv_add_group"
+            <ImageButton
+                android:id="@+id/btn_add_group"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:src="@drawable/icon_nav_add"
                 android:layout_alignParentEnd="true"
-                android:layout_marginEnd="20dp"/>
+                android:layout_marginEnd="20dp"
+                android:background="?attr/selectableItemBackgroundBorderless"/>
         </RelativeLayout>
 
         <androidx.recyclerview.widget.RecyclerView
