@@ -21,7 +21,8 @@ enum class DialogContentType {
 
 class CommonDialog(private val titleVisible: Boolean = true,
                    private val contentType: DialogContentType = DialogContentType.TEXT_VIEW,
-                   private val titleText: String = "", private val contentText: String = "",
+                   private val titleText: String = "", private val titleTextSize: Int = 16,
+                   private val contentText: String = "", private val contentTextSize: Int = 12,
                    private val confirmText: String = "확인", private val cancelText: String = "취소",
                    private val highlightText: List<Pair<Int, Int>> = listOf(),
                    private val onSuccess : () -> Unit = {}) : DialogFragment() {
@@ -38,6 +39,7 @@ class CommonDialog(private val titleVisible: Boolean = true,
 
         binding.layoutTitle.visibility = if (titleVisible) {
             binding.tvTitle.text = titleText
+            binding.tvTitle.textSize = titleTextSize.toFloat()
             View.VISIBLE
         } else {
             (binding.layoutTextContents.layoutParams as ViewGroup.MarginLayoutParams).topMargin = 20.toPx()
@@ -59,6 +61,7 @@ class CommonDialog(private val titleVisible: Boolean = true,
                     )
                 }
                 binding.tvContents.text = highlightContentText
+                binding.tvContents.textSize = contentTextSize.toFloat()
             }
             DialogContentType.EDIT_TEXT -> {
                 binding.tvContents.visibility = View.GONE
