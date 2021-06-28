@@ -10,6 +10,7 @@ import com.km.exchangediary.ui.home.HomeActivity
 import com.km.exchangediary.ui.diary.DiaryActivity
 import com.km.exchangediary.ui.login.LoginActivity
 import com.km.exchangediary.ui.profile.ProfileActivity
+import com.km.exchangediary.ui.select_next_writer.SelectNextWriterActivity
 
 class BridgeActivity : BaseActivity<ActivityBridgeBinding>() {
     override fun layoutRes(): Int = R.layout.activity_bridge
@@ -24,7 +25,8 @@ class BridgeActivity : BaseActivity<ActivityBridgeBinding>() {
                     DiaryActivity::class.java,
                     NotificationPageActivity::class.java,
                     ProfileActivity::class.java,
-                    LoginActivity::class.java
+                    LoginActivity::class.java,
+                    SelectNextWriterActivity::class.java
             )
             adapter = bridgeAdapter
             layoutManager = LinearLayoutManager(this@BridgeActivity)
