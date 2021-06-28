@@ -16,7 +16,7 @@ fun provideOkHttpClient() =
 
 fun provideRetrofit(okHttpClient: OkHttpClient) =
     Retrofit.Builder()
-        .baseUrl("http://ec2-13-209-49-204.ap-northeast-2.compute.amazonaws.com:8000/")
+        .baseUrl("http://13.209.49.204/")
         .client(okHttpClient)
         .addConverterFactory(GsonConverterFactory.create())
         .build()

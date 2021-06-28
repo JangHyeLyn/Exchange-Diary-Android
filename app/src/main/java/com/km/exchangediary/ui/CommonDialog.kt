@@ -3,6 +3,7 @@ package com.km.exchangediary.ui
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.text.Editable
 import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.text.style.ForegroundColorSpan
@@ -25,10 +26,10 @@ class CommonDialog(private val titleVisible: Boolean = true,
                    private val contentText: String = "", private val contentTextSize: Int = 12,
                    private val confirmText: String = "확인", private val cancelText: String = "취소",
                    private val highlightText: List<Pair<Int, Int>> = listOf(),
-                   private val onSuccess : () -> Unit = {}) : DialogFragment() {
+                   private var onSuccess : () -> Unit = {}) : DialogFragment() {
     lateinit var binding: DialogCommonBinding
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = DialogCommonBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -80,5 +81,13 @@ class CommonDialog(private val titleVisible: Boolean = true,
         binding.btnCancel.setOnClickListener {
             dialog?.cancel()
         }
+    }
+
+    fun clearEditText() {
+        binding.etContents.text = Editable.Factory.getInstance().newEditable("")
+    }
+
+    fun setOnSuccess(onSuccess: () -> Unit) {
+        this.onSuccess = onSuccess
     }
 }
