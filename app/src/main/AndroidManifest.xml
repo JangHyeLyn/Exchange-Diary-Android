@@ -17,6 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ExchangeDiary"
         android:usesCleartextTraffic="true">
+
         <activity android:name=".ui.bridge.BridgeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,6 +31,7 @@
         <activity android:name=".ui.profile.ProfileActivity" />
         <activity android:name=".ui.profile.ProfileEditActivity" />
         <activity android:name=".ui.select_next_writer.SelectNextWriterActivity"/>
+        <activity android:name=".ui.group_management.GroupManagementActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
