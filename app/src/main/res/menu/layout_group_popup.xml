@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/modify_group_name"
+        android:title="그룹명 수정" />
+    <item
+        android:id="@+id/delete_group"
+        android:title="삭제" />
+</menu>
