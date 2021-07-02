@@ -9,8 +9,7 @@ import android.util.Base64OutputStream
 import android.util.Log
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModel
-import com.km.exchangediary.data.local.pref.ProfilePreferences
-import com.km.exchangediary.data.remote.datasource.ProfileDataSource
+import com.km.exchangediary.data.remote.datasource.ExchangeDiaryDataSource
 import com.km.exchangediary.data.remote.request.ProfileRequestBody
 import com.km.exchangediary.data.remote.response.ProfileResponseBody
 import com.km.exchangediary.data.repository.ProfileRepository
@@ -25,8 +24,8 @@ import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
 
-class ProfileViewModel(private val repository: ProfileRepository, private val dataSource: ProfileDataSource) : ViewModel() {
-    private val service = dataSource.getProfileService()
+class ProfileViewModel(private val repository: ProfileRepository, private val dataSource: ExchangeDiaryDataSource) : ViewModel() {
+    private val service = dataSource.getExchangeDiaryService()
 
     /* ------------------------ ProfileActivity ------------------------ */
     fun getProfileFromPrefs(): ProfileDataClass {
