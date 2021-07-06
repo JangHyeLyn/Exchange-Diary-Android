@@ -11,10 +11,12 @@ import com.km.exchangediary.R
 import com.km.exchangediary.databinding.FragmentHomeDiaryListBinding
 import com.km.exchangediary.ui.home.adapter.HomeDiaryGroupAdapter
 import com.km.exchangediary.ui.home.itemdecoration.HomeDiaryGroupDecoration
-import com.km.exchangediary.ui.home.model.HomeDiary
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeDiaryGroupFragment : Fragment() {
     private lateinit var binding: FragmentHomeDiaryListBinding
+    private val viewModel: HomeViewModel by viewModel()
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home_diary_list, container, false)
         return binding.root
@@ -24,18 +26,9 @@ class HomeDiaryGroupFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.rvDiaryListInGroup.apply {
-            adapter = HomeDiaryGroupAdapter().apply {
-                addDiaries(arrayListOf(
-                        HomeDiary("봄"),
-                        HomeDiary("여름"),
-                        HomeDiary("가을"),
-                        HomeDiary("겨울"),
-                        HomeDiary("해"),
-                        HomeDiary("달"),
-                        HomeDiary("별"),
-                        HomeDiary("구름")
-                ))
-            }
+            adapter = HomeDiaryGroupAdapter()
+            viewModel.getJoinedDiaryList()
+
             layoutManager = GridLayoutManager(context, 3)
             addItemDecoration(HomeDiaryGroupDecoration())
         }
