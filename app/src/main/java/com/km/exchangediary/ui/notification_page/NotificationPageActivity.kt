@@ -18,7 +18,7 @@ class NotificationPageActivity : BaseActivity<ActivityNotificationPageBinding>()
 
         binding.ivProfileBack.setOnClickListener { finish() }
 
-        //var notificationList = viewModel.getNotificationList(onBindView(it))
+        viewModel.getNotificationList { response -> onBindView(response) }
     }
 
     private fun onBindView(notificationList: NotificationResponse) {
