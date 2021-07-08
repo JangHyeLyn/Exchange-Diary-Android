@@ -31,7 +31,7 @@ class NotificationListAdapter(private val notificationList: NotificationResponse
             /* TODO Glide를 통해 다이어리 커버 이미지 바인딩 */
             binding.tvNotificationDiaryTitle.text = item.diaryTitle
             binding.tvNotificationDetail.text = item.message
-            binding.tvNotificationGroupNameAndTime.text = "${item.diaryGroup} · ${item.createdAt}"
+            binding.tvNotificationGroupNameAndTime.text = "${item.diaryGroup} · ${TimeConverter().convertTime(item.createdAt)}"
         }
     }
 }

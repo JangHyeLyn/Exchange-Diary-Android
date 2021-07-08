@@ -23,8 +23,7 @@ class NotificationViewModel(
                 response: Response<NotificationResponse>
             ) {
                 Log.d("responsebody", response.body().toString())
-                val notificationResponse = response.body()!!
-                success(notificationResponse)
+                success(response.body()!!)
             }
 
             override fun onFailure(call: Call<NotificationResponse>, t: Throwable) {
