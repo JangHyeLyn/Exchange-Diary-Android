@@ -22,7 +22,7 @@
                 android:layout_height="46dp">
 
                 <ImageButton
-                    android:id="@+id/iv_diary_close_back"
+                    android:id="@+id/ib_diary_close_back"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -35,7 +35,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="8dp"
-                    android:layout_toEndOf="@id/iv_diary_close_back"
+                    android:layout_toEndOf="@id/ib_diary_close_back"
                     android:text="일기장 임의종료"
                     android:textColor="@color/black"
                     android:textSize="15dp" />
