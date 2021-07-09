@@ -10,6 +10,8 @@ import com.km.exchangediary.R
 import com.km.exchangediary.base.BaseActivity
 import com.km.exchangediary.databinding.ActivityLeaveDiaryBinding
 import com.km.exchangediary.ui.CommonDialog
+import com.km.exchangediary.ui.DialogContentType
+import com.km.exchangediary.utils.toPx
 
 class LeaveDiaryActivity : BaseActivity<ActivityLeaveDiaryBinding>() {
     override fun layoutRes(): Int = R.layout.activity_leave_diary
@@ -21,9 +23,16 @@ class LeaveDiaryActivity : BaseActivity<ActivityLeaveDiaryBinding>() {
 
         binding.tvLeaveDiaryButton.setOnClickListener {
             CommonDialog(
-                titleText = "해당 일기장을 탈퇴하시겠습니까?",
-                onSuccess = { changeButton() }
+                titleVisible = false,
+                contentType = DialogContentType.TEXT_VIEW,
+                contentText = "해당 일기장을 탈퇴하시겠습니까?",
+                contentTextSize = 14,
+                onSuccess = { changeButtonDisable() }
             ).show(supportFragmentManager, "tag")
+        }
+
+        binding.tvSendDiaryButton.setOnClickListener {
+            finish()
         }
     }
 
@@ -34,7 +43,7 @@ class LeaveDiaryActivity : BaseActivity<ActivityLeaveDiaryBinding>() {
         binding.tvLeaveDiaryDescription.setText(spannable, TextView.BufferType.SPANNABLE)
     }
 
-    private fun changeButton() {
+    private fun changeButtonDisable() {
         binding.tvLeaveDiaryButton.visibility = View.GONE
         binding.tvSendDiaryButton.visibility = View.VISIBLE
         binding.tvLeaveDiaryButtonDisable.visibility = View.VISIBLE

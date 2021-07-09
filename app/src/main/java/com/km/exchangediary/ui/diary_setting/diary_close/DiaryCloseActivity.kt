@@ -20,7 +20,7 @@ class DiaryCloseActivity : BaseActivity<ActivityDiaryCloseBinding>() {
                         "임의종료 후 해당 일기장에서의 일기 작성이 불가하며,\n" +
                         "지금까지 저장된 일기는 삭제되지 않습니다.",
                 highlightText = listOf(Pair(59, 83)),
-                confirmText = "저장하기",
+                confirmText = "확인",
                 cancelText = "취소",
                 onSuccess = { changeButton() }
             ).show(supportFragmentManager, "tag")

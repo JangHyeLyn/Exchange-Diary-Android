@@ -20,7 +20,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="46dp">
 
-                <ImageView
+                <ImageButton
+                    android:background="?attr/selectableItemBackgroundBorderless"
                     android:id="@+id/iv_group_change_back"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

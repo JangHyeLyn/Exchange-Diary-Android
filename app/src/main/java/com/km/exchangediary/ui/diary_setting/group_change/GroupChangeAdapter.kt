@@ -3,13 +3,17 @@ package com.km.exchangediary.ui.diary_setting.group_change
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.RadioButton
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.km.exchangediary.R
-import com.km.exchangediary.databinding.ItemRadioButtonBinding
+import com.km.exchangediary.databinding.ItemGroupChangeRadioButtonBinding
 import kotlin.properties.Delegates
 
 class GroupChangeAdapter : RecyclerView.Adapter<GroupChangeAdapter.GroupChangeViewHolder>() {
+    private var lastChecked: RadioButton? = null
+    private var lastCheckedPos = 0
+
     private var groupChangeList = arrayListOf<GroupChangeData>(
         GroupChangeData("그룹미지정"),
         GroupChangeData("평균 28세들"),
@@ -18,17 +22,6 @@ class GroupChangeAdapter : RecyclerView.Adapter<GroupChangeAdapter.GroupChangeVi
         GroupChangeData("전설의 레전드"),
         GroupChangeData("건강챙기자")
     )
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-        }
-
-    private var selectedPosition by Delegates.observable(-1) { property, oldPos, newPos ->
-        if (newPos in groupChangeList.indices) {
-            notifyItemChanged(oldPos)
-            notifyItemChanged(newPos)
-        }
-    }
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -37,26 +30,22 @@ class GroupChangeAdapter : RecyclerView.Adapter<GroupChangeAdapter.GroupChangeVi
         GroupChangeViewHolder(
             DataBindingUtil.inflate(
                 parent.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater,
-                R.layout.item_radio_button,
+                R.layout.item_group_change_radio_button,
                 parent,
                 false
             )
         )
 
     override fun onBindViewHolder(holder: GroupChangeViewHolder, position: Int) {
-        if (position in groupChangeList.indices) {
-            holder.onBind(groupChangeList[position], position == selectedPosition)
-            holder.itemView.setOnClickListener { selectedPosition = position }
-        }
+
     }
 
     override fun getItemCount(): Int = groupChangeList.size
 
-    class GroupChangeViewHolder(private val binding: ItemRadioButtonBinding) :
+    inner class GroupChangeViewHolder(private val binding: ItemGroupChangeRadioButtonBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun onBind(item: GroupChangeData, selected: Boolean) {
+        fun onBind(item: GroupChangeData) {
             binding.rbGroupName.text = item.groupName
-            binding.rbGroupName.isChecked = selected
         }
     }
 }
