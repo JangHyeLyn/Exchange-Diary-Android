@@ -11,7 +11,7 @@ import com.km.exchangediary.databinding.ItemGroupChangeRadioButtonBinding
 class GroupChangeAdapter : RecyclerView.Adapter<GroupChangeAdapter.GroupChangeViewHolder>() {
     private var selectCheck: ArrayList<Int> = arrayListOf()
 
-    private var groupChangeList = arrayListOf<GroupChangeData>(
+    private var groupChangeList = arrayListOf(
         GroupChangeData("그룹미지정"),
         GroupChangeData("평균 28세들"),
         GroupChangeData("건물주"),
@@ -22,7 +22,11 @@ class GroupChangeAdapter : RecyclerView.Adapter<GroupChangeAdapter.GroupChangeVi
 
     init {
         for(i in groupChangeList){
-            selectCheck.add(0)
+            if(i.groupName == "그룹미지정"){
+                selectCheck.add(1)
+            }else{
+                selectCheck.add(0)
+            }
         }
     }
 
