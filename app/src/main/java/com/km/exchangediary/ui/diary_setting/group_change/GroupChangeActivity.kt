@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.km.exchangediary.R
 import com.km.exchangediary.base.BaseActivity
 import com.km.exchangediary.databinding.ActivityGroupChangeBinding
+import com.km.exchangediary.utils.toPx
 
 class GroupChangeActivity : BaseActivity<ActivityGroupChangeBinding>() {
     override fun layoutRes(): Int = R.layout.activity_group_change
@@ -25,5 +26,7 @@ class GroupChangeActivity : BaseActivity<ActivityGroupChangeBinding>() {
                 false
             )
         }
+
+        binding.rvGroupList.addItemDecoration(GroupChangeItemDecoration(4.toPx().toFloat()))
     }
 }
