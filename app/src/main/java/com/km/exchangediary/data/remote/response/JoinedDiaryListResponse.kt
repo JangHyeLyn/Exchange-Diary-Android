@@ -19,7 +19,7 @@ data class JoinedDiaryListResponseData(
     @SerializedName("now_writer")
     val nowWriter: Long,
     val cover: Int,
-    val group: Int?,
+    val group: Long?,
     @SerializedName("create_at")
     val createdAt: Long,
     @SerializedName("updated_at")
