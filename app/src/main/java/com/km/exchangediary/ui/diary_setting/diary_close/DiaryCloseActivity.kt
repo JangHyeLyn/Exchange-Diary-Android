@@ -23,7 +23,7 @@ class DiaryCloseActivity : BaseActivity<ActivityDiaryCloseBinding>() {
                 confirmText = "확인",
                 cancelText = "취소",
                 onSuccess = { changeButton() }
-            ).show(supportFragmentManager, "tag")
+            ).show(supportFragmentManager, "DiaryCloseDialog")
         }
     }
 

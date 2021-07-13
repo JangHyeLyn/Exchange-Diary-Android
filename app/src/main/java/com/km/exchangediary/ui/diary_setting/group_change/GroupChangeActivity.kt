@@ -14,7 +14,6 @@ class GroupChangeActivity : BaseActivity<ActivityGroupChangeBinding>() {
         super.onCreate(savedInstanceState)
 
         onBindView()
-
     }
 
     private fun onBindView() {

@@ -28,11 +28,7 @@ class LeaveDiaryActivity : BaseActivity<ActivityLeaveDiaryBinding>() {
                 contentText = "해당 일기장을 탈퇴하시겠습니까?",
                 contentTextSize = 14,
                 onSuccess = { changeButtonDisable() }
-            ).show(supportFragmentManager, "tag")
-        }
-
-        binding.tvSendDiaryButton.setOnClickListener {
-            finish()
+            ).show(supportFragmentManager, "LeaveDiaryDialog")
         }
     }
 

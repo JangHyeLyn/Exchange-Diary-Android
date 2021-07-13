@@ -12,19 +12,19 @@ class GroupChangeAdapter : RecyclerView.Adapter<GroupChangeAdapter.GroupChangeVi
     private var selectCheck: ArrayList<Int> = arrayListOf()
 
     private var groupChangeList = arrayListOf(
-        GroupChangeData("그룹미지정"),
-        GroupChangeData("평균 28세들"),
-        GroupChangeData("건물주"),
-        GroupChangeData("돼지파티"),
-        GroupChangeData("전설의 레전드"),
-        GroupChangeData("건강챙기자")
+        "그룹미지정",
+        "평균 28세들",
+        "건물주",
+        "돼지파티",
+        "전설의 레전드",
+        "건강챙기자"
     )
 
     init {
-        for(i in groupChangeList){
-            if(i.groupName == "그룹미지정"){
+        for (i in groupChangeList) {
+            if (i == "그룹미지정") {
                 selectCheck.add(1)
-            }else{
+            } else {
                 selectCheck.add(0)
             }
         }
@@ -44,29 +44,28 @@ class GroupChangeAdapter : RecyclerView.Adapter<GroupChangeAdapter.GroupChangeVi
         )
 
     override fun onBindViewHolder(holder: GroupChangeViewHolder, position: Int) {
-        holder.onBind(groupChangeList[position])
-
-        holder.radioButton.isChecked = selectCheck[position] == 1
-        holder.radioButton.setOnClickListener {
-            for (k in selectCheck.indices) {
-                if (k == position) {
-                    selectCheck[k] = 1
-                } else {
-                    selectCheck[k] = 0
-                }
-            }
-            notifyDataSetChanged()
-        }
+        holder.onBind(groupChangeList[position], position)
     }
 
     override fun getItemCount(): Int = groupChangeList.size
 
     inner class GroupChangeViewHolder(private val binding: ItemGroupChangeRadioButtonBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        var radioButton = binding.rbGroupName
-
-        fun onBind(item: GroupChangeData) {
-            binding.rbGroupName.text = item.groupName
+        fun onBind(item: String, position: Int) {
+            binding.rbGroupName.apply {
+                text = item
+                isChecked = selectCheck[position] == 1
+                setOnClickListener {
+                    for (k in selectCheck.indices) {
+                        if (k == position) {
+                            selectCheck[k] = 1
+                        } else {
+                            selectCheck[k] = 0
+                        }
+                    }
+                    notifyDataSetChanged()
+                }
+            }
         }
     }
 }
