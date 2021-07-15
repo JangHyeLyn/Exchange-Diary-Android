@@ -44,12 +44,13 @@ class ProfileViewModel(private val repository: ProfileRepository, private val da
         var callPatchResult: Call<ProfileResponseBody>? = null
 
         val currentProfileData = getProfileFromPrefs()
+        val token = "jwt ${repository.getJWT()}"
 
         when (imageFlag) {
             // 0: 이미지변경 X
             0 -> {
                 callPatchResult =
-                    service.patchProfile(ProfileRequestBody(name, introduction))
+                    token.let { service.patchProfile(it, ProfileRequestBody(name, introduction)) }
 
                 currentProfileData.name = name
                 currentProfileData.introduction = introduction
@@ -63,8 +64,9 @@ class ProfileViewModel(private val repository: ProfileRepository, private val da
                 val profileImageRequestBody =
                     profileImageFile.asRequestBody("image/*".toMediaTypeOrNull())
 
-                callPatchResult =
+                callPatchResult = token.let {
                     service.patchProfile(
+                        it,
                         name.toRequestBody("multipart/form-data".toMediaTypeOrNull()),
                         introduction.toRequestBody("multipart/form-data".toMediaTypeOrNull()),
                         MultipartBody.Part.createFormData(
@@ -73,6 +75,7 @@ class ProfileViewModel(private val repository: ProfileRepository, private val da
                             profileImageRequestBody
                         )
                     )
+                }
                 currentProfileData.name = name
                 currentProfileData.introduction = introduction
                 currentProfileData.profileImage = convertImageFileToBase64(profileImageFile)
@@ -90,16 +93,19 @@ class ProfileViewModel(private val repository: ProfileRepository, private val da
                 val profileImageRequestBody =
                     profileImageFile.asRequestBody("image/*".toMediaTypeOrNull())
 
-                callPatchResult =
-                    service.patchProfile(
-                        name.toRequestBody("multipart/form-data".toMediaTypeOrNull()),
-                        introduction.toRequestBody("multipart/form-data".toMediaTypeOrNull()),
-                        MultipartBody.Part.createFormData(
-                            "profile_img",
-                            profileImageFile.name,
-                            profileImageRequestBody
+                token.let {
+                    callPatchResult =
+                        service.patchProfile(
+                            it,
+                            name.toRequestBody("multipart/form-data".toMediaTypeOrNull()),
+                            introduction.toRequestBody("multipart/form-data".toMediaTypeOrNull()),
+                            MultipartBody.Part.createFormData(
+                                "profile_img",
+                                profileImageFile.name,
+                                profileImageRequestBody
+                            )
                         )
-                    )
+                }
 
                 currentProfileData.name = name
                 currentProfileData.introduction = introduction
@@ -116,6 +122,8 @@ class ProfileViewModel(private val repository: ProfileRepository, private val da
             ) {
                 if (response.isSuccessful) {
                     Log.d("patchResult", response.body().toString())
+                } else {
+                    Log.d("patchResult", "Else: " + response.body()?.data)
                 }
             }
 

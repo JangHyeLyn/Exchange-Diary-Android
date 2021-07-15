@@ -13,8 +13,8 @@ class ProfileActivity : BaseActivity<ActivityProfileBinding>() {
     override fun layoutRes(): Int = R.layout.activity_profile
     private val viewModel: ProfileViewModel by viewModel()
 
-    override fun onResume() {
-        super.onResume()
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
         val profileDataClass = viewModel.getProfileFromPrefs()
 
@@ -27,16 +27,16 @@ class ProfileActivity : BaseActivity<ActivityProfileBinding>() {
     }
 
     private fun clickListeners() {
-        binding.ivProfileEdit.setOnClickListener {
+        binding.ibProfileEdit.setOnClickListener {
             val intent = Intent(this, ProfileEditActivity::class.java)
             startActivity(intent)
         }
 
-        binding.ivProfileBack.setOnClickListener {
+        binding.ibProfileBack.setOnClickListener {
             finish()
         }
 
-        binding.tvSignout.setOnClickListener {
+        binding.tvLogout.setOnClickListener {
             /* TODO 로그아웃 */
         }
     }

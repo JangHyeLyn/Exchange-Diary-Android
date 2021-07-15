@@ -8,5 +8,5 @@ import org.koin.dsl.module
 val repositoryModule = module {
     single { LoginRepository(get(), get()) }
     single { DiaryGroupRepository(get(), get()) }
-    single { ProfileRepository(get())}
+    single { ProfileRepository(get(), get()) }
 }

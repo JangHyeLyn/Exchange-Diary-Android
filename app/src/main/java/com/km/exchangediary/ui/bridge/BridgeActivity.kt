@@ -26,11 +26,11 @@ class BridgeActivity : BaseActivity<ActivityBridgeBinding>() {
                     HomeActivity::class.java,
                     DiaryActivity::class.java,
                     NotificationPageActivity::class.java,
-                    ProfileActivity::class.java,
                     LoginActivity::class.java,
                     SelectNextWriterActivity::class.java,
                     GroupManagementActivity::class.java,
-                    DiarySettingActivity::class.java
+                    DiarySettingActivity::class.java,
+                    ProfileActivity::class.java
             )
             adapter = bridgeAdapter
             layoutManager = LinearLayoutManager(this@BridgeActivity)

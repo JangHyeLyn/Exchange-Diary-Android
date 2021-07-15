@@ -81,7 +81,7 @@ class ProfileEditActivity : BaseActivity<ActivityProfileEditBinding>() {
             finish()
         }
 
-        binding.ivProfileEditBack.setOnClickListener {
+        binding.ibProfileEditBack.setOnClickListener {
             showSaveDialog(binding.tvProfileEditEnd.isEnabled)
         }
     }

@@ -48,19 +48,21 @@ interface ExchangeDiaryService {
     )
 
     /* 프로필 */
-    @GET("/api/v1/users/hyelyn/")
+    @GET(" /api/v1/users/me/")
     fun getProfile(): Call<ProfileResponseBody>
 
     @Multipart
-    @PATCH("/api/v1/users/hyelyn/")
+    @PATCH("/api/v1/users/me/")
     fun patchProfile(
+        @Header("Authorization") jwt: String,
         @Part("username") userName: RequestBody,
         @Part("description") userIntroduction: RequestBody,
         @Part profileImage: MultipartBody.Part
     ): Call<ProfileResponseBody>
 
-    @PATCH("/api/v1/users/hyelyn/")
+    @PATCH("/api/v1/users/me/")
     fun patchProfile(
+        @Header("Authorization") jwt: String,
         @Body profileRequestBody: ProfileRequestBody
     ): Call<ProfileResponseBody>
 }
