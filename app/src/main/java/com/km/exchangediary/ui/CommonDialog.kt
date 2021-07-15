@@ -44,6 +44,7 @@ class CommonDialog(private val titleVisible: Boolean = true,
             View.VISIBLE
         } else {
             (binding.layoutTextContents.layoutParams as ViewGroup.MarginLayoutParams).topMargin = 20.toPx()
+            binding.tvContents.setTextColor(resources.getColor(R.color.basic_black, null))
             View.GONE
         }
 

@@ -80,7 +80,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
                         android:textSize="14dp"
-                        android:textColor="@color/gray_01"
+                        android:textColor="@color/gray_02"
                         tools:text="취소" />
                 </RelativeLayout>
 

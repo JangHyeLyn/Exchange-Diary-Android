@@ -13,7 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ExchangeDiary"
         android:usesCleartextTraffic="true">
-
+        <activity android:name=".ui.diary_setting.leave_diary.LeaveDiaryActivity" />
+        <activity android:name=".ui.diary_setting.diary_close.DiaryCloseActivity" />
+        <activity android:name=".ui.diary_setting.group_change.GroupChangeActivity" />
         <activity android:name=".ui.bridge.BridgeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,6 +28,7 @@
         <activity android:name=".ui.notification_page.NotificationPageActivity" />
         <activity android:name=".ui.select_next_writer.SelectNextWriterActivity"/>
         <activity android:name=".ui.group_management.GroupManagementActivity" />
+        <activity android:name=".ui.diary_setting.DiarySettingActivity" />
 
         <meta-data
             android:name="com.kakao.sdk.AppKey"
