@@ -44,20 +44,20 @@ class GroupChangeAdapter : RecyclerView.Adapter<GroupChangeAdapter.GroupChangeVi
         )
 
     override fun onBindViewHolder(holder: GroupChangeViewHolder, position: Int) {
-        holder.onBind(groupChangeList[position], position)
+        holder.onBind(groupChangeList[position])
     }
 
     override fun getItemCount(): Int = groupChangeList.size
 
     inner class GroupChangeViewHolder(private val binding: ItemGroupChangeRadioButtonBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun onBind(item: String, position: Int) {
+        fun onBind(item: String) {
             binding.rbGroupName.apply {
                 text = item
-                isChecked = selectCheck[position] == 1
+                isChecked = selectCheck[adapterPosition] == 1
                 setOnClickListener {
                     for (k in selectCheck.indices) {
-                        if (k == position) {
+                        if (k == adapterPosition) {
                             selectCheck[k] = 1
                         } else {
                             selectCheck[k] = 0
