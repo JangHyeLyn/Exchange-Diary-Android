@@ -78,6 +78,7 @@ class ProfileEditActivity : BaseActivity<ActivityProfileEditBinding>() {
                 defaultImageNumber?: 0,
                 baseContext
             )
+            setResult(RESULT_OK)
             finish()
         }
 
