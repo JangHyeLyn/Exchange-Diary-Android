@@ -10,4 +10,5 @@ val useCaseModule = module {
     single { DeleteDiaryGroupUseCase(get()) }
     single { ChangeDiaryGroupNameUseCase(get()) }
     single { ReorderDiaryGroupsUseCase(get()) }
+    single { NotificationPageUseCase(get()) }
 }

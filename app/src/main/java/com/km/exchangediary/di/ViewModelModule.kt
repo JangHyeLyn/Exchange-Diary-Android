@@ -13,5 +13,5 @@ val viewModelModule = module {
     viewModel { CoverViewModel() }
     viewModel { LoginViewModel(get()) }
     viewModel { GroupManagementViewModel(get(), get(), get(), get(), get()) }
-    viewModel { NotificationViewModel( get(), get()) }
+    viewModel { NotificationViewModel( get()) }
 }

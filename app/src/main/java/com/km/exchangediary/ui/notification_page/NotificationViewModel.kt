@@ -1,34 +1,25 @@
 package com.km.exchangediary.ui.notification_page
 
-import android.util.Log
-import androidx.lifecycle.ViewModel
-import com.km.exchangediary.data.local.pref.LoginPreferences
-import com.km.exchangediary.data.remote.datasource.ExchangeDiaryDataSource
-import com.km.exchangediary.data.remote.response.NotificationResponse
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import com.km.exchangediary.base.BaseViewModel
+import com.km.exchangediary.domain.usecase.NotificationPageUseCase
+import com.km.exchangediary.ui.notification_page.model.NotificationList
+import kotlinx.coroutines.launch
 
 class NotificationViewModel(
-    private val dataSource: ExchangeDiaryDataSource,
-    private val loginPreferences: LoginPreferences
-) : ViewModel() {
-    fun getNotificationList(success: (response: NotificationResponse) -> Unit) {
-        val service = dataSource.getExchangeDiaryService()
-        val token = "jwt ${loginPreferences.getUserToken()}"
+    private val notificationPageUseCase: NotificationPageUseCase
+) : BaseViewModel() {
+    private val _notificationList = MutableLiveData<List<NotificationList>>()
+    val notificationList: LiveData<List<NotificationList>> = _notificationList
 
-        service.getNotifications(token).enqueue(object : Callback<NotificationResponse> {
-            override fun onResponse(
-                call: Call<NotificationResponse>,
-                response: Response<NotificationResponse>
-            ) {
-                Log.d("responsebody", response.body().toString())
-                success(response.body()!!)
-            }
+    init {
+        getNotificationList()
+    }
 
-            override fun onFailure(call: Call<NotificationResponse>, t: Throwable) {
-                Log.d("onfailure", "실패 : $t")
-            }
-        })
+    private fun getNotificationList() {
+        launch {
+            _notificationList.value = notificationPageUseCase.getNotificationList()
+        }
     }
 }
