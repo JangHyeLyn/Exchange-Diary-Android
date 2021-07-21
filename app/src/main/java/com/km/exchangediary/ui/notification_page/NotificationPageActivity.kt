@@ -16,7 +16,7 @@ class NotificationPageActivity : BaseActivity<ActivityNotificationPageBinding>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding.ivProfileBack.setOnClickListener { finish() }
+        binding.btnNotificationBack.setOnClickListener { finish() }
 
         viewModel.notificationList.observe(this, Observer { response ->
             onBindView(response)

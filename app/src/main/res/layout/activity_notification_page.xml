@@ -10,7 +10,7 @@
         tools:context=".ui.notification_page.NotificationPageActivity">
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/tb_alarm_page"
+            android:id="@+id/tb_notification_page"
             android:layout_width="match_parent"
             android:layout_height="46dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -21,7 +21,7 @@
                 android:layout_height="match_parent">
 
                 <ImageButton
-                    android:id="@+id/iv_profile_back"
+                    android:id="@+id/btn_notification_back"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -29,12 +29,12 @@
                     android:src="@drawable/ic_icon_nav_back_light" />
 
                 <TextView
-                    android:id="@+id/tv_profile_title"
+                    android:id="@+id/tv_notification_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="8dp"
-                    android:layout_toEndOf="@id/iv_profile_back"
+                    android:layout_toEndOf="@id/btn_notification_back"
                     android:text="알림"
                     android:textColor="@color/black"
                     android:textSize="15dp" />
@@ -47,6 +47,6 @@
             android:layout_height="match_parent"
             android:overScrollMode="never"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tb_alarm_page" />
+            app:layout_constraintTop_toBottomOf="@+id/tb_notification_page" />
     </LinearLayout>
 </layout>
